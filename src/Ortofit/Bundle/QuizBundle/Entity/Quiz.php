@@ -7,7 +7,7 @@
 namespace Ortofit\Bundle\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Class Quiz
  *
@@ -34,6 +34,28 @@ class Quiz
      * @ORM\Column(type="string")
      */
     private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="type")
+     * @ORM\OrderBy({"index" = "ASC"})
+     */
+    private $questions;
+
+    /**
+     * Quiz constructor.
+     */
+    public function __construct()
+    {
+        $this->questions = new ArrayCollection();
+    }
+
+    /**
+     * @return Question[]
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
 
     /**
      * @return integer

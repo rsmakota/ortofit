@@ -6,6 +6,7 @@
 
 namespace Ortofit\Bundle\QuizBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,6 +45,27 @@ class Question
      * @ORM\ManyToOne(targetEntity="Ortofit\Bundle\QuizBundle\Entity\Quiz")
      */
     private $quiz;
+    /**
+     * @ORM\OneToMany(targetEntity="Variant", mappedBy="type")
+     * @ORM\OrderBy({"index" = "ASC"})
+     */
+    private $variants;
+
+    /**
+     * Question constructor.
+     */
+    public function __construct()
+    {
+        $this->variants = new ArrayCollection();
+    }
+
+    /**
+     * @return Variant[]
+     */
+    public function getVariants()
+    {
+        return $this->variants;
+    }
 
     /**
      * @return integer
