@@ -1,7 +1,3 @@
 ortofit_quiz:
     resource: "@OrtofitQuizBundle/Resources/config/routing.yml"
     prefix:   /
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
