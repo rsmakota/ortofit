@@ -1,0 +1,34 @@
+{% extends 'OrtofitQuizBundle:Quiz:index.html.twig' %}
+{% block body %}
+    <h1>{{ index }}. {{ name }}</h1>
+    <div>{{ content }}</div>
+    <form>
+    <table>
+        {% if position = 'horizon' %}
+            <tr>
+                {% for variant in variants %}
+                <td>
+                    {{ variant.content }}<br>
+                    <label> <input type="radio" name="{{ stateId }}" value="{{ variant.value }}"> {{ variant.name }}</label>
+                </td>
+                {% endfor %}
+            </tr>
+        {% else %}
+            {% for variant in variants %}
+                <tr>
+                    <td>
+                        {{ variant.content }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ variant.content }}<br>
+                        <label> <input type="radio" name="{{ stateId }}" value="{{ variant.value }}"> {{ variant.name }}</label>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+        <input type="submit">
+    </form>
+{% endblock %}

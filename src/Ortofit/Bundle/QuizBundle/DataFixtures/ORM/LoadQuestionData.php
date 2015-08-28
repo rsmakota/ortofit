@@ -23,43 +23,50 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
             'name'      => 'Ориентировочно проверяем состояние сводов стопы',
             'content'   => 'Нанесите на подошвенную поверхность стоп жирный крем и наступите на лист бумаги.<br> Оцените полученный отпечаток. На какой из приведенных ниже рисунков он похож?',
             'index'     => 1,
-            'reference' => 'question:first'
+            'reference' => 'question:first',
+            'position'  => Question::VARIANT_POSITION_HORIZON
         ],
         [
             'name'      => 'Проверяем положение заднего отдела стоп',
             'content'   => 'Посмотрите на стопы ребенка со спины. <br> Для взрослых - можно попросить, кого-то cфотографировать задний отдел Ваших стоп.',
             'index'     => 2,
-            'reference' => 'question:second'
+            'reference' => 'question:second',
+            'position'  => Question::VARIANT_POSITION_HORIZON
         ],
         [
             'name'      => 'Проверяем позицию переднего отдела стопы',
             'content'   => 'Посмотрите на стопы ребенка спереди. <br> Для взрослых можно увидеть отражение переднего отдела стоп в зеркале. <br> На какой рисунок больше похоже?',
             'index'     => 3,
-            'reference' => 'question:third'
+            'reference' => 'question:third',
+            'position'  => Question::VARIANT_POSITION_VERTICAL
         ],
         [
             'name'      => 'Проверяем наличие приведения переднего отдела стопы',
             'content'   => 'По полученному отпечатку стопы и посмотрев сверху на стопу отметьте образует ли угол продольная ось стопы. Имеет ли место приведение пальцев во внутрь или наружу?  На какой рисунок больше похоже?',
             'index'     => 4,
-            'reference' => 'question:fourth'
+            'reference' => 'question:fourth',
+            'position'  => Question::VARIANT_POSITION_HORIZON
         ],
         [
             'name'      => 'Проверяем положение коленных суставов относительно вертикальной оси',
             'content'   => 'Посмотрите на положение коленных суставов, на какой рисунок больше похоже?',
             'index'     => 5,
-            'reference' => 'question:fifth'
+            'reference' => 'question:fifth',
+            'position'  => Question::VARIANT_POSITION_HORIZON
         ],
         [
             'name'      => 'Проверяем как изнашивается обувь',
             'content'   => 'Посмотрите на подошву изношенной обуви. Отметьте где наиболее стирается подошва.  Каким зонам соответствует рисунок стирания? <br> <img src="/bundle/ortofitquiz/img/feet_6.png">',
             'index'     => 6,
-            'reference' => 'question:sixth'
+            'reference' => 'question:sixth',
+            'position'  => Question::VARIANT_POSITION_HORIZON
         ],
         [
             'name'      => 'Укажите возраст',
             'content'   => '',
             'index'     => 7,
-            'reference' => 'question:seventh'
+            'reference' => 'question:seventh',
+            'position'  => Question::VARIANT_POSITION_VERTICAL
         ],
 
     ];
@@ -79,6 +86,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
             $question->setName($data['name']);
             $question->setIndex($data['index']);
             $question->setContent($data['content']);
+            $question->setPosition($data['position']);
 
             $manager->persist($question);
             $this->setReference($data['reference'], $question);

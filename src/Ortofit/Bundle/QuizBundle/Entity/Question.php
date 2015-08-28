@@ -19,6 +19,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Question
 {
+    const VARIANT_POSITION_HORIZON  = 'horizon';
+    const VARIANT_POSITION_VERTICAL = 'vertical';
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
@@ -46,10 +48,14 @@ class Question
      */
     private $quiz;
     /**
-     * @ORM\OneToMany(targetEntity="Variant", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="Ortofit\Bundle\QuizBundle\Entity\Variant", mappedBy="type")
      * @ORM\OrderBy({"index" = "ASC"})
      */
     private $variants;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $position;
 
     /**
      * Question constructor.
@@ -81,6 +87,22 @@ class Question
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param string $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
     }
 
     /**
