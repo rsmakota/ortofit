@@ -7,7 +7,7 @@
 namespace Ortofit\Bundle\QuizBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
+use \Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Question
@@ -44,11 +44,12 @@ class Question
     private $index;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ortofit\Bundle\QuizBundle\Entity\Quiz")
+     * @ORM\ManyToOne(targetEntity="Quiz")
+     * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
      */
     private $quiz;
     /**
-     * @ORM\OneToMany(targetEntity="Ortofit\Bundle\QuizBundle\Entity\Variant", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="Variant", mappedBy="question")
      * @ORM\OrderBy({"index" = "ASC"})
      */
     private $variants;

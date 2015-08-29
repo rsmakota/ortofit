@@ -21,31 +21,31 @@ class LoadVariantData extends AbstractFixture implements OrderedFixtureInterface
 {
     private $loadData = [
         'question:first' => [
-            'А' => '<img src="/bundle/ortofitquiz/img/feet_1_a.png">',
-            'В' => '<img src="/bundle/ortofitquiz/img/feet_1_b.png">',
-            'С' => '<img src="/bundle/ortofitquiz/img/feet_1_c.png">',
-            'D' => '<img src="/bundle/ortofitquiz/img/feet_1_d.png">',
-            'Е' => '<img src="/bundle/ortofitquiz/img/feet_1_e.png">'
+            'А' => '<img src="/bundles/ortofitquiz/img/feet_1_a.png">',
+            'В' => '<img src="/bundles/ortofitquiz/img/feet_1_b.png">',
+            'С' => '<img src="/bundles/ortofitquiz/img/feet_1_c.png">',
+            'D' => '<img src="/bundles/ortofitquiz/img/feet_1_d.png">',
+            'Е' => '<img src="/bundles/ortofitquiz/img/feet_1_e.png">'
         ],
         'question:second' => [
-            'А' => '<img src="/bundle/ortofitquiz/img/feet_2_a.png">',
-            'В' => '<img src="/bundle/ortofitquiz/img/feet_2_b.png">',
-            'С' => '<img src="/bundle/ortofitquiz/img/feet_2_c.png">'
+            'А' => '<img src="/bundles/ortofitquiz/img/feet_2_a.png">',
+            'В' => '<img src="/bundles/ortofitquiz/img/feet_2_b.png">',
+            'С' => '<img src="/bundles/ortofitquiz/img/feet_2_c.png">'
         ],
         'question:third' => [
-            'А' => '<img src="/bundle/ortofitquiz/img/feet_3_a.png">',
-            'В' => '<img src="/bundle/ortofitquiz/img/feet_3_b.png">',
-            'С' => '<img src="/bundle/ortofitquiz/img/feet_3_c.png">'
+            'А' => '<img src="/bundles/ortofitquiz/img/feet_3_a.png">',
+            'В' => '<img src="/bundles/ortofitquiz/img/feet_3_b.png">',
+            'С' => '<img src="/bundles/ortofitquiz/img/feet_3_c.png">'
         ],
         'question:fourth' => [
-            'А' => '<img src="/bundle/ortofitquiz/img/feet_4_a.png">',
-            'В' => '<img src="/bundle/ortofitquiz/img/feet_4_b.png">',
+            'А' => '<img src="/bundles/ortofitquiz/img/feet_4_a.png">',
+            'В' => '<img src="/bundles/ortofitquiz/img/feet_4_b.png">',
             'С' => 'Нет моего варианта'
         ],
         'question:fifth' => [
-            'А' => '<img src="/bundle/ortofitquiz/img/feet_5_a.png">',
-            'В' => '<img src="/bundle/ortofitquiz/img/feet_5_b.png">',
-            'С' => '<img src="/bundle/ortofitquiz/img/feet_5_c.png">'
+            'А' => '<img src="/bundles/ortofitquiz/img/feet_5_a.png">',
+            'В' => '<img src="/bundles/ortofitquiz/img/feet_5_b.png">',
+            'С' => '<img src="/bundles/ortofitquiz/img/feet_5_c.png">'
         ],
         'question:sixth' => ['1' => '', '2' => '', '3' => '', '4' => '', '5' => '', '6' => ''],
         'question:seventh' => [

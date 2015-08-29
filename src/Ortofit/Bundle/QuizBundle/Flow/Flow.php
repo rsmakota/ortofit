@@ -32,6 +32,7 @@ class Flow implements FlowInterface
     public function __construct($states)
     {
         $this->states = $states;
+        $this->currentState = $states[0];
     }
 
     /**
@@ -42,6 +43,7 @@ class Flow implements FlowInterface
         foreach ($this->states as $state) {
             $state->fill($session);
         }
+        $this->seekToState($session->get('currentStateId'));
     }
 
     /**

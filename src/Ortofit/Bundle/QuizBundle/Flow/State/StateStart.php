@@ -36,8 +36,9 @@ class StateStart extends AbstractState
     protected function formatResponseData()
     {
         return [
-            'name' => $this->quiz->getName(),
-            'content' => $this->quiz->getDescription()
+            'name'    => $this->quiz->getName(),
+            'content' => $this->quiz->getDescription(),
+            'stateId' => $this->getId(),
         ];
     }
 

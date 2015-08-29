@@ -43,12 +43,14 @@ class QuizController extends Controller
     public function indexAction(Request $request, $id)
     {
         $session = $request->getSession();
+
+        dump($session->all());
         $quiz = $this->findQuiz($id);
 
-//        $flow = $this->getFlowManager()->createFlow($quiz);
-//        $flow->fill($session);
-//        $flow->process($session, $request);
+        $flow = $this->getFlowManager()->createFlow($quiz);
+        $flow->fill($session);
+        $flow->process($session, $request);
 //
-//        return new Response($flow->createResponse());
+        return new Response($flow->createResponse());
     }
 }

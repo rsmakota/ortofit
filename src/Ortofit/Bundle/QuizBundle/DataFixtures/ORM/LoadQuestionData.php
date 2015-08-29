@@ -56,7 +56,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
         ],
         [
             'name'      => 'Проверяем как изнашивается обувь',
-            'content'   => 'Посмотрите на подошву изношенной обуви. Отметьте где наиболее стирается подошва.  Каким зонам соответствует рисунок стирания? <br> <img src="/bundle/ortofitquiz/img/feet_6.png">',
+            'content'   => 'Посмотрите на подошву изношенной обуви. Отметьте где наиболее стирается подошва.  Каким зонам соответствует рисунок стирания? <br> <img src="/bundles/ortofitquiz/img/feet_6.png">',
             'index'     => 6,
             'reference' => 'question:sixth',
             'position'  => Question::VARIANT_POSITION_HORIZON

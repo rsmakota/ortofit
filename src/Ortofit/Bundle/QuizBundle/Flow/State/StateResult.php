@@ -22,7 +22,9 @@ class StateResult extends AbstractState
      */
     protected function formatResponseData()
     {
-        // TODO: Implement formatResponseData() method.
+        return [
+            'stateId' => $this->getId(),
+        ];
     }
 
     /**
@@ -33,7 +35,10 @@ class StateResult extends AbstractState
      */
     public function process(SessionInterface $session, Request $request)
     {
-        // TODO: Implement process() method.
+        if ($request->request->has($this->getId())) {
+            $session->clear();
+            $this->completed = true;
+        }
     }
 
     /**

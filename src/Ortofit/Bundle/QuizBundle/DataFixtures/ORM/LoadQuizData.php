@@ -28,7 +28,7 @@ class LoadQuizData extends AbstractFixture implements OrderedFixtureInterface
     {
         $quiz = new Quiz();
         $quiz->setName('Диагностический тест состояния стоп');
-        $quiz->setDescription('Уважаемые посетители сайта “Ортофит”, для Вашего удобства мы подготовили  диагностический тест состояния стоп который можно пройти в онлайн-режиме.');
+        $quiz->setDescription('Уважаемые посетители сайта “Ортофит”, для Вашего удобства мы подготовили  диагностический тест состояния стоп который можно пройти в онлайн-режиме. <br> <img src="/bundles/ortofitquiz/img/start_img.jpg">');
 
         $this->addReference('quiz:feet', $quiz);
 

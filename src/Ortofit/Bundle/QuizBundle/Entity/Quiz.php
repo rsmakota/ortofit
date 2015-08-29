@@ -36,7 +36,7 @@ class Quiz
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="Ortofit\Bundle\QuizBundle\Entity\Question", mappedBy="quiz")
      * @ORM\OrderBy({"index" = "ASC"})
      */
     private $questions;

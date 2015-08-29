@@ -39,7 +39,8 @@ class Variant
     private $index;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ortofit\Bundle\QuizBundle\Entity\Question")
+     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      */
     private $question;
 
