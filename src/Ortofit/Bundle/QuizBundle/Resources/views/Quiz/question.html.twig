@@ -1,31 +1,32 @@
 {% extends 'OrtofitQuizBundle:Quiz:index.html.twig' %}
 {% block body %}
-    <h1>{{ index }}. {{ name }}</h1>
+    <h2>{{ index }}. {{ name }}</h2>
     <p class="lead">{{ content | raw}}</p>
     <form method="post" action="">
-    <table align="center">
-        {% if position == 'horizon' %}
-            <tr>
-                {% for variant in variants %}
-                <td >
-                    {{ variant.content | raw }}<br>
-                    <label> <input type="radio" name="{{ stateId }}" value="{{ variant.value }}"> {{ variant.name | raw }}</label>
-                </td>
-                {% endfor %}
-            </tr>
-        {% else %}
-            {% for variant in variants %}
+        <table align="center">
+            {% if position == 'horizon' %}
                 <tr>
+                    {% for variant in variants %}
                     <td style="padding-right: 10px;">
-                        {{ variant.content | raw }}
+                        {{ variant.content | raw }}<br>
+                        <label> <input type="radio" name="{{ stateId }}" value="{{ variant.value }}"> {{ variant.name | raw }}</label>
                     </td>
-                    <td>
-                        <label> <input type="radio" name="{{ stateId }}" value="{{ variant.value }}"> {{ variant.name }}</label>
-                    </td>
+                    {% endfor %}
                 </tr>
-            {% endfor %}
-        {% endif %}
-    </table>
+            {% else %}
+                {% for variant in variants %}
+                    <tr>
+                        <td style="padding-right: 10px;">
+                            {{ variant.content | raw }}
+                        </td>
+                        <td>
+                            <label> <input type="radio" name="{{ stateId }}" value="{{ variant.value }}"> {{ variant.name }}</label>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+        <br><br>
         <input type="submit" class="btn btn-lg btn-primary" value="Дальше >>">
     </form>
 {% endblock %}

@@ -45,6 +45,20 @@ class Variant
     private $question;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $positive;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $outcome;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $recommendation;
+
+    /**
      * @return integer
      */
     public function getId()
@@ -120,6 +134,54 @@ class Variant
     public function setQuestion($question)
     {
         $this->question = $question;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPositive()
+    {
+        return $this->positive;
+    }
+
+    /**
+     * @param mixed $positive
+     */
+    public function setPositive($positive)
+    {
+        $this->positive = $positive;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOutcome()
+    {
+        return $this->outcome;
+    }
+
+    /**
+     * @param mixed $outcome
+     */
+    public function setOutcome($outcome)
+    {
+        $this->outcome = $outcome;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRecommendation()
+    {
+        return $this->recommendation;
+    }
+
+    /**
+     * @param mixed $recommendation
+     */
+    public function setRecommendation($recommendation)
+    {
+        $this->recommendation = $recommendation;
     }
 
     /**

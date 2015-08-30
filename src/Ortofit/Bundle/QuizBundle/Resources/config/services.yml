@@ -6,3 +6,6 @@ services:
     ortofit_quiz.flow_manager:
         class: Ortofit\Bundle\QuizBundle\Flow\FlowManager
         arguments: [@ortofit_quiz.simple_state_factory]
+
+    ortofit_quiz.diagnostic_manager:
+        class: Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticManager

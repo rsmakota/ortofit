@@ -34,9 +34,7 @@ abstract class AbstractState implements StateInterface
      * variant id
      * @var mixed
      */
-    protected $stateResult = null;
-
-
+    protected $selectedVariantId = null;
 
     /**
      * @param EngineInterface  $templateEngine
@@ -53,13 +51,14 @@ abstract class AbstractState implements StateInterface
     {
         return $this->completed;
     }
+
     /**
      * @param SessionInterface $session
      */
     public function fill(SessionInterface $session)
     {
         if ($session->has($this->getId())) {
-            $this->stateResult = $session->get($this->getId());
+            $this->selectedVariantId = $session->get($this->getId());
         }
     }
 

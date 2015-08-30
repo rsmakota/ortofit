@@ -75,7 +75,7 @@ class StateQuestion extends AbstractState
         if ($request->request->has($this->getId())) {
             $variantId = $request->request->get($this->getId());
             $session->set($this->getId(), $variantId);
-            $this->stateResult = $variantId;
+            $this->selectedVariantId = $variantId;
             $this->completed = true;
         }
     }

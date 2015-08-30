@@ -17,6 +17,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class StateResult extends AbstractState
 {
     protected $resultManager;
+
+
+
     /**
      * @return array
      */

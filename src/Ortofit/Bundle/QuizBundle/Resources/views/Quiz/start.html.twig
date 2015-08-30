@@ -1,12 +1,13 @@
 {% extends 'OrtofitQuizBundle:Quiz:index.html.twig' %}
 {% block body %}
 
-    <h1>{{ name }}</h1>
+    <h2>{{ name }}</h2>
     <p class="lead">{{ content | raw }}</p>
     <div>
+        <br><br>
         <form method="post" action="">
             <input type="hidden" name="{{ stateId }}" value="{{ stateId }}">
-            <input type="submit" class="btn btn-lg btn-primary" value="Начать">
+            <input type="submit" class="btn btn-lg btn-success" value="Начать">
         </form>
     </div>
 {% endblock %}

@@ -21,40 +21,47 @@ class LoadVariantData extends AbstractFixture implements OrderedFixtureInterface
 {
     private $loadData = [
         'question:first' => [
-            'А' => '<img src="/bundles/ortofitquiz/img/feet_1_a.png">',
-            'В' => '<img src="/bundles/ortofitquiz/img/feet_1_b.png">',
-            'С' => '<img src="/bundles/ortofitquiz/img/feet_1_c.png">',
-            'D' => '<img src="/bundles/ortofitquiz/img/feet_1_d.png">',
-            'Е' => '<img src="/bundles/ortofitquiz/img/feet_1_e.png">'
+            'А' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_a.png">'],
+            'В' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_b.png">'],
+            'С' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_c.png">'],
+            'D' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_d.png">'],
+            'Е' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_e.png">']
         ],
         'question:second' => [
-            'А' => '<img src="/bundles/ortofitquiz/img/feet_2_a.png">',
-            'В' => '<img src="/bundles/ortofitquiz/img/feet_2_b.png">',
-            'С' => '<img src="/bundles/ortofitquiz/img/feet_2_c.png">'
+            'А' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_a.png">'],
+            'В' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_b.png">'],
+            'С' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_c.png">']
         ],
         'question:third' => [
-            'А' => '<img src="/bundles/ortofitquiz/img/feet_3_a.png">',
-            'В' => '<img src="/bundles/ortofitquiz/img/feet_3_b.png">',
-            'С' => '<img src="/bundles/ortofitquiz/img/feet_3_c.png">'
+            'А' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_a.png">'],
+            'В' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_b.png">'],
+            'С' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_c.png">']
         ],
         'question:fourth' => [
-            'А' => '<img src="/bundles/ortofitquiz/img/feet_4_a.png">',
-            'В' => '<img src="/bundles/ortofitquiz/img/feet_4_b.png">',
-            'С' => 'Нет моего варианта'
+            'А' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_a.png">', 'recommendation' => 'коррекция индивидуальными ортопедическими стельками со специальным  корректирующим клином в переднем отделе стелек и ортопедическая обувь с удлиненным ребром жесткости по внутренней поверхности стопы до уровня большого пальца (“обувь с антиприведением”)'],
+            'В' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_b.png">'],
+            'С' => ['outcome'=>'','positive'=>true,  'content'=>'Нет моего варианта']
         ],
         'question:fifth' => [
-            'А' => '<img src="/bundles/ortofitquiz/img/feet_5_a.png">',
-            'В' => '<img src="/bundles/ortofitquiz/img/feet_5_b.png">',
-            'С' => '<img src="/bundles/ortofitquiz/img/feet_5_c.png">'
+            'А' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_a.png">'],
+            'В' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_b.png">'],
+            'С' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_c.png">']
         ],
-        'question:sixth' => ['1' => '', '2' => '', '3' => '', '4' => '', '5' => '', '6' => ''],
+        'question:sixth' => [
+            '1' => ['outcome'=>'','positive'=>true, 'content'=>'',],
+            '2' => ['outcome'=>'','positive'=>true, 'content'=>'',],
+            '3' => ['outcome'=>'','positive'=>true, 'content'=>'',],
+            '4' => ['outcome'=>'','positive'=>true, 'content'=>'',],
+            '5' => ['outcome'=>'','positive'=>true, 'content'=>'',],
+            '6' => ['outcome'=>'','positive'=>true, 'content'=>'',],
+        ],
         'question:seventh' => [
-            'А' => 'до 2-х лет',
-            'В' => '3-5 лет',
-            'С' => '6-9 лет',
-            'D' => '10-16 лет',
-            'Е' => '17-19 лет',
-            'F' => 'взрослый'
+            'А' => ['outcome'=>'','positive'=>true, 'content'=>'до 2-х лет', 'recommendation' => 'профилактическая  или ортопедическая обувь'],
+            'В' => ['outcome'=>'','positive'=>true, 'content'=>'3-5 лет', 'recommendation' => 'индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'С' => ['outcome'=>'','positive'=>true, 'content'=>'6-9 лет', 'recommendation' => 'индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'D' => ['outcome'=>'','positive'=>true, 'content'=>'10-16 лет', 'recommendation' => 'индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'Е' => ['outcome'=>'','positive'=>true, 'content'=>'17-19 лет', 'recommendation' => 'индивидуальные ортопедические стельки'],
+            'F' => ['outcome'=>'','positive'=>true, 'content'=>'взрослый', 'recommendation' => 'индивидуальные ортопедические стельки']
         ],
     ];
 
@@ -69,13 +76,17 @@ class LoadVariantData extends AbstractFixture implements OrderedFixtureInterface
         foreach ($this->loadData as $reference => $data) {
             $question= $this->getReference($reference);
             $i=1;
-            foreach ($data as $name => $content) {
+            foreach ($data as $name => $value) {
                 $variant = new Variant();
                 $variant->setQuestion($question);
                 $variant->setName($name);
                 $variant->setIndex($i);
-                $variant->setContent($content);
-
+                $variant->setContent($value['content']);
+                $variant->setPositive($value['positive']);
+                $variant->setOutcome($value['outcome']);
+                if (array_key_exists('recommendation', $value)) {
+                    $variant->setRecommendation($value['recommendation']);
+                }
                 $manager->persist($variant);
                 $i++;
             }

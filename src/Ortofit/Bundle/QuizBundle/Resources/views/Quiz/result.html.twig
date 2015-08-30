@@ -1,11 +1,30 @@
 {% extends 'OrtofitQuizBundle:Quiz:index.html.twig' %}
 {% block body %}
-    {#<h1>{{ name }}</h1>#}
-    {#<div>{{ content }}</div>#}
+    <h2>Результат теста</h2>
+    <p>
+        <strong>Предварительный диагноз:</strong>
+        {% if result.isPositive() %}
+            Стопы здоровы и не требуют лечения.
+        {% else  %}
+            {{ result.getOutcome() }}. <br><br>
+            <strong>Рекомендовано:</strong>
+            <ul>
+                <li>Диагностическая плантоскопия.</li>
+                <li>Консульация ортопеда.</li>
+                <li>{{ result.getRecommend()  }}.</li>
+                <li>Целенаправленная лечебная гимнастика.</li>
+                <li>Массаж.</li>
+            </ul>
+
+
+
+        {% endif %}
+    </p>
     <div>
+        <br><br>
         <form method="post" action="">
             <input type="hidden" name="{{ stateId }}" value="{{ stateId }}">
-            <input type="submit" class="btn btn-lg btn-primary" value="Пройти еще раз">
+            <input type="submit" class="btn btn-lg btn-success" value="Пройти еще раз">
         </form>
     </div>
 {% endblock %}
