@@ -2,6 +2,8 @@ services:
     ortofit_quiz.simple_state_factory:
         class: Ortofit\Bundle\QuizBundle\Factory\State\SimpleStateFactory
         arguments: [@templating.engine.twig]
+        calls:
+            - [setResultManager, [@ortofit_quiz.diagnostic_manager]]
 
     ortofit_quiz.flow_manager:
         class: Ortofit\Bundle\QuizBundle\Flow\FlowManager

@@ -80,8 +80,10 @@ class Flow implements FlowInterface
     protected function nextState()
     {
         $position = $this->getStatePosition($this->currentState);
-        if (count($this->states) > $position) {
+        if ((count($this->states) - 1) > $position) {
             $this->currentState = $this->states[($position + 1)];
+        } else {
+            $this->currentState = $this->states[0];
         }
     }
 
@@ -97,6 +99,22 @@ class Flow implements FlowInterface
     }
 
     /**
+     * @return array
+     */
+    private function getAnswers()
+    {
+        $variants = [];
+        foreach ($this->states as $state) {
+            $variant = $state->getSelectedVariant();
+            if (null != $variant) {
+                $variants[] = $variant;
+            }
+        }
+
+        return $variants;
+    }
+
+    /**
      * @param SessionInterface $session
      * @param Request          $request
      *
@@ -108,7 +126,10 @@ class Flow implements FlowInterface
         if ($this->currentState->isCompleted()) {
             $this->nextState();
         }
-
+        if ($this->currentState->isResultState()) {
+            $this->currentState->setVariants($this->getAnswers());
+            $this->currentState->process($session, $request);
+        }
         $session->set('currentStateId', $this->currentState->getId());
     }
 

@@ -7,6 +7,7 @@
 namespace Ortofit\Bundle\QuizBundle\Factory\State;
 
 
+use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
 use Ortofit\Bundle\QuizBundle\Flow\State\StateInterface;
 use Ortofit\Bundle\QuizBundle\Flow\State\StateQuestion;
 use Ortofit\Bundle\QuizBundle\Flow\State\StateResult;
@@ -27,6 +28,11 @@ class SimpleStateFactory implements StateFactoryInterface
     private $templateEngine;
 
     /**
+     * @var DiagnosticInterface
+     */
+    private $resultManager;
+
+    /**
      * SimpleStateFactory constructor.
      *
      * @param EngineInterface $templateEngine
@@ -34,6 +40,14 @@ class SimpleStateFactory implements StateFactoryInterface
     public function __construct(EngineInterface $templateEngine)
     {
         $this->templateEngine = $templateEngine;
+    }
+
+    /**
+     * @param DiagnosticInterface $resultManager
+     */
+    public function setResultManager($resultManager)
+    {
+        $this->resultManager = $resultManager;
     }
 
     /**
@@ -90,9 +104,8 @@ class SimpleStateFactory implements StateFactoryInterface
      */
     protected function createResultState($bag)
     {
-        $quiz  = $bag->get('quiz');
         $state = new StateResult($this->templateEngine);
-
+        $state->setResultManager($this->resultManager);
         $state->setTemplate('OrtofitQuizBundle:Quiz:result.html.twig');
 
         return $state;

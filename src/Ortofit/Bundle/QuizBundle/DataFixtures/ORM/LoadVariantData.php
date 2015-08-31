@@ -21,47 +21,47 @@ class LoadVariantData extends AbstractFixture implements OrderedFixtureInterface
 {
     private $loadData = [
         'question:first' => [
-            'А' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_a.png">'],
-            'В' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_b.png">'],
-            'С' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_c.png">'],
-            'D' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_d.png">'],
-            'Е' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_e.png">']
+            'А' => ['outcome'=>'Нормальный свод стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_a.png">'],
+            'В' => ['outcome'=>'Полая стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_b.png">'],
+            'С' => ['outcome'=>'Вальгусная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_c.png">'],
+            'D' => ['outcome'=>'Уплощенная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_d.png">'],
+            'Е' => ['outcome'=>'Плоско-вальгусная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_e.png">']
         ],
         'question:second' => [
-            'А' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_a.png">'],
-            'В' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_b.png">'],
-            'С' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_c.png">']
+            'А' => ['outcome'=>'Вальгусное положение заднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_a.png">'],
+            'В' => ['outcome'=>'Нормальное положение заднего отдела стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_b.png">'],
+            'С' => ['outcome'=>'Варусное положение заднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_c.png">']
         ],
         'question:third' => [
-            'А' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_a.png">'],
-            'В' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_b.png">'],
-            'С' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_c.png">']
+            'А' => ['outcome'=>'Варус позиция переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_a.png">'],
+            'В' => ['outcome'=>'Норм положение переднего отдела стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_b.png">'],
+            'С' => ['outcome'=>'Вальгус позиция переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_c.png">']
         ],
         'question:fourth' => [
-            'А' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_a.png">', 'recommendation' => 'коррекция индивидуальными ортопедическими стельками со специальным  корректирующим клином в переднем отделе стелек и ортопедическая обувь с удлиненным ребром жесткости по внутренней поверхности стопы до уровня большого пальца (“обувь с антиприведением”)'],
+            'А' => ['outcome'=>'Приведение переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_a.png">', 'recommendation' => 'коррекция индивидуальными ортопедическими стельками со специальным  корректирующим клином в переднем отделе стелек и ортопедическая обувь с удлиненным ребром жесткости по внутренней поверхности стопы до уровня большого пальца (“обувь с антиприведением”)'],
             'В' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_b.png">'],
             'С' => ['outcome'=>'','positive'=>true,  'content'=>'Нет моего варианта']
         ],
         'question:fifth' => [
-            'А' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_a.png">'],
-            'В' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_b.png">'],
-            'С' => ['outcome'=>'','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_c.png">']
+            'А' => ['outcome'=>'Нормальная ось нижних конечностей (“стройные ноги”)','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_a.png">'],
+            'В' => ['outcome'=>'Варусная ось нижних конечностей (“О-образные ноги”)','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_b.png">'],
+            'С' => ['outcome'=>'Вальгусная ось нижних конечностей (“Х-образные ноги”)','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_c.png">']
         ],
         'question:sixth' => [
             '1' => ['outcome'=>'','positive'=>true, 'content'=>'',],
             '2' => ['outcome'=>'','positive'=>true, 'content'=>'',],
             '3' => ['outcome'=>'','positive'=>true, 'content'=>'',],
             '4' => ['outcome'=>'','positive'=>true, 'content'=>'',],
-            '5' => ['outcome'=>'','positive'=>true, 'content'=>'',],
-            '6' => ['outcome'=>'','positive'=>true, 'content'=>'',],
+            '5' => ['outcome'=>'Выраженный вальгус','positive'=>true, 'content'=>'',],
+            '6' => ['outcome'=>'Выраженный  варус','positive'=>true, 'content'=>'',],
         ],
         'question:seventh' => [
-            'А' => ['outcome'=>'','positive'=>true, 'content'=>'до 2-х лет', 'recommendation' => 'профилактическая  или ортопедическая обувь'],
-            'В' => ['outcome'=>'','positive'=>true, 'content'=>'3-5 лет', 'recommendation' => 'индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
-            'С' => ['outcome'=>'','positive'=>true, 'content'=>'6-9 лет', 'recommendation' => 'индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
-            'D' => ['outcome'=>'','positive'=>true, 'content'=>'10-16 лет', 'recommendation' => 'индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
-            'Е' => ['outcome'=>'','positive'=>true, 'content'=>'17-19 лет', 'recommendation' => 'индивидуальные ортопедические стельки'],
-            'F' => ['outcome'=>'','positive'=>true, 'content'=>'взрослый', 'recommendation' => 'индивидуальные ортопедические стельки']
+            'А' => ['outcome'=>'','positive'=>true, 'content'=>'до 2-х лет', 'recommendation' => 'Профилактическая  или ортопедическая обувь'],
+            'В' => ['outcome'=>'','positive'=>true, 'content'=>'3-5 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'С' => ['outcome'=>'','positive'=>true, 'content'=>'6-9 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'D' => ['outcome'=>'','positive'=>true, 'content'=>'10-16 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'Е' => ['outcome'=>'','positive'=>true, 'content'=>'17-19 лет', 'recommendation' => 'Индивидуальные ортопедические стельки'],
+            'F' => ['outcome'=>'','positive'=>true, 'content'=>'взрослый', 'recommendation' => 'Индивидуальные ортопедические стельки']
         ],
     ];
 

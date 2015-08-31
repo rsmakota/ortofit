@@ -7,6 +7,7 @@
 namespace Ortofit\Bundle\QuizBundle\Flow\State;
 
 use Ortofit\Bundle\QuizBundle\Entity\Question;
+use Ortofit\Bundle\QuizBundle\Entity\Variant;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -57,11 +58,25 @@ class StateQuestion extends AbstractState
     }
 
     /**
+     * @return Variant|null
+     */
+    public function getSelectedVariant()
+    {
+        foreach ($this->question->getVariants() as $variant) {
+            if ($variant->getId() == $this->selectedVariantId) {
+                return $variant;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @return string
      */
     public function getId()
     {
-        return 'question_'.$this->question->getIndex();
+        return self::STATE_NAME_QUESTION.'_'.$this->question->getIndex();
     }
 
     /**

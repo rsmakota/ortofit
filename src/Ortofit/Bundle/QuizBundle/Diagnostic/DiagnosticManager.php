@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2015 ortofit_quiz
- * @author Rodion Smakota <rsmakota@gmail.com>
+ * @author    Rodion Smakota <rsmakota@gmail.com>
  */
 
 namespace Ortofit\Bundle\QuizBundle\Diagnostic;
@@ -50,8 +50,9 @@ class DiagnosticManager implements DiagnosticInterface
     {
         $result = [];
         foreach ($this->variants as $variant) {
-            if (null != $variant->getOutcome()) {
-                $result[] = ucfirst($variant->getOutcome());
+            $outcome = $variant->getOutcome();
+            if (!empty($outcome)) {
+                $result[] = ucfirst($outcome);
             }
         }
 
@@ -68,6 +69,7 @@ class DiagnosticManager implements DiagnosticInterface
                 return ucfirst($variant->getRecommendation());
             }
         }
+
         return '';
     }
 
@@ -77,9 +79,9 @@ class DiagnosticManager implements DiagnosticInterface
     public function createDiagnosis()
     {
         return new DiagnosticResult(
-          $this->createOutcome(),
-          $this->createRecommendation(),
-          $this->isPositive()
+            $this->createOutcome(),
+            $this->createRecommendation(),
+            $this->isPositive()
         );
     }
 }

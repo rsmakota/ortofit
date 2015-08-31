@@ -15,8 +15,9 @@ use Symfony\Component\Templating\EngineInterface;
  */
 abstract class AbstractState implements StateInterface
 {
-    const STATE_NAME_START  = 'start';
-    const STATE_NAME_RESULT = 'result';
+    const STATE_NAME_START    = 'start';
+    const STATE_NAME_RESULT   = 'result';
+    const STATE_NAME_QUESTION = 'question';
 
     /**
      * @var string
@@ -63,6 +64,14 @@ abstract class AbstractState implements StateInterface
     }
 
     /**
+     * @return null
+     */
+    public  function getSelectedVariant()
+    {
+        return null;
+    }
+
+    /**
      * @param string $template
      */
     public function setTemplate($template)
@@ -81,4 +90,13 @@ abstract class AbstractState implements StateInterface
     {
         return $this->templateEngine->render($this->template, $this->formatResponseData());
     }
+
+    /**
+     * @return boolean
+     */
+    public function isResultState()
+    {
+        return false;
+    }
+
 }

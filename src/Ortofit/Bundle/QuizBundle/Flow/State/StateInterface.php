@@ -45,4 +45,14 @@ interface StateInterface
      * @return void
      */
     public function fill(SessionInterface $session);
+
+    /**
+     * @return mixed
+     */
+    public function getSelectedVariant();
+
+    /**
+     * @return boolean
+     */
+    public function isResultState();
 }
