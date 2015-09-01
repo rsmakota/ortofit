@@ -62,10 +62,17 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
             'position'  => Question::VARIANT_POSITION_HORIZON
         ],
         [
-            'name'      => 'Укажите возраст',
+            'name'      => 'Испытываете ли вы боли?',
             'content'   => '',
             'index'     => 7,
             'reference' => 'question:seventh',
+            'position'  => Question::VARIANT_POSITION_VERTICAL
+        ],
+        [
+            'name'      => 'Укажите возраст',
+            'content'   => '',
+            'index'     => 8,
+            'reference' => 'question:eighth',
             'position'  => Question::VARIANT_POSITION_VERTICAL
         ],
 

@@ -56,13 +56,21 @@ class LoadVariantData extends AbstractFixture implements OrderedFixtureInterface
             '6' => ['outcome'=>'Выраженный  варус','positive'=>true, 'content'=>'',],
         ],
         'question:seventh' => [
-            'А' => ['outcome'=>'','positive'=>true, 'content'=>'до 2-х лет', 'recommendation' => 'Профилактическая  или ортопедическая обувь'],
+            'А' => ['outcome'=>'','positive'=>true, 'content'=>'не испытываю', 'recommendation' => ''],
+            'В' => ['outcome'=>'Болевой синдром','positive'=>false, 'content'=>'болит голова', 'recommendation' => 'Консультация врача-невролога'],
+            'С' => ['outcome'=>'Болевой синдром','positive'=>false, 'content'=>'болит спина', 'recommendation' => 'Консультация врача-невролога'],
+            'D' => ['outcome'=>'Болевой синдром','positive'=>false, 'content'=>'болят ноги', 'recommendation' => 'Индивидуальные ортопедические стельки'],
+            'Е' => ['outcome'=>'Болевой синдром','positive'=>false, 'content'=>'другие боли', 'recommendation' => 'Консультация врача-невролога']
+        ],
+        'question:eighth' => [
+            'А' => ['outcome'=>'','positive'=>true, 'content'=>'до 2-х лет', 'recommendation' => 'Профилактическая или ортопедическая обувь'],
             'В' => ['outcome'=>'','positive'=>true, 'content'=>'3-5 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
             'С' => ['outcome'=>'','positive'=>true, 'content'=>'6-9 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
             'D' => ['outcome'=>'','positive'=>true, 'content'=>'10-16 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
             'Е' => ['outcome'=>'','positive'=>true, 'content'=>'17-19 лет', 'recommendation' => 'Индивидуальные ортопедические стельки'],
             'F' => ['outcome'=>'','positive'=>true, 'content'=>'взрослый', 'recommendation' => 'Индивидуальные ортопедические стельки']
         ],
+
     ];
 
     /**
