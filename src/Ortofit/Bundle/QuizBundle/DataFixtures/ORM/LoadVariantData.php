@@ -38,7 +38,7 @@ class LoadVariantData extends AbstractFixture implements OrderedFixtureInterface
             'С' => ['outcome'=>'Вальгус позиция переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_c.png">']
         ],
         'question:fourth' => [
-            'А' => ['outcome'=>'Приведение переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_a.png">', 'recommendation' => 'коррекция индивидуальными ортопедическими стельками со специальным  корректирующим клином в переднем отделе стелек и ортопедическая обувь с удлиненным ребром жесткости по внутренней поверхности стопы до уровня большого пальца (“обувь с антиприведением”)'],
+            'А' => ['outcome'=>'Приведение переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_a.png">', 'recommendation' => 'Коррекция индивидуальными ортопедическими стельками со специальным  корректирующим клином в переднем отделе стелек и ортопедическая обувь с удлиненным ребром жесткости по внутренней поверхности стопы до уровня большого пальца (“обувь с антиприведением”)'],
             'В' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_b.png">'],
             'С' => ['outcome'=>'','positive'=>true,  'content'=>'Нет моего варианта']
         ],

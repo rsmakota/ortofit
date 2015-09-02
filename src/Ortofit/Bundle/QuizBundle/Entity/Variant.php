@@ -39,7 +39,7 @@ class Variant
     private $index;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="variants")
      * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      */
     private $question;

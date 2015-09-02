@@ -6,7 +6,10 @@
 
 namespace Ortofit\Bundle\QuizBundle\Diagnostic;
 
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
+use Ortofit\Bundle\QuizBundle\Entity\Quiz;
+use Ortofit\Bundle\QuizBundle\Entity\Result;
 use Ortofit\Bundle\QuizBundle\Entity\Variant;
 
 /**
@@ -16,17 +19,57 @@ use Ortofit\Bundle\QuizBundle\Entity\Variant;
  */
 class DiagnosticManager implements DiagnosticInterface
 {
+    private $entityManager;
+
     /**
      * @var Variant[]
      */
     private $variants;
 
     /**
-     * @param Variant[] $variants
+     * @var Quiz
+     */
+    private $quiz;
+
+    /**
+     * DiagnosticManager constructor.
+     *
+     * @param EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
+     * @return void
+     */
+    public function saveResult()
+    {
+        $result = new Result();
+        $result->setQuiz($this->quiz);
+        $result->setVariants(new ArrayCollection($this->variants));
+
+        $this->entityManager->persist($result);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @param Quiz $quiz
+     */
+    public function setQuiz($quiz)
+    {
+        $this->quiz = $quiz;
+    }
+
+    /**
+     * @param array $variants
      */
     public function loadVariants($variants)
     {
-        $this->variants = $variants;
+        foreach ($variants as $variantId) {
+            $this->variants[] = $this->entityManager->getRepository(Variant::clazz())->find($variantId);
+        }
     }
 
     /**
@@ -78,10 +121,12 @@ class DiagnosticManager implements DiagnosticInterface
      */
     public function createDiagnosis()
     {
-        return new DiagnosticResult(
+        $result = new DiagnosticResult(
             $this->createOutcome(),
             $this->createRecommendation(),
             $this->isPositive()
         );
+
+        return $result;
     }
 }

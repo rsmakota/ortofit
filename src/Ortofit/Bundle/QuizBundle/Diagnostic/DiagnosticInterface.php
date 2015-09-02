@@ -21,7 +21,18 @@ interface DiagnosticInterface
     public function loadVariants($variants);
 
     /**
+     * @param mixed $quiz
+     *
+     * @return void
+     */
+    public function setQuiz($quiz);
+    /**
      * @return DiagnosticResultInterface
      */
     public function createDiagnosis();
+
+    /**
+     * @return void
+     */
+    public function saveResult();
 }

@@ -19,6 +19,7 @@ abstract class AbstractState implements StateInterface
     const STATE_NAME_RESULT   = 'result';
     const STATE_NAME_QUESTION = 'question';
 
+    const SESSION_PARAM_VARIANTS = 'variants';
     /**
      * @var string
      */

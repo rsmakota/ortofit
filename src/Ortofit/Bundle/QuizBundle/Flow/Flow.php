@@ -99,22 +99,6 @@ class Flow implements FlowInterface
     }
 
     /**
-     * @return array
-     */
-    private function getAnswers()
-    {
-        $variants = [];
-        foreach ($this->states as $state) {
-            $variant = $state->getSelectedVariant();
-            if (null != $variant) {
-                $variants[] = $variant;
-            }
-        }
-
-        return $variants;
-    }
-
-    /**
      * @param SessionInterface $session
      * @param Request          $request
      *
@@ -127,7 +111,6 @@ class Flow implements FlowInterface
             $this->nextState();
         }
         if ($this->currentState->isResultState()) {
-            $this->currentState->setVariants($this->getAnswers());
             $this->currentState->process($session, $request);
         }
         $session->set('currentStateId', $this->currentState->getId());

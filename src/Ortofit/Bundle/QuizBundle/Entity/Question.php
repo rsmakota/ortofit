@@ -44,7 +44,7 @@ class Question
     private $index;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quiz")
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="questions")
      * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
      */
     private $quiz;

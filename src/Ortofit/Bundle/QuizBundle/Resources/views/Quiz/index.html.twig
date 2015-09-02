@@ -8,7 +8,9 @@
     %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-
+    {% javascripts '@OrtofitQuizBundle/Resources/public/js/jquery.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 </head>
 <body>
 <div style="text-align: center" class="container">

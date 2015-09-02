@@ -1,5 +1,17 @@
 {% extends 'OrtofitQuizBundle:Quiz:index.html.twig' %}
 {% block body %}
+    <script>
+        var id = '{{ stateId }}';
+        $(document).ready(function() {
+            $('input').click(function () {
+                var btn = $('#submit_next');
+                btn.prop('disabled', false);
+                btn.removeClass('btn-default');
+                btn.addClass('btn-primary');
+
+            });
+        });
+    </script>
     <h2>{{ index }}. {{ name }}</h2>
     <p class="lead">{{ content | raw}}</p>
     <form method="post" action="">
@@ -27,6 +39,6 @@
             {% endif %}
         </table>
         <br><br>
-        <input type="submit" class="btn btn-lg btn-primary" value="Дальше >>">
+        <input type="submit" id="submit_next" class="btn btn-lg btn-default" value="Дальше >>"  disabled title="Выберите один из вариантов">
     </form>
 {% endblock %}

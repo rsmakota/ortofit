@@ -11,3 +11,4 @@ services:
 
     ortofit_quiz.diagnostic_manager:
         class: Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticManager
+        arguments: [@doctrine.orm.entity_manager]

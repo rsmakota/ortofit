@@ -18,14 +18,13 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class StateQuestion extends AbstractState
 {
+
+
     /**
      * @var Question
      */
     protected $question;
-    /**
-     * @var string
-     */
-    protected $template = 'OrtofitQuizBundle:Quiz:question.html.twig';
+
     /**
      * @param Question $question
      */
@@ -89,6 +88,9 @@ class StateQuestion extends AbstractState
     {
         if ($request->request->has($this->getId())) {
             $variantId = $request->request->get($this->getId());
+            $variants  = $session->get(self::SESSION_PARAM_VARIANTS);
+            $variants[$this->question->getId()] = $variantId;
+            $session->set(self::SESSION_PARAM_VARIANTS, $variants);
             $session->set($this->getId(), $variantId);
             $this->selectedVariantId = $variantId;
             $this->completed = true;

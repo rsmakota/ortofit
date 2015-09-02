@@ -104,8 +104,10 @@ class SimpleStateFactory implements StateFactoryInterface
      */
     protected function createResultState($bag)
     {
+        $quiz  = $bag->get('quiz');
         $state = new StateResult($this->templateEngine);
         $state->setResultManager($this->resultManager);
+        $state->setQuiz($quiz);
         $state->setTemplate('OrtofitQuizBundle:Quiz:result.html.twig');
 
         return $state;
