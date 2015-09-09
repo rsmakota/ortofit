@@ -5,6 +5,7 @@
  */
 namespace Ortofit\Bundle\QuizBundle\Controller;
 
+use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
 use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +28,16 @@ class QuizController extends Controller
     }
 
     /**
+     * @param string $serviceId
+     *
+     * @return DiagnosticInterface
+     */
+    private function findResultManager($serviceId)
+    {
+        return $this->get($serviceId);
+    }
+
+    /**
      * @return \Ortofit\Bundle\QuizBundle\Flow\FlowManager
      */
     private function getFlowManager()
@@ -44,11 +55,11 @@ class QuizController extends Controller
     {
         $session = $request->getSession();
         $quiz = $this->findQuiz($id);
-
-        $flow = $this->getFlowManager()->createFlow($quiz);
+        $resultManager = $this->findResultManager($quiz->getResultManagerId());
+        $flow = $this->getFlowManager()->createFlow($quiz, $resultManager);
         $flow->fill($session);
         $flow->process($session, $request);
-//
+
         return new Response($flow->createResponse());
     }
 }

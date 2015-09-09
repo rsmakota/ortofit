@@ -57,6 +57,10 @@ class Question
      * @ORM\Column(type="string")
      */
     private $position;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $template;
 
     /**
      * Question constructor.
@@ -67,11 +71,35 @@ class Question
     }
 
     /**
+     * @return string
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
+     * @param string $template
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
+    }
+
+    /**
      * @return Variant[]
      */
     public function getVariants()
     {
         return $this->variants;
+    }
+
+    /**
+     * @param Variant[] $variants
+     */
+    public function setVariants($variants)
+    {
+        $this->variants = $variants;
     }
 
     /**

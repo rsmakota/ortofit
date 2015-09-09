@@ -6,8 +6,6 @@
 
 namespace Ortofit\Bundle\QuizBundle\Factory\State;
 
-
-use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
 use Ortofit\Bundle\QuizBundle\Flow\State\StateInterface;
 use Ortofit\Bundle\QuizBundle\Flow\State\StateQuestion;
 use Ortofit\Bundle\QuizBundle\Flow\State\StateResult;
@@ -28,11 +26,6 @@ class SimpleStateFactory implements StateFactoryInterface
     private $templateEngine;
 
     /**
-     * @var DiagnosticInterface
-     */
-    private $resultManager;
-
-    /**
      * SimpleStateFactory constructor.
      *
      * @param EngineInterface $templateEngine
@@ -43,72 +36,57 @@ class SimpleStateFactory implements StateFactoryInterface
     }
 
     /**
-     * @param DiagnosticInterface $resultManager
-     */
-    public function setResultManager($resultManager)
-    {
-        $this->resultManager = $resultManager;
-    }
-
-    /**
-     * @param string       $type
-     * @param ParameterBag $bag
+     * @param string $type
+     * @param object $entityData
      *
      * @return StateInterface
      * @throws \Exception
      */
-    public function createState($type, $bag)
+    public function createState($type, $entityData)
     {
         $method = 'create'.ucfirst($type).'State';
         if (method_exists($this, $method)) {
-            return $this->$method($bag);
+            return $this->$method($entityData);
         }
 
         throw new \Exception('The Method '.$method.' isn\'t exist');
     }
 
     /**
-     * @param ParameterBag $bag
+     * @param ParameterBag $entityData
      *
      * @return StateInterface
      */
-    protected function createStartState($bag)
+    protected function createStartState($entityData)
     {
-        $quiz  = $bag->get('quiz');
         $state = new StateStart($this->templateEngine);
-        $state->setQuiz($quiz);
-        $state->setTemplate('OrtofitQuizBundle:Quiz:start.html.twig');
+        $state->setEntityData($entityData);
 
         return $state;
     }
 
     /**
-     * @param ParameterBag $bag
+     * @param object $entityData
      *
-     * @return StateInterface
+     * @return StateQuestion
      */
-    protected function createQuestionState($bag)
+    protected function createQuestionState($entityData)
     {
-        $question = $bag->get('question');
         $state    = new StateQuestion($this->templateEngine);
-        $state->setQuestion($question);
-        $state->setTemplate('OrtofitQuizBundle:Quiz:question.html.twig');
+        $state->setEntityData($entityData);
 
         return $state;
     }
 
     /**
-     * @param ParameterBag $bag
+     * @param object $entityData
      *
-     * @return StateInterface
+     * @return StateResult
      */
-    protected function createResultState($bag)
+    protected function createResultState($entityData)
     {
-        $quiz  = $bag->get('quiz');
         $state = new StateResult($this->templateEngine);
-        $state->setResultManager($this->resultManager);
-        $state->setQuiz($quiz);
-        $state->setTemplate('OrtofitQuizBundle:Quiz:result.html.twig');
+        $state->setEntityData($entityData);
 
         return $state;
     }

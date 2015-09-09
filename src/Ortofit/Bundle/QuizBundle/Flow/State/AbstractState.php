@@ -20,10 +20,7 @@ abstract class AbstractState implements StateInterface
     const STATE_NAME_QUESTION = 'question';
 
     const SESSION_PARAM_VARIANTS = 'variants';
-    /**
-     * @var string
-     */
-    protected $template;
+
     /**
      * @var EngineInterface
      */
@@ -32,11 +29,6 @@ abstract class AbstractState implements StateInterface
      * @var boolean
      */
     protected $completed = false;
-    /**
-     * variant id
-     * @var mixed
-     */
-    protected $selectedVariantId = null;
 
     /**
      * @param EngineInterface  $templateEngine
@@ -54,31 +46,7 @@ abstract class AbstractState implements StateInterface
         return $this->completed;
     }
 
-    /**
-     * @param SessionInterface $session
-     */
-    public function fill(SessionInterface $session)
-    {
-        if ($session->has($this->getId())) {
-            $this->selectedVariantId = $session->get($this->getId());
-        }
-    }
-
-    /**
-     * @return null
-     */
-    public  function getSelectedVariant()
-    {
-        return null;
-    }
-
-    /**
-     * @param string $template
-     */
-    public function setTemplate($template)
-    {
-        $this->template = $template;
-    }
+    abstract protected function getTemplate();
     /**
      * @return array
      */
@@ -89,7 +57,7 @@ abstract class AbstractState implements StateInterface
      */
     public function createResponse()
     {
-        return $this->templateEngine->render($this->template, $this->formatResponseData());
+        return $this->templateEngine->render($this->getTemplate(), $this->formatResponseData());
     }
 
     /**

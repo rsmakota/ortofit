@@ -29,6 +29,9 @@ class LoadQuizData extends AbstractFixture implements OrderedFixtureInterface
         $quiz = new Quiz();
         $quiz->setName('Диагностический тест состояния стоп');
         $quiz->setDescription('Уважаемые посетители сайта “Ортофит”, для Вашего удобства мы подготовили  диагностический тест состояния стоп который можно пройти в онлайн-режиме.');
+        $quiz->setStartTemplate('OrtofitQuizBundle:Quiz:start.html.twig');
+        $quiz->setResultTemplate('OrtofitQuizBundle:Quiz:result.html.twig');
+        $quiz->setResultManager('ortofit_quiz.diagnostic_manager');
 
         $this->addReference('quiz:feet', $quiz);
 

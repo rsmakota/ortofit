@@ -40,9 +40,6 @@ class Flow implements FlowInterface
      */
     public function fill(SessionInterface $session)
     {
-        foreach ($this->states as $state) {
-            $state->fill($session);
-        }
         $this->seekToState($session->get('currentStateId'));
     }
 

@@ -40,6 +40,18 @@ class Quiz
      * @ORM\OrderBy({"index" = "ASC"})
      */
     private $questions;
+    /**
+     * @ORM\Column(type="string", name="start_template")
+     */
+    private $startTemplate;
+    /**
+     * @ORM\Column(type="string", name="result_template")
+     */
+    private $resultTemplate;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $resultManagerId;
 
     /**
      * Quiz constructor.
@@ -47,6 +59,22 @@ class Quiz
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getResultManagerId()
+    {
+        return $this->resultManagerId;
+    }
+
+    /**
+     * @param string $resultManagerId
+     */
+    public function setResultManager($resultManagerId)
+    {
+        $this->resultManagerId = $resultManagerId;
     }
 
     /**
@@ -103,6 +131,38 @@ class Quiz
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStartTemplate()
+    {
+        return $this->startTemplate;
+    }
+
+    /**
+     * @param string $startTemplate
+     */
+    public function setStartTemplate($startTemplate)
+    {
+        $this->startTemplate = $startTemplate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResultTemplate()
+    {
+        return $this->resultTemplate;
+    }
+
+    /**
+     * @param string $resultTemplate
+     */
+    public function setResultTemplate($resultTemplate)
+    {
+        $this->resultTemplate = $resultTemplate;
     }
 
     /**

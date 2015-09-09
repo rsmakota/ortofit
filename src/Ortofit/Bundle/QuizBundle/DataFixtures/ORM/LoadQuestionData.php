@@ -94,7 +94,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
             $question->setIndex($data['index']);
             $question->setContent($data['content']);
             $question->setPosition($data['position']);
-
+            $question->setTemplate('OrtofitQuizBundle:Quiz:question.html.twig');
             $manager->persist($question);
             $this->setReference($data['reference'], $question);
         }

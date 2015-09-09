@@ -18,20 +18,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class StateQuestion extends AbstractState
 {
-
-
     /**
      * @var Question
      */
     protected $question;
-
-    /**
-     * @param Question $question
-     */
-    public function setQuestion($question)
-    {
-        $this->question = $question;
-    }
 
     /**
      * @return array
@@ -56,19 +46,6 @@ class StateQuestion extends AbstractState
         return $data;
     }
 
-    /**
-     * @return Variant|null
-     */
-    public function getSelectedVariant()
-    {
-        foreach ($this->question->getVariants() as $variant) {
-            if ($variant->getId() == $this->selectedVariantId) {
-                return $variant;
-            }
-        }
-
-        return null;
-    }
 
     /**
      * @return string
@@ -91,9 +68,25 @@ class StateQuestion extends AbstractState
             $variants  = $session->get(self::SESSION_PARAM_VARIANTS);
             $variants[$this->question->getId()] = $variantId;
             $session->set(self::SESSION_PARAM_VARIANTS, $variants);
-            $session->set($this->getId(), $variantId);
-            $this->selectedVariantId = $variantId;
             $this->completed = true;
         }
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTemplate()
+    {
+        return $this->question->getTemplate();
+    }
+
+    /**
+     * @param object $entityData
+     *
+     * @return mixed
+     */
+    public function setEntityData($entityData)
+    {
+        $this->question = $entityData;
     }
 }

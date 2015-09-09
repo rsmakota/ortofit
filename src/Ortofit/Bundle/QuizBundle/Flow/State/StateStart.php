@@ -23,14 +23,6 @@ class StateStart extends AbstractState
     protected $quiz;
 
     /**
-     * @param Quiz $quiz
-     */
-    public function setQuiz($quiz)
-    {
-        $this->quiz = $quiz;
-    }
-
-    /**
      * @return array
      */
     protected function formatResponseData()
@@ -51,7 +43,6 @@ class StateStart extends AbstractState
     public function process(SessionInterface $session, Request $request)
     {
         if ($request->request->has($this->getId())) {
-            $session->set($this->getId(), $this->getId());
             $this->completed = true;
         }
     }
@@ -62,5 +53,20 @@ class StateStart extends AbstractState
     public function getId()
     {
         return self::STATE_NAME_START;
+    }
+
+    protected function getTemplate()
+    {
+        return $this->quiz->getStartTemplate();
+    }
+
+    /**
+     * @param object $entityData
+     *
+     * @return mixed
+     */
+    public function setEntityData($entityData)
+    {
+        $this->quiz = $entityData;
     }
 }

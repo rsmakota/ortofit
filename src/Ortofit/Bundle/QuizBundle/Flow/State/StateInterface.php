@@ -40,19 +40,14 @@ interface StateInterface
     public function isCompleted();
 
     /**
-     * @param SessionInterface $session
-     *
-     * @return void
-     */
-    public function fill(SessionInterface $session);
-
-    /**
-     * @return mixed
-     */
-    public function getSelectedVariant();
-
-    /**
      * @return boolean
      */
     public function isResultState();
+
+    /**
+     * @param object $entityData
+     *
+     * @return mixed
+     */
+    public function setEntityData($entityData);
 }

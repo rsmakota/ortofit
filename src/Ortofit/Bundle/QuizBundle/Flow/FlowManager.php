@@ -6,6 +6,7 @@
 
 namespace Ortofit\Bundle\QuizBundle\Flow;
 
+use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
 use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 use Ortofit\Bundle\QuizBundle\Factory\State\StateFactoryInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
@@ -33,30 +34,32 @@ class FlowManager
     }
 
     /**
-     * @param Quiz $quiz
+     * @param Quiz                $quiz
+     * @param DiagnosticInterface $resultManager
      *
      * @return array
      */
-    private function createStates(Quiz $quiz)
+    private function createStates(Quiz $quiz, DiagnosticInterface $resultManager)
     {
-        $quizBag = new ParameterBag(['quiz' => $quiz]);
-        $states = [$this->stateFactory->createState(StateFactoryInterface::STATE_TYPE_START, $quizBag)];
+        $states = [$this->stateFactory->createState(StateFactoryInterface::STATE_TYPE_START, $quiz)];
         foreach ($quiz->getQuestions() as $question) {
-            $bag = new ParameterBag(['question' => $question]);
-            $states[] = $this->stateFactory->createState(StateFactoryInterface::STATE_TYPE_QUESTION, $bag);
+            $states[] = $this->stateFactory->createState(StateFactoryInterface::STATE_TYPE_QUESTION, $question);
         }
-        $states[] = $this->stateFactory->createState(StateFactoryInterface::STATE_TYPE_RESULT, $quizBag);
+        $resultState = $this->stateFactory->createState(StateFactoryInterface::STATE_TYPE_RESULT, $quiz);
+        $resultState->setResultManager($resultManager);
+        $states[] = $resultState;
 
         return $states;
     }
 
     /**
-     * @param Quiz $quiz
+     * @param Quiz                $quiz
+     * @param DiagnosticInterface $resultManager
      *
      * @return Flow
      */
-    public function createFlow(Quiz $quiz)
+    public function createFlow(Quiz $quiz, DiagnosticInterface $resultManager)
     {
-        return new Flow($this->createStates($quiz));
+        return new Flow($this->createStates($quiz, $resultManager));
     }
 }

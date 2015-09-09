@@ -36,22 +36,6 @@ class StateResult extends AbstractState
     protected $result;
 
     /**
-     * @return Quiz
-     */
-    public function getQuiz()
-    {
-        return $this->quiz;
-    }
-
-    /**
-     * @param Quiz $quiz
-     */
-    public function setQuiz($quiz)
-    {
-        $this->quiz = $quiz;
-    }
-
-    /**
      * @param DiagnosticInterface $resultManager
      */
     public function setResultManager($resultManager)
@@ -106,5 +90,23 @@ class StateResult extends AbstractState
     public function isResultState()
     {
         return true;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTemplate()
+    {
+        return $this->quiz->getResultTemplate();
+    }
+
+    /**
+     * @param object $entityData
+     *
+     * @return mixed
+     */
+    public function setEntityData($entityData)
+    {
+        $this->quiz = $entityData;
     }
 }

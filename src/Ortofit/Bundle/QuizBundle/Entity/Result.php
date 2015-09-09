@@ -31,7 +31,7 @@ class Result
     private $created;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ortofit\Bundle\QuizBundle\Entity\Quiz", inversedBy="results")
+     * @ORM\ManyToOne(targetEntity="Ortofit\Bundle\QuizBundle\Entity\Quiz")
      * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
      */
     private $quiz;
