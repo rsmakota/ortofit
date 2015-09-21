@@ -15,7 +15,7 @@ use Ortofit\Bundle\QuizBundle\Factory\State\StateFactoryInterface;
  *
  * @package Ortofit\Bundle\QuizBundle\Flow
  */
-class FlowManager
+class FlowManager implements FlowManagerInterface
 {
     /**
      * @var StateFactoryInterface

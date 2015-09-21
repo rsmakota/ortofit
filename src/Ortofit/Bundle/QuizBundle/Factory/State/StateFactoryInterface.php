@@ -20,10 +20,10 @@ interface StateFactoryInterface
     const STATE_TYPE_QUESTION = 'question';
 
     /**
-     * @param string       $type
-     * @param ParameterBag $bag
+     * @param string $type
+     * @param object $entityData
      *
      * @return StateInterface
      */
-    public function createState($type, $bag);
+    public function createState($type, $entityData);
 }

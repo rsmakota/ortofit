@@ -51,6 +51,7 @@ class Flow implements FlowInterface
         foreach ($this->states as $state) {
             if ($state->getId() == $stateId) {
                 $this->currentState = $state;
+                break;
             }
         }
     }
