@@ -21,11 +21,16 @@ class QuizController extends Controller
     /**
      * @param integer $quizId
      *
-     * @return Quiz|null
+     * @return Quiz
+     * @throws \Exception
      */
-    private function findQuiz($quizId)
+    private function getQuiz($quizId)
     {
-        return $this->getDoctrine()->getManager()->getRepository(Quiz::clazz())->find($quizId);
+        $quiz = $this->getDoctrine()->getManager()->getRepository(Quiz::clazz())->find($quizId);
+        if ($quiz) {
+            return $quiz;
+        }
+        throw new \Exception('Can\'t find the quiz with id <<'.$quizId.'>>');
     }
 
     /**
@@ -54,14 +59,11 @@ class QuizController extends Controller
      */
     public function indexAction(Request $request, $id)
     {
-        $quiz = $this->findQuiz($id);
-        if (null == $quiz) {
-            return $this->redirectToRoute('ortofit_wrong_quiz');
-        }
         try {
-            $session       = $request->getSession();
-            $resultManager = $this->findResultManager($quiz->getResultManagerId());
-            $flow          = $this->getFlowManager()->createFlow($quiz, $resultManager);
+            $quiz     = $this->getQuiz($id);
+            $session  = $request->getSession();
+            $rManager = $this->findResultManager($quiz->getResultManagerId());
+            $flow     = $this->getFlowManager()->createFlow($quiz, $rManager);
             $flow->init($session);
             $flow->process($session, $request);
 
