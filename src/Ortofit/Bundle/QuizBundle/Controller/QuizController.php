@@ -44,7 +44,7 @@ class QuizController extends Controller
     }
 
     /**
-     * @return \Ortofit\Bundle\QuizBundle\Flow\FlowManager
+     * @return \Ortofit\Bundle\QuizBundle\Flow\FlowManagerInterface
      */
     private function getFlowManager()
     {
