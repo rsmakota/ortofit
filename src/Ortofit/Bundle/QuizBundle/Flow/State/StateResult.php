@@ -6,8 +6,8 @@
 
 namespace Ortofit\Bundle\QuizBundle\Flow\State;
 
-use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
-use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticResultInterface;
+use Ortofit\Bundle\QuizBundle\Diagnostic\ResultManagerInterface;
+use Ortofit\Bundle\QuizBundle\Diagnostic\ResultInterface;
 use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -26,17 +26,17 @@ class StateResult extends AbstractState
     protected $quiz;
 
     /**
-     * @var DiagnosticInterface
+     * @var ResultManagerInterface
      */
     protected $resultManager;
 
     /**
-     * @var DiagnosticResultInterface
+     * @var ResultInterface
      */
     protected $result;
 
     /**
-     * @param DiagnosticInterface $resultManager
+     * @param ResultManagerInterface $resultManager
      */
     public function setResultManager($resultManager)
     {

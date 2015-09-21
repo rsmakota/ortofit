@@ -4,14 +4,14 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\QuizBundle\Diagnostic;
+namespace Ortofit\Bundle\QuizBundle\Result;
 
 /**
  * Interface DiagnosticInterface
  *
  * @package Ortofit\Bundle\QuizBundle\Diagnostic
  */
-interface DiagnosticInterface
+interface ResultManagerInterface
 {
     /**
      * @param array $variants
@@ -27,7 +27,7 @@ interface DiagnosticInterface
      */
     public function setQuiz($quiz);
     /**
-     * @return DiagnosticResultInterface
+     * @return ResultInterface
      */
     public function createDiagnosis();
 

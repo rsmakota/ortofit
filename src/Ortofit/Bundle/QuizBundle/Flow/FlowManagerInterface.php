@@ -6,7 +6,7 @@
 
 namespace Ortofit\Bundle\QuizBundle\Flow;
 
-use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
+use Ortofit\Bundle\QuizBundle\Result\ResultManagerInterface;
 use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 
 /**
@@ -17,10 +17,10 @@ use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 interface FlowManagerInterface
 {
     /**
-     * @param Quiz                $quiz
-     * @param DiagnosticInterface $resultManager
+     * @param Quiz                   $quiz
+     * @param ResultManagerInterface $resultManager
      *
      * @return Flow
      */
-    public function createFlow(Quiz $quiz, DiagnosticInterface $resultManager);
+    public function createFlow(Quiz $quiz, ResultManagerInterface $resultManager);
 }

@@ -7,6 +7,6 @@ services:
         class: Ortofit\Bundle\QuizBundle\Flow\FlowManager
         arguments: [@ortofit_quiz.simple_state_factory]
 
-    ortofit_quiz.diagnostic_manager:
-        class: Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticManager
+    ortofit_quiz.result_manager:
+        class: Ortofit\Bundle\QuizBundle\Result\ResultManager
         arguments: [@doctrine.orm.entity_manager]

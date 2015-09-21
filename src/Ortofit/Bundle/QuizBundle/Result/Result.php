@@ -4,14 +4,14 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\QuizBundle\Diagnostic;
+namespace Ortofit\Bundle\QuizBundle\Result;
 
 /**
- * Class DiagnosticResult
+ * Class Result
  *
- * @package Ortofit\Bundle\QuizBundle\Diagnostic
+ * @package Ortofit\Bundle\QuizBundle\Result
  */
-class DiagnosticResult implements DiagnosticResultInterface
+class Result implements ResultInterface
 {
     /**
      * @var string
@@ -27,7 +27,7 @@ class DiagnosticResult implements DiagnosticResultInterface
     private $positive;
 
     /**
-     * DiagnosticResult constructor.
+     * Result constructor.
      * @param string  $outcome
      * @param string  $recommendation
      * @param boolean $positive

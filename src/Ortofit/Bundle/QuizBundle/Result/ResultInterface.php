@@ -4,14 +4,14 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\QuizBundle\Diagnostic;
+namespace Ortofit\Bundle\QuizBundle\Result;
 
 /**
  * Class DiagnosticResultInterface
  *
  * @package Ortofit\Bundle\QuizBundle\Diagnostic
  */
-interface DiagnosticResultInterface
+interface ResultInterface
 {
     /**
      * @return string

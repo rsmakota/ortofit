@@ -4,7 +4,7 @@
  * @author    Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\QuizBundle\Diagnostic;
+namespace Ortofit\Bundle\QuizBundle\Result;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
@@ -17,7 +17,7 @@ use Ortofit\Bundle\QuizBundle\Entity\Variant;
  *
  * @package Ortofit\Bundle\QuizBundle\Diagnostic
  */
-class DiagnosticManager implements DiagnosticInterface
+class ResultManager implements ResultManagerInterface
 {
     private $entityManager;
 
@@ -32,7 +32,7 @@ class DiagnosticManager implements DiagnosticInterface
     private $quiz;
 
     /**
-     * DiagnosticManager constructor.
+     * ResultManager constructor.
      *
      * @param EntityManager $entityManager
      */
@@ -117,11 +117,11 @@ class DiagnosticManager implements DiagnosticInterface
     }
 
     /**
-     * @return DiagnosticResultInterface
+     * @return ResultInterface
      */
     public function createDiagnosis()
     {
-        $result = new DiagnosticResult(
+        $result = new \Ortofit\Bundle\QuizBundle\Result\Result(
             $this->createOutcome(),
             $this->createRecommendation(),
             $this->isPositive()

@@ -6,7 +6,7 @@
 
 namespace Ortofit\Bundle\QuizBundle\Flow;
 
-use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
+use Ortofit\Bundle\QuizBundle\Result\ResultManagerInterface;
 use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 use Ortofit\Bundle\QuizBundle\Factory\State\StateFactoryInterface;
 
@@ -33,12 +33,12 @@ class FlowManager implements FlowManagerInterface
     }
 
     /**
-     * @param Quiz                $quiz
-     * @param DiagnosticInterface $resultManager
+     * @param Quiz                   $quiz
+     * @param ResultManagerInterface $resultManager
      *
      * @return array
      */
-    private function createStates(Quiz $quiz, DiagnosticInterface $resultManager)
+    private function createStates(Quiz $quiz, ResultManagerInterface $resultManager)
     {
         $states = [$this->stateFactory->createState(StateFactoryInterface::STATE_TYPE_START, $quiz)];
         foreach ($quiz->getQuestions() as $question) {
@@ -52,12 +52,12 @@ class FlowManager implements FlowManagerInterface
     }
 
     /**
-     * @param Quiz                $quiz
-     * @param DiagnosticInterface $resultManager
+     * @param Quiz                   $quiz
+     * @param ResultManagerInterface $resultManager
      *
      * @return Flow
      */
-    public function createFlow(Quiz $quiz, DiagnosticInterface $resultManager)
+    public function createFlow(Quiz $quiz, ResultManagerInterface $resultManager)
     {
         return new Flow($this->createStates($quiz, $resultManager));
     }

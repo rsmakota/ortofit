@@ -5,7 +5,7 @@
  */
 namespace Ortofit\Bundle\QuizBundle\Controller;
 
-use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
+use Ortofit\Bundle\QuizBundle\Result\ResultManagerInterface;
 use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +36,7 @@ class QuizController extends Controller
     /**
      * @param string $serviceId
      *
-     * @return DiagnosticInterface
+     * @return ResultManagerInterface
      */
     private function findResultManager($serviceId)
     {
