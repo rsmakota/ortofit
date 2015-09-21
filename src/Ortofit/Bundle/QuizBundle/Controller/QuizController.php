@@ -55,8 +55,8 @@ class QuizController extends Controller
     public function indexAction(Request $request, $id)
     {
         $quiz = $this->findQuiz($id);
-        if (!$quiz) {
-            $this->redirectToRoute('ortofit_wrong_quiz');
+        if (null == $quiz) {
+            return $this->redirectToRoute('ortofit_wrong_quiz');
         }
         try {
             $session       = $request->getSession();
