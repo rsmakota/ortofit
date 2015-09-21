@@ -67,7 +67,7 @@ class QuizController extends Controller
 
             return new Response($flow->createResponse());
         } catch (\Exception $e) {
-            $this->redirectToRoute('ortofit_wrong_quiz');
+            return $this->redirectToRoute('ortofit_wrong_quiz');
         }
     }
 
