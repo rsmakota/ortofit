@@ -38,7 +38,7 @@ class Flow implements FlowInterface
     /**
      * @param SessionInterface $session
      */
-    public function fill(SessionInterface $session)
+    public function init(SessionInterface $session)
     {
         $this->seekToState($session->get('currentStateId'));
     }

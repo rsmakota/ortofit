@@ -10,6 +10,7 @@ use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Class QuizController
  *
@@ -53,13 +54,28 @@ class QuizController extends Controller
      */
     public function indexAction(Request $request, $id)
     {
-        $session = $request->getSession();
         $quiz = $this->findQuiz($id);
-        $resultManager = $this->findResultManager($quiz->getResultManagerId());
-        $flow = $this->getFlowManager()->createFlow($quiz, $resultManager);
-        $flow->fill($session);
-        $flow->process($session, $request);
+        if (!$quiz) {
+            $this->redirectToRoute('ortofit_wrong_quiz');
+        }
+        try {
+            $session       = $request->getSession();
+            $resultManager = $this->findResultManager($quiz->getResultManagerId());
+            $flow          = $this->getFlowManager()->createFlow($quiz, $resultManager);
+            $flow->init($session);
+            $flow->process($session, $request);
 
-        return new Response($flow->createResponse());
+            return new Response($flow->createResponse());
+        } catch (\Exception $e) {
+            $this->redirectToRoute('ortofit_wrong_quiz');
+        }
+    }
+
+    /**
+     * @return Response
+     */
+    public function wrongAction()
+    {
+        return $this->render("@OrtofitQuiz/Quiz/wrong.html.twig", ['content'=>'Bad Request']);
     }
 }

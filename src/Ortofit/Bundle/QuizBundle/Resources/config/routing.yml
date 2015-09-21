@@ -1,3 +1,7 @@
 ortofit_quiz_homepage:
     path:     /quiz/{id}
     defaults: { _controller: OrtofitQuizBundle:Quiz:index }
+
+ortofit_wrong_quiz:
+    path:     /wrong
+    defaults: { _controller: OrtofitQuizBundle:Quiz:wrong }
