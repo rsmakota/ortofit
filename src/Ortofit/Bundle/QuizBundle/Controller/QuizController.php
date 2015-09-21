@@ -60,14 +60,14 @@ class QuizController extends Controller
     public function indexAction(Request $request, $id)
     {
         try {
-            $quiz     = $this->getQuiz($id);
+            $quizEnt  = $this->getQuiz($id);
             $session  = $request->getSession();
-            $rManager = $this->findResultManager($quiz->getResultManagerId());
-            $flow     = $this->getFlowManager()->createFlow($quiz, $rManager);
-            $flow->init($session);
-            $flow->process($session, $request);
+            $rManager = $this->findResultManager($quizEnt->getResultManagerId());
+            $quizFlow = $this->getFlowManager()->createFlow($quizEnt, $rManager);
+            $quizFlow->init($session);
+            $quizFlow->process($session, $request);
 
-            return new Response($flow->createResponse());
+            return new Response($quizFlow->createResponse());
         } catch (\Exception $e) {
             return $this->redirectToRoute('ortofit_wrong_quiz');
         }
@@ -78,6 +78,6 @@ class QuizController extends Controller
      */
     public function wrongAction()
     {
-        return $this->render("@OrtofitQuiz/Quiz/wrong.html.twig", ['content'=>'Bad Request']);
+        return $this->render("@OrtofitQuiz/Quiz/wrong.html.twig");
     }
 }

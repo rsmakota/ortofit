@@ -9,7 +9,6 @@ namespace Ortofit\Bundle\QuizBundle\Flow;
 use Ortofit\Bundle\QuizBundle\Diagnostic\DiagnosticInterface;
 use Ortofit\Bundle\QuizBundle\Entity\Quiz;
 use Ortofit\Bundle\QuizBundle\Factory\State\StateFactoryInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 /**
  * Class FlowManager

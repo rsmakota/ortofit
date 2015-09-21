@@ -11,7 +11,7 @@ use Ortofit\Bundle\QuizBundle\Flow\State\StateResult;
 
 
 /**
- * Class SatateResultTest
+ * Class StateResultTest
  *
  * @package Ortofit\Bundle\QuizBundle\Tests\Flow\State
  */

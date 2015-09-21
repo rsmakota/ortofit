@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * Interface StateInterfacel
+ * Interface StateInterface
  *
  * @package Ortofit\Bundle\QuizBundle\Flow\State
  */

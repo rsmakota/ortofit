@@ -6,7 +6,6 @@
 
 namespace Ortofit\Bundle\QuizBundle\Flow\State;
 
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Templating\EngineInterface;
 /**
  * Class AbstractState

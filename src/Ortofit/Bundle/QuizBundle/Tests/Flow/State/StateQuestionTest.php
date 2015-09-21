@@ -12,7 +12,7 @@ use Ortofit\Bundle\QuizBundle\Flow\State\StateQuestion;
 
 
 /**
- * Class SatateResultTest
+ * Class StateQuestionTest
  *
  * @package Ortofit\Bundle\QuizBundle\Tests\Flow\State
  */

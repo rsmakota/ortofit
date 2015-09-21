@@ -7,7 +7,6 @@
 namespace Ortofit\Bundle\QuizBundle\Flow\State;
 
 use Ortofit\Bundle\QuizBundle\Entity\Question;
-use Ortofit\Bundle\QuizBundle\Entity\Variant;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
