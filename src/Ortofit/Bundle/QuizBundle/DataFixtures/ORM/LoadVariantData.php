@@ -21,54 +21,54 @@ class LoadVariantData extends AbstractFixture implements OrderedFixtureInterface
 {
     private $loadData = [
         'question:first' => [
-            'А' => ['outcome'=>'Нормальный свод стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_a.png">'],
-            'В' => ['outcome'=>'Полая стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_b.png">'],
-            'С' => ['outcome'=>'Вальгусная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_c.png">'],
-            'D' => ['outcome'=>'Уплощенная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_d.png">'],
-            'Е' => ['outcome'=>'Плоско-вальгусная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_e.png">']
+            'А' => ['result'=>'Нормальный свод стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_a.png">'],
+            'В' => ['result'=>'Полая стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_b.png">'],
+            'С' => ['result'=>'Вальгусная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_c.png">'],
+            'D' => ['result'=>'Уплощенная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_d.png">'],
+            'Е' => ['result'=>'Плоско-вальгусная стопа','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_1_e.png">']
         ],
         'question:second' => [
-            'А' => ['outcome'=>'Вальгусное положение заднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_a.png">'],
-            'В' => ['outcome'=>'Нормальное положение заднего отдела стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_b.png">'],
-            'С' => ['outcome'=>'Варусное положение заднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_c.png">']
+            'А' => ['result'=>'Вальгусное положение заднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_a.png">'],
+            'В' => ['result'=>'Нормальное положение заднего отдела стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_b.png">'],
+            'С' => ['result'=>'Варусное положение заднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_2_c.png">']
         ],
         'question:third' => [
-            'А' => ['outcome'=>'Варус позиция переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_a.png">'],
-            'В' => ['outcome'=>'Норм положение переднего отдела стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_b.png">'],
-            'С' => ['outcome'=>'Вальгус позиция переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_c.png">']
+            'А' => ['result'=>'Варус позиция переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_a.png">'],
+            'В' => ['result'=>'Норм положение переднего отдела стопы','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_b.png">'],
+            'С' => ['result'=>'Вальгус позиция переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_3_c.png">']
         ],
         'question:fourth' => [
-            'А' => ['outcome'=>'Приведение переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_a.png">', 'recommendation' => 'Коррекция индивидуальными ортопедическими стельками со специальным  корректирующим клином в переднем отделе стелек и ортопедическая обувь с удлиненным ребром жесткости по внутренней поверхности стопы до уровня большого пальца (“обувь с антиприведением”)'],
-            'В' => ['outcome'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_b.png">'],
-            'С' => ['outcome'=>'','positive'=>true,  'content'=>'Нет моего варианта']
+            'А' => ['result'=>'Приведение переднего отдела стопы','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_a.png">', 'recommendation' => 'Коррекция индивидуальными ортопедическими стельками со специальным  корректирующим клином в переднем отделе стелек и ортопедическая обувь с удлиненным ребром жесткости по внутренней поверхности стопы до уровня большого пальца (“обувь с антиприведением”)'],
+            'В' => ['result'=>'','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_4_b.png">'],
+            'С' => ['result'=>'','positive'=>true,  'content'=>'Нет моего варианта']
         ],
         'question:fifth' => [
-            'А' => ['outcome'=>'Нормальная ось нижних конечностей (“стройные ноги”)','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_a.png">'],
-            'В' => ['outcome'=>'Варусная ось нижних конечностей (“О-образные ноги”)','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_b.png">'],
-            'С' => ['outcome'=>'Вальгусная ось нижних конечностей (“Х-образные ноги”)','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_c.png">']
+            'А' => ['result'=>'Нормальная ось нижних конечностей (“стройные ноги”)','positive'=>true,  'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_a.png">'],
+            'В' => ['result'=>'Варусная ось нижних конечностей (“О-образные ноги”)','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_b.png">'],
+            'С' => ['result'=>'Вальгусная ось нижних конечностей (“Х-образные ноги”)','positive'=>false, 'content'=>'<img src="/bundles/ortofitquiz/img/feet_5_c.png">']
         ],
         'question:sixth' => [
-            '1' => ['outcome'=>'','positive'=>true, 'content'=>'',],
-            '2' => ['outcome'=>'','positive'=>true, 'content'=>'',],
-            '3' => ['outcome'=>'','positive'=>true, 'content'=>'',],
-            '4' => ['outcome'=>'','positive'=>true, 'content'=>'',],
-            '5' => ['outcome'=>'Выраженный вальгус','positive'=>true, 'content'=>'',],
-            '6' => ['outcome'=>'Выраженный  варус','positive'=>true, 'content'=>'',],
+            '1' => ['result'=>'','positive'=>true, 'content'=>'',],
+            '2' => ['result'=>'','positive'=>true, 'content'=>'',],
+            '3' => ['result'=>'','positive'=>true, 'content'=>'',],
+            '4' => ['result'=>'','positive'=>true, 'content'=>'',],
+            '5' => ['result'=>'Выраженный вальгус','positive'=>true, 'content'=>'',],
+            '6' => ['result'=>'Выраженный  варус','positive'=>true, 'content'=>'',],
         ],
         'question:seventh' => [
-            'А' => ['outcome'=>'','positive'=>true, 'content'=>'не испытываю', 'recommendation' => ''],
-            'В' => ['outcome'=>'Болевой синдром','positive'=>false, 'content'=>'болит голова', 'recommendation' => 'Консультация врача-невролога'],
-            'С' => ['outcome'=>'Болевой синдром','positive'=>false, 'content'=>'болит спина', 'recommendation' => 'Консультация врача-невролога'],
-            'D' => ['outcome'=>'Болевой синдром','positive'=>false, 'content'=>'болят ноги', 'recommendation' => 'Индивидуальные ортопедические стельки'],
-            'Е' => ['outcome'=>'Болевой синдром','positive'=>false, 'content'=>'другие боли', 'recommendation' => 'Консультация врача-невролога']
+            'А' => ['result'=>'','positive'=>true, 'content'=>'не испытываю', 'recommendation' => ''],
+            'В' => ['result'=>'Болевой синдром','positive'=>false, 'content'=>'болит голова', 'recommendation' => 'Консультация врача-невролога'],
+            'С' => ['result'=>'Болевой синдром','positive'=>false, 'content'=>'болит спина', 'recommendation' => 'Консультация врача-невролога'],
+            'D' => ['result'=>'Болевой синдром','positive'=>false, 'content'=>'болят ноги', 'recommendation' => 'Индивидуальные ортопедические стельки'],
+            'Е' => ['result'=>'Болевой синдром','positive'=>false, 'content'=>'другие боли', 'recommendation' => 'Консультация врача-невролога']
         ],
         'question:eighth' => [
-            'А' => ['outcome'=>'','positive'=>true, 'content'=>'до 2-х лет', 'recommendation' => 'Профилактическая или ортопедическая обувь'],
-            'В' => ['outcome'=>'','positive'=>true, 'content'=>'3-5 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
-            'С' => ['outcome'=>'','positive'=>true, 'content'=>'6-9 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
-            'D' => ['outcome'=>'','positive'=>true, 'content'=>'10-16 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
-            'Е' => ['outcome'=>'','positive'=>true, 'content'=>'17-19 лет', 'recommendation' => 'Индивидуальные ортопедические стельки'],
-            'F' => ['outcome'=>'','positive'=>true, 'content'=>'взрослый', 'recommendation' => 'Индивидуальные ортопедические стельки']
+            'А' => ['result'=>'','positive'=>true, 'content'=>'до 2-х лет', 'recommendation' => 'Профилактическая или ортопедическая обувь'],
+            'В' => ['result'=>'','positive'=>true, 'content'=>'3-5 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'С' => ['result'=>'','positive'=>true, 'content'=>'6-9 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'D' => ['result'=>'','positive'=>true, 'content'=>'10-16 лет', 'recommendation' => 'Индивидуальные ортопедические стельки и специальная ортопедическая обувь'],
+            'Е' => ['result'=>'','positive'=>true, 'content'=>'17-19 лет', 'recommendation' => 'Индивидуальные ортопедические стельки'],
+            'F' => ['result'=>'','positive'=>true, 'content'=>'взрослый', 'recommendation' => 'Индивидуальные ортопедические стельки']
         ],
 
     ];
@@ -91,7 +91,7 @@ class LoadVariantData extends AbstractFixture implements OrderedFixtureInterface
                 $variant->setIndex($i);
                 $variant->setContent($value['content']);
                 $variant->setPositive($value['positive']);
-                $variant->setOutcome($value['outcome']);
+                $variant->setResult($value['result']);
                 if (array_key_exists('recommendation', $value)) {
                     $variant->setRecommendation($value['recommendation']);
                 }

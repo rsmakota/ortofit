@@ -18,6 +18,15 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class QuizController extends Controller
 {
+
+    /**
+     * @return \Monolog\Logger
+     */
+    public function getCriticalLogger()
+    {
+        return $this->get('monolog.logger.critical');
+    }
+
     /**
      * @param integer $quizId
      *
@@ -69,6 +78,8 @@ class QuizController extends Controller
 
             return new Response($quizFlow->createResponse());
         } catch (\Exception $e) {
+            $this->getCriticalLogger()->addCritical($e->getMessage());
+
             return $this->redirectToRoute('ortofit_wrong_quiz');
         }
     }

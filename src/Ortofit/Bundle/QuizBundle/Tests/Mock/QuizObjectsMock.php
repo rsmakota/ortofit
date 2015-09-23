@@ -58,7 +58,7 @@ trait QuizObjectsMock
         $variant->setName('VariantName');
         $variant->setIndex(1);
         $variant->setId(1);
-        $variant->setOutcome('VariantOutcome');
+        $variant->setResult('VariantOutcome');
         $variant->setContent('VariantContent');
         $variant->setRecommendation('VariantRecommendation');
 

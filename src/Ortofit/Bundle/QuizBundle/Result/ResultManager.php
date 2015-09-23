@@ -93,7 +93,7 @@ class ResultManager implements ResultManagerInterface
     {
         $result = [];
         foreach ($this->variants as $variant) {
-            $outcome = $variant->getOutcome();
+            $outcome = $variant->getResult();
             if (!empty($outcome)) {
                 $result[] = ucfirst($outcome);
             }

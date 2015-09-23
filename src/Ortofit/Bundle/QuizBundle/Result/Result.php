@@ -16,7 +16,7 @@ class Result implements ResultInterface
     /**
      * @var string
      */
-    private $outcome;
+    private $result;
     /**
      * @var string
      */
@@ -28,13 +28,14 @@ class Result implements ResultInterface
 
     /**
      * Result constructor.
-     * @param string  $outcome
+     *
+     * @param string  $result
      * @param string  $recommendation
      * @param boolean $positive
      */
-    public function __construct($outcome, $recommendation, $positive)
+    public function __construct($result, $recommendation, $positive)
     {
-        $this->outcome        = $outcome;
+        $this->result         = $result;
         $this->recommendation = $recommendation;
         $this->positive       = $positive;
     }
@@ -42,9 +43,9 @@ class Result implements ResultInterface
     /**
      * @return string
      */
-    public function getOutcome()
+    public function getResult()
     {
-        return $this->outcome;
+        return $this->result;
     }
 
     /**

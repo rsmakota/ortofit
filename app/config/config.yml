@@ -7,6 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    monolog.handler.rotating_file.class: Ortofit\Bundle\QuizBundle\Monolog\Handler\ContextBasedStreamHandler
 
 framework:
     #esi:             ~
@@ -79,3 +80,11 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+monolog:
+    channels: ["critical"]
+    handlers:
+        ot_critical:
+            type:  stream
+            path:  "%kernel.logs_dir%/ortofit_critical_%%s.log"
+            level: error
+            channels: critical

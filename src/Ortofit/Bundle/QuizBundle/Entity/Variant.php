@@ -52,7 +52,7 @@ class Variant
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $outcome;
+    private $result;
     /**
      * @ORM\Column(type="string", nullable=true)
      */
@@ -155,17 +155,17 @@ class Variant
     /**
      * @return mixed
      */
-    public function getOutcome()
+    public function getResult()
     {
-        return $this->outcome;
+        return $this->result;
     }
 
     /**
-     * @param mixed $outcome
+     * @param mixed $result
      */
-    public function setOutcome($outcome)
+    public function setResult($result)
     {
-        $this->outcome = $outcome;
+        $this->result = $result;
     }
 
     /**

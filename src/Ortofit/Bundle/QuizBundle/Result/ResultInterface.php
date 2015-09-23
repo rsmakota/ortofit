@@ -16,7 +16,7 @@ interface ResultInterface
     /**
      * @return string
      */
-    public function getOutcome();
+    public function getResult();
 
     /**
      * @return string
