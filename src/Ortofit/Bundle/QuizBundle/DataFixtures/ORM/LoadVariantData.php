@@ -1,7 +1,7 @@
 <?php
 /**
- * @author    Rodion Smakota <rsmakota@nebupay.com>
- * @copyright 2015 Nebupay LLC
+ * @author    Rodion Smakota <rsmakota@gmail.com>
+ * @copyright 2015 Ortofit LLC
  */
 
 namespace Ortofit\Bundle\QuizBundle\DataFixtures\ORM;
