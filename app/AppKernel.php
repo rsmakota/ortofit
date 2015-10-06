@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Ortofit\Bundle\QuizBundle\OrtofitQuizBundle(),
+            new Ortofit\Bundle\SingUpBundle\OrtofitSingUpBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

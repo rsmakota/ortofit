@@ -1,0 +1,7 @@
+ortofit_sing_up_index:
+    path:     /sing_up
+    defaults: { _controller: OrtofitSingUpBundle:SingUp:index }
+
+ortofit_sing_up_add:
+    path:     /sing_up/post
+    defaults: { _controller: OrtofitSingUpBundle:SingUp:post }

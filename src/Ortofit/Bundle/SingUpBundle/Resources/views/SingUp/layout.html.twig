@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    {% stylesheets
+    '@OrtofitQuizBundle/Resources/public/bootstrap/css/bootstrap-theme.min.css'
+    '@OrtofitQuizBundle/Resources/public/bootstrap/css/bootstrap.min.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% javascripts
+    '@OrtofitQuizBundle/Resources/public/js/jquery.js'
+    '@OrtofitSingUpBundle/Resources/public/js/signUp.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</head>
+<body>
+<div style="text-align: center" class="container">
+    {% block body %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+services:
+#    ortofit_sing_up.example:
+#        class: Ortofit\Bundle\SingUpBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

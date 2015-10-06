@@ -1,0 +1,22 @@
+{% extends 'OrtofitSingUpBundle:SingUp:layout.html.twig' %}
+{% block body %}
+    <div style="padding-top: 20px;">
+        <form class="form-inline" id="singForm" action="{{ path('ortofit_sing_up_add') }}" method="post">
+            <p class="help-block">Оставьте ваш номер телефона и наш менеджер свяжется с вами в ближайшее время.</p>
+            <!-- has-success has-error//-->
+
+            <div class="form-group" id="formGroup">
+
+                <div class="input-group ">
+
+                    <div class="input-group-addon input-lg">+380</div>
+                    <input id="msisdn" class="form-control input-lg" type="text" placeholder="676982099" maxlength="9">
+                </div>
+            </div>
+            <input type="submit" id="singUpSubmit" class="btn-lg btn-primary" value="Записаться" />
+            <img src="{{ asset('bundles/ortofitsingup/img/process.gif') }}"></span>
+            <div class="text-danger hidden" id="errText">Вы ввели не корректный номер, проверте и попробуйте снова.</div>
+            <div class="text-success hidden" id="errText">Спасибо, ваша заявка принята!</div>
+        </form>
+    </div>
+{% endblock %}
