@@ -1,6 +1,11 @@
 {% extends 'OrtofitSingUpBundle:SingUp:layout.html.twig' %}
 {% block body %}
-    <div style="padding-top: 20px;">
+    <script>
+        $(document).ready(function() {
+            jQuery.singObj.init('{{ url }}', '{{ pattern }}', '{{ prefix }}', '{{ token }}');
+        });
+    </script>
+    <div class="formDiv">
         <form class="form-inline" id="singForm" action="{{ path('ortofit_sing_up_add') }}" method="post">
             <p class="help-block">Оставьте ваш номер телефона и наш менеджер свяжется с вами в ближайшее время.</p>
             <!-- has-success has-error//-->
@@ -9,14 +14,16 @@
 
                 <div class="input-group ">
 
-                    <div class="input-group-addon input-lg">+380</div>
+                    <div class="input-group-addon input-lg">+{{ prefix }}</div>
                     <input id="msisdn" class="form-control input-lg" type="text" placeholder="676982099" maxlength="9">
                 </div>
             </div>
             <input type="submit" id="singUpSubmit" class="btn-lg btn-primary" value="Записаться" />
-            <img src="{{ asset('bundles/ortofitsingup/img/process.gif') }}"></span>
-            <div class="text-danger hidden" id="errText">Вы ввели не корректный номер, проверте и попробуйте снова.</div>
-            <div class="text-success hidden" id="errText">Спасибо, ваша заявка принята!</div>
+            <div class="bottomDiv">
+                <div class="process hidden" id="processBlock"><img src="{{ asset('bundles/ortofitsingup/img/process.gif') }}" /></div>
+                <div class="text-danger hidden" id="errText">Вы ввели не корректный номер, проверте и попробуйте снова.</div>
+                <div class="text-success hidden" id="successText">Спасибо, ваша заявка принята!</div>
+            </div>
         </form>
     </div>
 {% endblock %}

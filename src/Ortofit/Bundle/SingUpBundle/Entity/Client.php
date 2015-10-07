@@ -5,7 +5,7 @@
  */
 
 namespace Ortofit\Bundle\SingUpBundle\Entity;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Client
  * @package Ortofit\Bundle\SingUpBundle\Entity
@@ -31,6 +31,35 @@ class Client
      * @ORM\Column(type="datetime")
      */
     private $created;
+    /**
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="countries")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     */
+    private $country;
+
+    /**
+     * Client constructor.
+     */
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param Country $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
 
     /**
      * @return integer
@@ -80,5 +109,11 @@ class Client
         $this->created = $created;
     }
 
-
+    /**
+     * @return string
+     */
+    static public function clazz()
+    {
+        return get_class();
+    }
 }
