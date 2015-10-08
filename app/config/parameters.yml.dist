@@ -3,12 +3,13 @@ parameters:
     database_host: localhost
     database_port: null
     database_name: ortofit
-    database_user: ts
-    database_password: nehybrtn
+    database_user: ortofit
+    database_password: ********
 
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_host: smtp.gmail.com
+    mailer_encryption: tls
+    mailer_user: **********
+    mailer_password: **********
 
     secret: ThisTokenIsNotSoSecretChangeIt
