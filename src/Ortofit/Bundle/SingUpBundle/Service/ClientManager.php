@@ -6,43 +6,37 @@
 
 namespace Ortofit\Bundle\SingUpBundle\Service;
 
-use Doctrine\ORM\EntityManager;
 use Ortofit\Bundle\SingUpBundle\Entity\Client;
-use Ortofit\Bundle\SingUpBundle\Entity\Country;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 /**
  * Class ClientManager
  *
  * @package Ortofit\Bundle\SingUpBundle\Service
  */
-class ClientManager
+class ClientManager extends AbstractManager
 {
     /**
-     * @var EntityManager
+     * @param string $msisdn
+     *
+     * @return Client|null
      */
-    private $enManager;
-
-    public function __construct(EntityManager $eManager)
+    public function findByMsisdn($msisdn)
     {
-        $this->enManager = $eManager;
+        return $this->enManager->getRepository(Client::clazz())->findOneBy(['msisdn' => $msisdn]);
     }
 
     /**
-     * @param string  $msisdn
-     * @param Country $country
+     * @param ParameterBag $bag
      *
      * @return Client
      * @throws \Exception
      */
-    public function createClient($msisdn, $country)
+    public function create($bag)
     {
-        if (!$country->validateMsisdn($msisdn)) {
-            throw new \Exception('The telephone number is invalid. ');
-        }
-
         $client = new Client();
-        $client->setMsisdn($msisdn);
-        $client->setCountry($country);
+        $client->setMsisdn($bag->get('msisdn'));
+        $client->setCountry($bag->get('country'));
 
         $this->enManager->persist($client);
         $this->enManager->flush();

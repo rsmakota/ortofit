@@ -29,7 +29,7 @@ class LoadCountyData extends AbstractFixture implements OrderedFixtureInterface
         $county->setName('Ukraine');
         $county->setIso2('ua');
         $county->setPrefix('380');
-        $county->setPattern('^380[3-9]{1}\d{8}$');
+        $county->setPattern('^380[3-9]{1}[0-9]{8}$');
 
         $manager->persist($county);
         $manager->flush();

@@ -8,6 +8,7 @@ namespace Ortofit\Bundle\SingUpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Country
+ *
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
  * @ORM\Entity
@@ -118,15 +119,17 @@ class Country
     {
         $this->iso2 = $iso2;
     }
+
     /**
      * @param string $msisdn
      *
-     * @return bool
+     * @return boolean
+     * @throws \Exception
      */
     public function validateMsisdn($msisdn)
     {
         if (false == preg_match('/' . $this->pattern . '/', $msisdn)) {
-            return false;
+            throw new \Exception('invalid msisdn');
         }
 
         return true;
