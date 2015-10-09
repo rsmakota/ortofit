@@ -12,12 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="applications")
+ * @ORM\Table(name="orders")
  */
-class Application
+class Order
 {
-    const TYPE_VISIT = 'visit';
-
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
@@ -26,14 +24,26 @@ class Application
     private $id;
 
     /**
-     * @ORM\Column(type="name")
+     * @ORM\Column(type="datetime")
      */
-    private $name;
+    private $created;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="clients")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application", inversedBy="applications")
+     * @ORM\JoinColumn(name="application_id", referencedColumnName="id")
+     */
+    private $application;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $type;
+    private $template;
 
     /**
      * Client constructor.
@@ -52,19 +62,19 @@ class Application
     }
 
     /**
-     * @return string
+     * @return Application
      */
-    public function getType()
+    public function getApplication()
     {
-        return $this->type;
+        return $this->application;
     }
 
     /**
-     * @param string $type
+     * @param Application $application
      */
-    public function setType($type)
+    public function setApplication($application)
     {
-        $this->type = $type;
+        $this->application = $application;
     }
 
     /**
@@ -105,6 +115,22 @@ class Application
     public function setClient($client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
+     * @param string $template
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
     }
 
     /**
