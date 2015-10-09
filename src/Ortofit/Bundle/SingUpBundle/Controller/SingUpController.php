@@ -181,10 +181,11 @@ class SingUpController extends Controller
             $country->validateMsisdn($msisdn);
             $client = $this->getClient($msisdn, $country);
             $this->createApplication($client);
-            $this->sendMail($client);
+            //$this->sendMail($client);
 
             return new Response('success');
         } catch (\Exception $e) {
+
             return new Response('fail');
         }
 
