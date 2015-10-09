@@ -79,7 +79,7 @@ swiftmailer:
     username:   "%mailer_user%"
     password:   "%mailer_password%"
     encryption: "%mailer_encryption%"
-    spool:      { type: memory }
+    #spool:      { type: memory }
 
 monolog:
     channels: ["critical"]

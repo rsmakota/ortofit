@@ -13,6 +13,7 @@ use Ortofit\Bundle\SingUpBundle\Entity\Country;
 
 /**
  * Class LoadCountyData
+ *
  * @package Ortofit\Bundle\SingUpBundle\DataFixtures\ORM
  */
 class LoadCountyData extends AbstractFixture implements OrderedFixtureInterface

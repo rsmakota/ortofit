@@ -4,12 +4,12 @@ parameters:
     database_port: null
     database_name: ortofit
     database_user: ortofit
-    database_password: ********
+    database_password: null
 
     mailer_transport: smtp
     mailer_host: smtp.gmail.com
     mailer_encryption: tls
-    mailer_user: **********
-    mailer_password: **********
+    mailer_user: null
+    mailer_password: null
 
     secret: ThisTokenIsNotSoSecretChangeIt

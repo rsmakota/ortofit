@@ -128,6 +128,23 @@ class SingUpController extends Controller
     }
 
     /**
+     * @param Client $client
+     *
+     * @return int
+     */
+    private function sendMail($client)
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Запись на прием')
+            ->setFrom('ortofit.stelka@gmail.com')
+            ->setTo('rsmakota@gmail.com')
+            ->setBody('Прошу перезвонить мне по тел. +'.$client->getMsisdn().' и записать на прием.', 'text/plain');
+
+        return $this->get('swiftmailer.mailer.default')->send($message);
+    }
+
+
+    /**
      * @param Request $request
      * @param string  $countryIso2
      *
@@ -146,6 +163,8 @@ class SingUpController extends Controller
         }
     }
 
+
+
     /**
      * @param Request $request
      *
@@ -162,6 +181,7 @@ class SingUpController extends Controller
             $country->validateMsisdn($msisdn);
             $client = $this->getClient($msisdn, $country);
             $this->createApplication($client);
+            $this->sendMail($client);
 
             return new Response('success');
         } catch (\Exception $e) {
