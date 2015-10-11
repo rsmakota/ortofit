@@ -1,13 +1,14 @@
 <?php
 /**
- * @author    Rodion Smakota <rsmakota@gmail.com>
- * @copyright 2015 Ortofit LLC
+ * @copyright 2015 ortofit_quiz
+ * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
 namespace Ortofit\Bundle\SingUpBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 /**
- * Class Application
+ * Class Order
  *
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
@@ -41,12 +42,7 @@ class Order
     private $application;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    private $template;
-
-    /**
-     * Client constructor.
+     * Order constructor.
      */
     public function __construct()
     {
@@ -59,22 +55,6 @@ class Order
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return Application
-     */
-    public function getApplication()
-    {
-        return $this->application;
-    }
-
-    /**
-     * @param Application $application
-     */
-    public function setApplication($application)
-    {
-        $this->application = $application;
     }
 
     /**
@@ -94,7 +74,7 @@ class Order
     }
 
     /**
-     * @param \Datetime $created
+     * @param \DateTime $created
      */
     public function setCreated($created)
     {
@@ -118,19 +98,19 @@ class Order
     }
 
     /**
-     * @return string
+     * @return Application
      */
-    public function getTemplate()
+    public function getApplication()
     {
-        return $this->template;
+        return $this->application;
     }
 
     /**
-     * @param string $template
+     * @param Application $application
      */
-    public function setTemplate($template)
+    public function setApplication($application)
     {
-        $this->template = $template;
+        $this->application = $application;
     }
 
     /**
@@ -140,4 +120,5 @@ class Order
     {
         return get_class();
     }
+
 }

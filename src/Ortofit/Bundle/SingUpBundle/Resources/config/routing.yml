@@ -1,5 +1,5 @@
 ortofit_sing_up_index:
-    path:     /sing_up/index/{countryIso2}
+    path:     /sing_up/{appId}
     defaults: { _controller: OrtofitSingUpBundle:SingUp:index }
 
 ortofit_sing_up_add:

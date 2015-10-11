@@ -6,9 +6,13 @@
 
 namespace Ortofit\Bundle\SingUpBundle\Controller;
 
+use Ortofit\Bundle\SingUpBundle\Application\ApplicationFlowInterface;
+use Ortofit\Bundle\SingUpBundle\Application\ApplicationFlowManager;
 use Ortofit\Bundle\SingUpBundle\Entity\Application;
+use Ortofit\Bundle\SingUpBundle\Entity\Order;
 use Ortofit\Bundle\SingUpBundle\Entity\Client;
 use Ortofit\Bundle\SingUpBundle\Service\ApplicationManager;
+use Ortofit\Bundle\SingUpBundle\Service\OrderManager;
 use Ortofit\Bundle\SingUpBundle\Service\ClientManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
@@ -51,7 +55,7 @@ class SingUpController extends Controller
     /**
      * @return ApplicationManager
      */
-    private function getApplicationManager()
+    private function getAppManager()
     {
         return $this->get('ortofit_sing_up.application_manager');
     }
@@ -120,11 +124,11 @@ class SingUpController extends Controller
     /**
      * @param Client $client
      *
-     * @return \Ortofit\Bundle\SingUpBundle\Entity\Application
+     * @return \Ortofit\Bundle\SingUpBundle\Entity\Order
      */
     private function createApplication($client)
     {
-        return $this->getApplicationManager()->create(new ParameterBag(['client'=>$client, 'type'=>Application::TYPE_VISIT]));
+        return $this->getAppManager()->create(new ParameterBag(['client'=>$client, 'type'=>Order::TYPE_VISIT]));
     }
 
     /**
@@ -143,24 +147,47 @@ class SingUpController extends Controller
         return $this->get('swiftmailer.mailer.default')->send($message);
     }
 
+    /**
+     * @param Application $app
+     * @return ApplicationFlowInterface
+     */
+    private function getAppFlow($app)
+    {
+        /** @var ApplicationFlowInterface $appFlow */
+        $appFlow = $this->get($app->getFlowServiceName());
+        $appFlow->setApplication($app);
+
+        return $appFlow;
+    }
 
     /**
-     * @param Request $request
-     * @param string  $countryIso2
+     * @param integer $appId
      *
      * @return Response
      */
-    public function indexAction(Request $request, $countryIso2)
+    public function indexAction($appId)
     {
-        $this->sessionInit($request, $countryIso2);
-        $session = $request->getSession();
         try {
-            $country = $this->findCountry($countryIso2);
+            $app     = $this->getAppManager()->getApp($appId);
+            $appFlow = $this->getAppFlow($app);
+            $appFlow->createForm();
 
-            return $this->render('OrtofitSingUpBundle:SingUp:index.html.twig', $this->formatData($country, $session));
+            return new Response($appFlow->getResponse());
         } catch (\Exception $e) {
-            return $this->render('OrtofitSingUpBundle:SingUp:badRequest.html.twig');
+            /** @todo exception response */
         }
+
+
+
+//        $this->sessionInit($request, $appId);
+//        $session = $request->getSession();
+//        try {
+//            $country = $this->findCountry($appId);
+//
+//            return $this->render('OrtofitSingUpBundle:SingUp:index.html.twig', $this->formatData($country, $session));
+//        } catch (\Exception $e) {
+//            return $this->render('OrtofitSingUpBundle:SingUp:badRequest.html.twig');
+//        }
     }
 
 
@@ -173,21 +200,25 @@ class SingUpController extends Controller
     public function postAction(Request $request)
     {
         $session = $request->getSession();
-        $token   = $request->request->get('token');
-        try {
-            $this->tokenValidate($token, $session);
-            $country = $this->findCountry($session->get('countryIso2'));
-            $msisdn = $request->request->get('msisdn');
-            $country->validateMsisdn($msisdn);
-            $client = $this->getClient($msisdn, $country);
-            $this->createApplication($client);
-            //$this->sendMail($client);
+        $appFlow = $this->getAppFlow()->getFlow(null, $session);
+        $appFlow->createApp($request->request);
 
-            return new Response('success');
-        } catch (\Exception $e) {
-
-            return new Response('fail');
-        }
+        return new Response($appFlow->getResponse());
+//        $token   = $request->request->get('token');
+//        try {
+//            $this->tokenValidate($token, $session);
+//            $country = $this->findCountry($session->get('countryIso2'));
+//            $msisdn = $request->request->get('msisdn');
+//            $country->validateMsisdn($msisdn);
+//            $client = $this->getClient($msisdn, $country);
+//            $this->createApplication($client);
+//            //$this->sendMail($client);
+//
+//            return new Response('success');
+//        } catch (\Exception $e) {
+//
+//            return new Response('fail');
+//        }
 
 
 

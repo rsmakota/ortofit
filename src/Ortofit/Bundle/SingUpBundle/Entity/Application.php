@@ -31,9 +31,47 @@ class Application
     private $name;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
      * @ORM\Column(type="string")
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="countries")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     */
+    private $country;
+
+    /**
+     * Container Id
+     * @ORM\Column(type="string", name="flow_service_name")
+     */
+    private $flowServiceName;
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $config;
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
     /**
      * Client constructor.
@@ -92,20 +130,53 @@ class Application
     }
 
     /**
-     * @return Client
+     * @return array
      */
-    public function getClient()
+    public function getConfig()
     {
-        return $this->client;
+        return $this->config;
     }
 
     /**
-     * @param Client $client
+     * @param array $config
      */
-    public function setClient($client)
+    public function setConfig($config)
     {
-        $this->client = $client;
+        $this->config = $config;
     }
+
+    /**
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param Country $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFlowServiceName()
+    {
+        return $this->flowServiceName;
+    }
+
+    /**
+     * @param string $flowServiceName
+     */
+    public function setFlowServiceName($flowServiceName)
+    {
+        $this->flowServiceName = $flowServiceName;
+    }
+
 
     /**
      * @return string
