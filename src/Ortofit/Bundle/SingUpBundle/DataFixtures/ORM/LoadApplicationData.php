@@ -36,7 +36,7 @@ class LoadApplicationData extends AbstractFixture implements OrderedFixtureInter
             'template' => [
                 'name' => 'OrtofitSingUpBundle:SingUp:index.html.twig'
             ],
-            'mail'     => [
+            'notify'     => [
                 'subject' => 'Запись на прием',
                 'body'    => 'Прошу перезвонить мне по тел. +%s и записать на прием.'
             ]

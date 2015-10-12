@@ -22,3 +22,10 @@ services:
             - [setTemplateEngine, [@templating.engine.twig]]
             - [setSession, [@session]]
             - [setProcessRouteId, ["ortofit_sing_up_process"]]
+
+    ortofit_sing_up.mail_manager:
+        class: Ortofit\Bundle\SingUpBundle\Notify\MailManager
+        arguments: [@swiftmailer.mailer.default]
+        calls:
+            - [setFrom, [%mailer_from%]]
+            - [setTo, [%mailer_to%]]

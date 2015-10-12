@@ -7,6 +7,7 @@
 namespace Ortofit\Bundle\SingUpBundle\Application;
 
 use Ortofit\Bundle\SingUpBundle\Entity\Application;
+use Ortofit\Bundle\SingUpBundle\Notify\NotifyManagerInterface;
 use Ortofit\Bundle\SingUpBundle\Service\AbstractManager;
 use Ortofit\Bundle\SingUpBundle\Service\OrderManager;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -49,14 +50,19 @@ class ApplicationFlow implements ApplicationFlowInterface
      * @var string
      */
     protected $processRouteId;
+    /**
+     * @var NotifyManagerInterface
+     */
+    private $notifyManager;
 
     /**
-     * ApplicationFlow constructor.
-     * @param OrderManager    $orderManager
+     * @param OrderManager           $orderManager
+     * @param NotifyManagerInterface $notifyManager
      */
-    public function __construct(OrderManager $orderManager)
+    public function __construct(OrderManager $orderManager, NotifyManagerInterface $notifyManager)
     {
         $this->orderManager  = $orderManager;
+        $this->notifyManager = $notifyManager;
     }
 
     /**
@@ -164,7 +170,7 @@ class ApplicationFlow implements ApplicationFlowInterface
     public function action($action, ParameterBag $bag)
     {
         $this->tokenValidate($bag->get(ApplicationFlowInterface::SESSION_APPLICATION_TOKEN));
-        $method = $action."Action";
+        $method = $action . "Action";
         if (!method_exists($this, $method)) {
             throw new \Exception('This flow doesn\'t support method <<'.$action.'>>');
         }
@@ -182,5 +188,7 @@ class ApplicationFlow implements ApplicationFlowInterface
         ];
         $this->orderManager->create(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag($params));
         $this->response = self::RESPONSE_SUCCESS;
+        $body = printf($this->application->getNotifyBody(), $bag->get('msisdn'));
+        $this->notifyManager->notify($this->application->getNotifySubject(), $body);
     }
 }

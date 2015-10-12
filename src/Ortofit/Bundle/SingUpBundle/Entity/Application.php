@@ -177,6 +177,29 @@ class Application
         $this->flowServiceName = $flowServiceName;
     }
 
+    /**
+     * @return string
+     */
+    public function getNotifySubject()
+    {
+        return $this->config['notify']['subject'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getNotifyBody()
+    {
+        return $this->config['notify']['body'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        return $this->config['template']['name'];
+    }
 
     /**
      * @return string
