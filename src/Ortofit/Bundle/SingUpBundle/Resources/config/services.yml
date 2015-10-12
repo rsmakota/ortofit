@@ -3,6 +3,13 @@ services:
 #        class: Ortofit\Bundle\SingUpBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
 
+    ortofit_sing_up.mail_manager:
+        class: Ortofit\Bundle\SingUpBundle\Notify\MailManager
+        arguments: [@swiftmailer.mailer.default]
+        calls:
+            - [setFrom, [%mailer_from%]]
+            - [setTo, [%mailer_to%]]
+
     ortofit_sing_up.client_manager:
         class: Ortofit\Bundle\SingUpBundle\Service\ClientManager
         arguments: [@doctrine.orm.entity_manager]
@@ -17,15 +24,9 @@ services:
 
     ortofit_sing_up.application_flow:
         class: Ortofit\Bundle\SingUpBundle\Application\ApplicationFlow
-        arguments: [@ortofit_sing_up.order_manager]
+        arguments: [@ortofit_sing_up.order_manager, @ortofit_sing_up.mail_manager]
         calls:
             - [setTemplateEngine, [@templating.engine.twig]]
             - [setSession, [@session]]
             - [setProcessRouteId, ["ortofit_sing_up_process"]]
 
-    ortofit_sing_up.mail_manager:
-        class: Ortofit\Bundle\SingUpBundle\Notify\MailManager
-        arguments: [@swiftmailer.mailer.default]
-        calls:
-            - [setFrom, [%mailer_from%]]
-            - [setTo, [%mailer_to%]]

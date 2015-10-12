@@ -17,9 +17,9 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
  */
 abstract class AbstractManager implements ManagerInterface
 {
-    const PARAM_NAME_MSISDN       = 'msisdn';
-    const PARAM_NAME_COUNTRY      = 'country';
-    const PARAM_NAME_APPLICATION  = 'application';
+    const PARAM_MSISDN  = 'msisdn';
+    const PARAM_COUNTRY = 'country';
+    const PARAM_APP     = 'application';
     /**
      * @var EntityManager
      */

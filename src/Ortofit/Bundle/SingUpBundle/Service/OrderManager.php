@@ -44,17 +44,17 @@ class OrderManager extends AbstractManager
 
     private function getClient(ParameterBag $bag)
     {
-        $msisdn = $bag->get(self::PARAM_NAME_MSISDN);
+        $msisdn = $bag->get(self::PARAM_MSISDN);
         $client = $this->clientManager->findByMsisdn($msisdn);
         if ($client) {
             return $client;
         }
         /** @var Application $app */
-        $app = $bag->get(self::PARAM_NAME_APPLICATION);
+        $app = $bag->get(self::PARAM_APP);
 
         return $this->clientManager->create(new ParameterBag([
-            self::PARAM_NAME_MSISDN  => $msisdn,
-            self::PARAM_NAME_COUNTRY => $app->getCountry()]));
+            self::PARAM_MSISDN  => $msisdn,
+            self::PARAM_COUNTRY => $app->getCountry()]));
     }
 
     /**
@@ -65,7 +65,7 @@ class OrderManager extends AbstractManager
     public function create($bag)
     {
         $entity = new Order();
-        $entity->setApplication($bag->get(self::PARAM_NAME_APPLICATION));
+        $entity->setApplication($bag->get(self::PARAM_APP));
         $entity->setClient($this->getClient($bag));
 
         $this->enManager->persist($entity);

@@ -50,6 +50,7 @@ class ApplicationFlow implements ApplicationFlowInterface
      * @var string
      */
     protected $processRouteId;
+
     /**
      * @var NotifyManagerInterface
      */
@@ -70,7 +71,7 @@ class ApplicationFlow implements ApplicationFlowInterface
      */
     private function getToken()
     {
-        return $this->session->get(ApplicationFlowInterface::SESSION_APPLICATION_TOKEN);
+        return $this->session->get(ApplicationFlowInterface::SESSION_APP_TOKEN);
     }
 
     /**
@@ -78,7 +79,7 @@ class ApplicationFlow implements ApplicationFlowInterface
      */
     private function initToken()
     {
-        $this->session->set(ApplicationFlowInterface::SESSION_APPLICATION_TOKEN, md5(time()));
+        $this->session->set(ApplicationFlowInterface::SESSION_APP_TOKEN, md5(time()));
     }
 
     /**
@@ -132,8 +133,8 @@ class ApplicationFlow implements ApplicationFlowInterface
     public function createForm()
     {
         $this->initToken();
-        $config         = $this->application->getConfig();
-        $this->response = $this->templateEngine->render($config['template']['name'], $this->formatFormData());
+        $templateName   = $this->application->getTemplateName();
+        $this->response = $this->templateEngine->render($templateName, $this->formatFormData());
     }
 
     /**
@@ -153,12 +154,14 @@ class ApplicationFlow implements ApplicationFlowInterface
     public function tokenValidate($token)
     {
         if (!empty($token) &&
-            $this->session->has(ApplicationFlowInterface::SESSION_APPLICATION_TOKEN) &&
-            ($this->session->get(ApplicationFlowInterface::SESSION_APPLICATION_TOKEN) == $token)
+            $this->session->has(ApplicationFlowInterface::SESSION_APP_TOKEN) &&
+            ($this->session->get(ApplicationFlowInterface::SESSION_APP_TOKEN) == $token)
         ) {
             return true;
         }
-        throw new \Exception('Token is invalid or empty. Expects '.$this->session->get(ApplicationFlowInterface::SESSION_APPLICATION_TOKEN).' and gotten '.$token);
+        $sessionToken = $this->session->get(ApplicationFlowInterface::SESSION_APP_TOKEN);
+
+        throw new \Exception(sprintf('Token is invalid or empty. Expects <<%s>> but gotten <<%s>>', $sessionToken, $token));
     }
 
     /**
@@ -169,10 +172,10 @@ class ApplicationFlow implements ApplicationFlowInterface
      */
     public function action($action, ParameterBag $bag)
     {
-        $this->tokenValidate($bag->get(ApplicationFlowInterface::SESSION_APPLICATION_TOKEN));
+        $this->tokenValidate($bag->get(ApplicationFlowInterface::SESSION_APP_TOKEN));
         $method = $action . "Action";
         if (!method_exists($this, $method)) {
-            throw new \Exception('This flow doesn\'t support method <<'.$action.'>>');
+            throw new \Exception(sprintf('This flow doesn\'t support method <<%s>>', $action));
         }
         $this->$method($bag);
     }
@@ -182,13 +185,15 @@ class ApplicationFlow implements ApplicationFlowInterface
      */
     private function postAction(ParameterBag $bag)
     {
+        $msisdn = $bag->get(AbstractManager::PARAM_MSISDN);
         $params = [
-            AbstractManager::PARAM_NAME_MSISDN      => $bag->get('msisdn'),
-            AbstractManager::PARAM_NAME_APPLICATION => $this->application
+            AbstractManager::PARAM_MSISDN => $msisdn,
+            AbstractManager::PARAM_APP    => $this->application
         ];
-        $this->orderManager->create(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag($params));
-        $this->response = self::RESPONSE_SUCCESS;
-        $body = printf($this->application->getNotifyBody(), $bag->get('msisdn'));
+        $bag = new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag($params);
+        $this->orderManager->create($bag);
+        $body = sprintf($this->application->getNotifyBody(), $msisdn);
         $this->notifyManager->notify($this->application->getNotifySubject(), $body);
+        $this->response = self::RESPONSE_SUCCESS;
     }
 }

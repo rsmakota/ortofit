@@ -67,11 +67,11 @@ class SingUpController extends Controller
      */
     private function getAppId(Request $request)
     {
-        if (!$request->request->has(ApplicationFlowInterface::SESSION_APPLICATION_ID)) {
+        if (!$request->request->has(ApplicationFlowInterface::SESSION_APP_ID)) {
             throw new \Exception('Request does\'t have token parameter');
         }
 
-        return $request->request->get(ApplicationFlowInterface::SESSION_APPLICATION_ID);
+        return $request->request->get(ApplicationFlowInterface::SESSION_APP_ID);
     }
 
     /**

@@ -17,8 +17,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 interface ApplicationFlowInterface
 {
-    const SESSION_APPLICATION_ID    = 'application_id';
-    const SESSION_APPLICATION_TOKEN = 'application_token';
+    const SESSION_APP_ID    = 'application_id';
+    const SESSION_APP_TOKEN = 'application_token';
 
     const RESPONSE_SUCCESS = 'success';
     const RESPONSE_FAIL    = 'fail';
