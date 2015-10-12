@@ -13,11 +13,12 @@ services:
 
     ortofit_sing_up.order_manager:
         class: Ortofit\Bundle\SingUpBundle\Service\OrderManager
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@doctrine.orm.entity_manager, @ortofit_sing_up.client_manager]
 
     ortofit_sing_up.application_flow:
         class: Ortofit\Bundle\SingUpBundle\Application\ApplicationFlow
-        arguments: [@ortofit_sing_up.order_manager, @ortofit_sing_up.client_manager]
+        arguments: [@ortofit_sing_up.order_manager]
         calls:
             - [setTemplateEngine, [@templating.engine.twig]]
             - [setSession, [@session]]
+            - [setProcessRouteId, ["ortofit_sing_up_process"]]

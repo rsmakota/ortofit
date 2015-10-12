@@ -30,13 +30,13 @@ class Order
     private $created;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Client", inversedBy="clients")
+     * @ORM\ManyToOne(targetEntity="Client")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application", inversedBy="applications")
+     * @ORM\ManyToOne(targetEntity="Application")
      * @ORM\JoinColumn(name="application_id", referencedColumnName="id")
      */
     private $application;

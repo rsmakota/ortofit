@@ -8,6 +8,7 @@ namespace Ortofit\Bundle\SingUpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Client
+ *
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
  * @ORM\Entity
@@ -32,7 +33,7 @@ class Client
      */
     private $created;
     /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="countries")
+     * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;

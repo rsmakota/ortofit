@@ -23,7 +23,7 @@ class ClientManager extends AbstractManager
      */
     public function findByMsisdn($msisdn)
     {
-        return $this->enManager->getRepository(Client::clazz())->findOneBy(['msisdn' => $msisdn]);
+        return $this->enManager->getRepository(Client::clazz())->findOneBy([self::PARAM_NAME_MSISDN => $msisdn]);
     }
 
     /**
@@ -35,8 +35,8 @@ class ClientManager extends AbstractManager
     public function create($bag)
     {
         $client = new Client();
-        $client->setMsisdn($bag->get('msisdn'));
-        $client->setCountry($bag->get('country'));
+        $client->setMsisdn($bag->get(self::PARAM_NAME_MSISDN));
+        $client->setCountry($bag->get(self::PARAM_NAME_COUNTRY));
 
         $this->enManager->persist($client);
         $this->enManager->flush();

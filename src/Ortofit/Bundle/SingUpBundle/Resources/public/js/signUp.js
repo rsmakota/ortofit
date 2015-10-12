@@ -10,13 +10,14 @@ $(document).ready(function() {
         pattern     : null,
         url         : null,
         token       : null,
-
-        init: function (url, pattern, prefix, token) {
+        appId       : null,
+        init: function (url, pattern, prefix, token, appId) {
             var me       = this;
             this.url     = url;
             this.token   = token;
             this.prefix  = prefix;
             this.pattern = pattern;
+            this.appId   = appId;
 
             this.btn.prop('disabled', false);
             this.iMsisdn.prop('disabled', false);
@@ -93,8 +94,9 @@ $(document).ready(function() {
         pushDataFormat: function() {
             var me = this;
             return {
-                msisdn: me.getMsisdn(),
-                token : me.token
+                msisdn            : me.getMsisdn(),
+                application_token : me.token,
+                application_id    : me.appId
             }
         },
 

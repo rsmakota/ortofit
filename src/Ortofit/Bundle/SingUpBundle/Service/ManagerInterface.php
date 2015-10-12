@@ -1,12 +1,13 @@
 <?php
 /**
- * @author    Rodion Smakota <rsmakota@nebupay.com>
- * @copyright 2015 Nebupay LLC
+ * @copyright 2015 ortofit_quiz
+ * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
 namespace Ortofit\Bundle\SingUpBundle\Service;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+
 
 /**
  * Interface ManagerInterface

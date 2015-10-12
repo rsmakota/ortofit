@@ -2,11 +2,11 @@
 {% block body %}
     <script>
         $(document).ready(function() {
-            jQuery.singObj.init('{{ url }}', '{{ pattern }}', '{{ prefix }}', '{{ token }}');
+            jQuery.singObj.init('{{ path(routeId) }}', '{{ pattern }}', '{{ prefix }}', '{{ token }}', {{ appId }});
         });
     </script>
     <div class="formDiv">
-        <form class="form-inline" id="singForm" action="{{ path('ortofit_sing_up_add') }}" method="post">
+        <form class="form-inline" id="singForm" action="{{ path(routeId) }}" method="post">
             <p class="help-block">Оставьте ваш номер телефона и наш менеджер свяжется с вами в ближайшее время.</p>
             <!-- has-success has-error//-->
 

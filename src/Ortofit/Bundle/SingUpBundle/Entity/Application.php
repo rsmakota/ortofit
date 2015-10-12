@@ -26,7 +26,7 @@ class Application
     private $id;
 
     /**
-     * @ORM\Column(type="name")
+     * @ORM\Column(type="string")
      */
     private $name;
 
@@ -41,7 +41,7 @@ class Application
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="countries")
+     * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;

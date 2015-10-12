@@ -12,12 +12,14 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 /**
  * Class ApplicationManager
+ *
  * @package Ortofit\Bundle\SingUpBundle\Service
  */
 class ApplicationManager extends AbstractManager
 {
     /**
      * @param integer $appId
+     *
      * @return Application
      *
      * @throws \Exception

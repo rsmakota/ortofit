@@ -7,6 +7,7 @@
 namespace Ortofit\Bundle\SingUpBundle\Application;
 
 use Ortofit\Bundle\SingUpBundle\Entity\Application;
+use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -18,6 +19,9 @@ interface ApplicationFlowInterface
 {
     const SESSION_APPLICATION_ID    = 'application_id';
     const SESSION_APPLICATION_TOKEN = 'application_token';
+
+    const RESPONSE_SUCCESS = 'success';
+    const RESPONSE_FAIL    = 'fail';
     /**
      * @return void
      */
@@ -37,4 +41,12 @@ interface ApplicationFlowInterface
      * @param Application $application
      */
     public function setApplication($application);
+
+    /**
+     * @param string       $method
+     * @param ParameterBag $bag
+     *
+     * @return void
+     */
+    public function action($method, ParameterBag $bag);
 }
