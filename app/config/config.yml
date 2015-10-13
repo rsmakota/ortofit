@@ -82,10 +82,15 @@ swiftmailer:
     #spool:      { type: memory }
 
 monolog:
-    channels: ["critical"]
+    channels: ["quiz", "sing_up"]
     handlers:
-        ot_critical:
-            type:  stream
-            path:  "%kernel.logs_dir%/ortofit_critical_%%s.log"
-            level: error
-            channels: critical
+        ot_quiz:
+            type:  rotating_file
+            path:  "%kernel.logs_dir%/ortofit_quiz_%%s.log"
+            level: debug
+            channels: quiz
+        ot_sing_up:
+            type:  rotating_file
+            path:  "%kernel.logs_dir%/ortofit_sing_up_%%s.log"
+            level: debug
+            channels: sing_up

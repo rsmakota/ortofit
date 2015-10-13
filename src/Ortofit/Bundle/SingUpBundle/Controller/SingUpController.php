@@ -8,7 +8,6 @@ namespace Ortofit\Bundle\SingUpBundle\Controller;
 
 use Ortofit\Bundle\SingUpBundle\Application\ApplicationFlowInterface;
 use Ortofit\Bundle\SingUpBundle\Entity\Application;
-use Ortofit\Bundle\SingUpBundle\Entity\Client;
 use Ortofit\Bundle\SingUpBundle\Service\ApplicationManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,19 +29,11 @@ class SingUpController extends Controller
     }
 
     /**
-     * @param Client $client
-     *
-     * @return int
+     * @return \Symfony\Bridge\Monolog\Logger
      */
-    private function sendMail($client)
+    private function getLogger()
     {
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Запись на прием')
-            ->setFrom('ortofit.stelka@gmail.com')
-            ->setTo('rsmakota@gmail.com')
-            ->setBody('Прошу перезвонить мне по тел. +'.$client->getMsisdn().' и записать на прием.', 'text/plain');
-
-        return $this->get('swiftmailer.mailer.default')->send($message);
+        return $this->get('monolog.logger.sing_up');
     }
 
     /**
@@ -88,6 +79,7 @@ class SingUpController extends Controller
 
             return new Response($appFlow->getResponse());
         } catch (\Exception $e) {
+            $this->getLogger()->addError('|INDEX| ' . $e->getMessage(), ['appId' => $appId]);
 
             return new Response(ApplicationFlowInterface::RESPONSE_FAIL);
         }
@@ -108,6 +100,8 @@ class SingUpController extends Controller
 
             return new Response($appFlow->getResponse());
         } catch (\Exception $e) {
+            $this->getLogger()->addError('|PROCESS| ' . $e->getMessage(),  $request->request->all());
+
             return new Response(ApplicationFlowInterface::RESPONSE_FAIL);
         }
     }
