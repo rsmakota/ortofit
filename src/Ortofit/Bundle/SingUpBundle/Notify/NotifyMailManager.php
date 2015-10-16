@@ -11,7 +11,7 @@ namespace Ortofit\Bundle\SingUpBundle\Notify;
  *
  * @package Ortofit\Bundle\SingUpBundle\Notify
  */
-class MailManager implements NotifyManagerInterface
+class NotifyMailManager implements NotifyManagerInterface
 {
     /**
      * @var string
@@ -62,7 +62,7 @@ class MailManager implements NotifyManagerInterface
      *
      * @return int
      */
-    public function notify($subject, $body)
+    public function send($subject, $body)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)

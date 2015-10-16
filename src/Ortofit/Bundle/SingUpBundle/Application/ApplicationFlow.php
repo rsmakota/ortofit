@@ -192,8 +192,6 @@ class ApplicationFlow implements ApplicationFlowInterface
         ];
         $bag = new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag($params);
         $this->orderManager->create($bag);
-        $body = sprintf($this->application->getNotifyBody(), $msisdn);
-        $this->notifyManager->notify($this->application->getNotifySubject(), $body);
         $this->response = self::RESPONSE_SUCCESS;
     }
 }

@@ -9,7 +9,10 @@ namespace Ortofit\Bundle\SingUpBundle\Service;
 use Doctrine\ORM\EntityManager;
 use Ortofit\Bundle\SingUpBundle\Entity\Application;
 use Ortofit\Bundle\SingUpBundle\Entity\Order;
+use Ortofit\Bundle\SingUpBundle\Event\OrderCreateEvent;
+use Ortofit\Bundle\SingUpBundle\Event\SingUpEvents;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 
 /**
@@ -23,6 +26,10 @@ class OrderManager extends AbstractManager
      * @var ClientManager
      */
     private $clientManager;
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
 
     /**
      * @param EntityManager $eManager
@@ -35,11 +42,11 @@ class OrderManager extends AbstractManager
     }
 
     /**
-     * @param ClientManager $clientManager
+     * @param EventDispatcherInterface $eventDispatcher
      */
-    public function setClientManager($clientManager)
+    public function setEventDispatcher(EventDispatcherInterface  $eventDispatcher)
     {
-        $this->clientManager = $clientManager;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     private function getClient(ParameterBag $bag)
@@ -70,6 +77,8 @@ class OrderManager extends AbstractManager
 
         $this->enManager->persist($entity);
         $this->enManager->flush();
+
+        $this->eventDispatcher->dispatch(SingUpEvents::CREATE_ORDER, new OrderCreateEvent($entity));
 
         return $entity;
     }

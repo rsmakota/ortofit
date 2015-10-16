@@ -79,7 +79,7 @@ class SingUpController extends Controller
 
             return new Response($appFlow->getResponse());
         } catch (\Exception $e) {
-            $this->getLogger()->addError('|INDEX| ' . $e->getMessage(), ['appId' => $appId]);
+            $this->getLogger()->addError(' | INDEX | ' . $e->getMessage(), ['appId' => $appId]);
 
             return new Response(ApplicationFlowInterface::RESPONSE_FAIL);
         }
@@ -100,7 +100,7 @@ class SingUpController extends Controller
 
             return new Response($appFlow->getResponse());
         } catch (\Exception $e) {
-            $this->getLogger()->addError('|PROCESS| ' . $e->getMessage(),  $request->request->all());
+            $this->getLogger()->addError(' | PROCESS | ' . $e->getMessage(),  [$request->request->all(), $e->getTraceAsString()]);
 
             return new Response(ApplicationFlowInterface::RESPONSE_FAIL);
         }

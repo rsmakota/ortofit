@@ -19,5 +19,5 @@ interface NotifyManagerInterface
      *
      * @return mixed
      */
-    public function notify($subject, $body);
+    public function send($subject, $body);
 }

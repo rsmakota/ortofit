@@ -22,6 +22,7 @@ interface ApplicationFlowInterface
 
     const RESPONSE_SUCCESS = 'success';
     const RESPONSE_FAIL    = 'fail';
+
     /**
      * @return void
      */
