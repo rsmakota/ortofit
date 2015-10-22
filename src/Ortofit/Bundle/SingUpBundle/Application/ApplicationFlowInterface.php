@@ -8,7 +8,6 @@ namespace Ortofit\Bundle\SingUpBundle\Application;
 
 use Ortofit\Bundle\SingUpBundle\Entity\Application;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Interface ApplicationFlowInterface
@@ -24,14 +23,11 @@ interface ApplicationFlowInterface
     const RESPONSE_FAIL    = 'fail';
 
     /**
-     * @return void
+     * @param array $params
+     *
+     * @return mixed
      */
-    public function createForm();
-
-    /**
-     * @param SessionInterface $session
-     */
-    public function setSession(SessionInterface $session);
+    public function createForm($params = []);
 
     /**
      * @return string

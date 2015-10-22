@@ -8,6 +8,7 @@ namespace Ortofit\Bundle\SingUpBundle\Controller;
 
 use Ortofit\Bundle\SingUpBundle\Application\ApplicationFlowInterface;
 use Ortofit\Bundle\SingUpBundle\Entity\Application;
+use Ortofit\Bundle\SingUpBundle\Security\SecurityInterface;
 use Ortofit\Bundle\SingUpBundle\Service\ApplicationManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,6 +35,14 @@ class SingUpController extends Controller
     private function getLogger()
     {
         return $this->get('monolog.logger.sing_up');
+    }
+
+    /**
+     * @return SecurityInterface
+     */
+    private function getSecurity()
+    {
+        return $this->get('ortofit_sing_up.sing_up_security');
     }
 
     /**
@@ -72,10 +81,12 @@ class SingUpController extends Controller
      */
     public function indexAction($appId)
     {
+        $security = $this->getSecurity();
+        $security->init();
         try {
             $app     = $this->getAppManager()->getApp($appId);
             $appFlow = $this->getAppFlow($app);
-            $appFlow->createForm();
+            $appFlow->createForm($security->getSecurityContext());
 
             return new Response($appFlow->getResponse());
         } catch (\Exception $e) {
@@ -93,6 +104,7 @@ class SingUpController extends Controller
     public function processAction(Request $request)
     {
         try {
+            $this->getSecurity()->validate($request);
             $appId   = $this->getAppId($request);
             $app     = $this->getAppManager()->getApp($appId);
             $appFlow = $this->getAppFlow($app);
@@ -100,7 +112,7 @@ class SingUpController extends Controller
 
             return new Response($appFlow->getResponse());
         } catch (\Exception $e) {
-            $this->getLogger()->addError(' | PROCESS | ' . $e->getMessage(),  [$request->request->all(), $e->getTraceAsString()]);
+            $this->getLogger()->addError(' | PROCESS | ' . $e->getMessage(), [$request->request->all(), $e->getTraceAsString()]);
 
             return new Response(ApplicationFlowInterface::RESPONSE_FAIL);
         }

@@ -11,7 +11,6 @@ use Ortofit\Bundle\SingUpBundle\Notify\NotifyManagerInterface;
 use Ortofit\Bundle\SingUpBundle\Service\AbstractManager;
 use Ortofit\Bundle\SingUpBundle\Service\OrderManager;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Templating\EngineInterface;
 
 /**
@@ -35,11 +34,6 @@ class ApplicationFlow implements ApplicationFlowInterface
      * @var OrderManager
      */
     protected $orderManager;
-
-    /**
-     * @var SessionInterface
-     */
-    protected $session;
 
     /**
      * @var string
@@ -67,22 +61,6 @@ class ApplicationFlow implements ApplicationFlowInterface
     }
 
     /**
-     * @return string
-     */
-    private function getToken()
-    {
-        return $this->session->get(ApplicationFlowInterface::SESSION_APP_TOKEN);
-    }
-
-    /**
-     * @return void
-     */
-    private function initToken()
-    {
-        $this->session->set(ApplicationFlowInterface::SESSION_APP_TOKEN, md5(time()));
-    }
-
-    /**
      * @param string $processRouteId
      */
     public function setProcessRouteId($processRouteId)
@@ -96,14 +74,6 @@ class ApplicationFlow implements ApplicationFlowInterface
     public function setTemplateEngine(EngineInterface $templateEngine)
     {
         $this->templateEngine = $templateEngine;
-    }
-
-    /**
-     * @param SessionInterface $session
-     */
-    public function setSession(SessionInterface $session)
-    {
-        $this->session = $session;
     }
 
     /**
@@ -122,19 +92,21 @@ class ApplicationFlow implements ApplicationFlowInterface
         return [
             'prefix'  => $this->application->getCountry()->getPrefix(),
             'pattern' => $this->application->getCountry()->getPattern(),
-            'token'   => $this->getToken(),
             'routeId' => $this->processRouteId,
             'appId'   => $this->application->getId()
         ];
     }
+
     /**
+     * @param array $params
+     *
      * @return void
      */
-    public function createForm()
+    public function createForm($params = [])
     {
-        $this->initToken();
         $templateName   = $this->application->getTemplateName();
-        $this->response = $this->templateEngine->render($templateName, $this->formatFormData());
+        $templateData   = array_merge($this->formatFormData(), $params);
+        $this->response = $this->templateEngine->render($templateName, $templateData);
     }
 
     /**
@@ -146,25 +118,6 @@ class ApplicationFlow implements ApplicationFlowInterface
     }
 
     /**
-     * @param string $token
-     *
-     * @return boolean
-     * @throws \Exception
-     */
-    public function tokenValidate($token)
-    {
-        if (!empty($token) &&
-            $this->session->has(ApplicationFlowInterface::SESSION_APP_TOKEN) &&
-            ($this->session->get(ApplicationFlowInterface::SESSION_APP_TOKEN) == $token)
-        ) {
-            return true;
-        }
-        $sessionToken = $this->session->get(ApplicationFlowInterface::SESSION_APP_TOKEN);
-
-        throw new \Exception(sprintf('Token is invalid or empty. Expects <<%s>> but gotten <<%s>>', $sessionToken, $token));
-    }
-
-    /**
      * @param string       $action
      * @param ParameterBag $bag
      *
@@ -172,7 +125,6 @@ class ApplicationFlow implements ApplicationFlowInterface
      */
     public function action($action, ParameterBag $bag)
     {
-        $this->tokenValidate($bag->get(ApplicationFlowInterface::SESSION_APP_TOKEN));
         $method = $action . "Action";
         if (!method_exists($this, $method)) {
             throw new \Exception(sprintf('This flow doesn\'t support method <<%s>>', $action));
