@@ -2,7 +2,7 @@
 {% block body %}
     <script>
         $(document).ready(function() {
-            jQuery.singObj.init('{{ path(routeId) }}', '{{ pattern }}', '{{ prefix }}', '{{ token }}', {{ appId }});
+            jQuery.singObj.init('{{ path(routeId) }}', '{{ pattern }}', '{{ prefix }}', '{{ sing_up_token_name }}', {{ appId }});
         });
     </script>
     <div class="formDiv">

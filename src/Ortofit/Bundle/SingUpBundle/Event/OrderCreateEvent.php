@@ -9,6 +9,11 @@ namespace Ortofit\Bundle\SingUpBundle\Event;
 use Ortofit\Bundle\SingUpBundle\Entity\Order;
 use Symfony\Component\EventDispatcher\Event;
 
+/**
+ * Class OrderCreateEvent
+ *
+ * @package Ortofit\Bundle\SingUpBundle\Event
+ */
 class OrderCreateEvent extends Event
 {
     /**
