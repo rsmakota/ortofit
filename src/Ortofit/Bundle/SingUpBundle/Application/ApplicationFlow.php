@@ -170,7 +170,7 @@ class ApplicationFlow implements ApplicationFlowInterface
      *
      * @throws \Exception
      */
-    public function action($action, ParameterBag $bag)
+    public function process($action, ParameterBag $bag)
     {
         $this->tokenValidate($bag->get(ApplicationFlowInterface::SESSION_APP_TOKEN));
         $method = $action . "Action";

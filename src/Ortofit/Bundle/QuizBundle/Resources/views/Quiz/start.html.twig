@@ -1,6 +1,6 @@
-{% extends 'OrtofitQuizBundle:Quiz:index.html.twig' %}
+{% extends '::layout.html.twig' %}
 {% block body %}
-
+    <div style="text-align: center" class="container">
     <h2>{{ name }}</h2>
     <p class="lead">{{ content | raw }}</p>
     <div>
@@ -9,5 +9,6 @@
             <input type="hidden" name="{{ stateId }}" value="{{ stateId }}">
             <input type="submit" class="btn btn-lg btn-success" value="Начать">
         </form>
+    </div>
     </div>
 {% endblock %}

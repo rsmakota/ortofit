@@ -24,7 +24,7 @@ class QuizController extends Controller
      */
     public function getCriticalLogger()
     {
-        return $this->get('monolog.logger.critical');
+        return $this->get('monolog.logger.quiz');
     }
 
     /**

@@ -49,5 +49,5 @@ interface ApplicationFlowInterface
      *
      * @return void
      */
-    public function action($method, ParameterBag $bag);
+    public function process($method, ParameterBag $bag);
 }

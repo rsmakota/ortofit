@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Ortofit\Bundle\QuizBundle\OrtofitQuizBundle(),
             new Ortofit\Bundle\SingUpBundle\OrtofitSingUpBundle(),
+            new Ortofit\Bundle\BackOfficeBundle\OrtofitBackOfficeBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

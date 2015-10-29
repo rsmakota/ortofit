@@ -1,5 +1,8 @@
-{% extends 'OrtofitQuizBundle:Quiz:index.html.twig' %}
+{% extends '::layout.html.twig' %}
 {% block body %}
+    <div style="text-align: center" class="container">
+
+
     <script>
         var id = '{{ stateId }}';
         $(document).ready(function() {
@@ -41,4 +44,5 @@
         <br><br>
         <input type="submit" id="submit_next" class="btn btn-lg btn-default" value="Дальше >>"  disabled title="Выберите один из вариантов">
     </form>
+    </div>
 {% endblock %}

@@ -1,0 +1,12 @@
+admin_panel:
+    path:     /admin
+    defaults: { _controller: OrtofitBackOfficeBundle:Default:index }
+login:
+    path:     /login
+    defaults: { _controller: OrtofitBackOfficeBundle:Login:login }
+logout:
+    path:     /admin/logout
+    defaults: { _controller: OrtofitBackOfficeBundle:Login::logout }
+login_check:
+    path:     /admin/login_check
+    defaults: { _controller: OrtofitBackOfficeBundle:Login:securityCheck }

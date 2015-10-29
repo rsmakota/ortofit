@@ -96,7 +96,7 @@ class SingUpController extends Controller
             $appId   = $this->getAppId($request);
             $app     = $this->getAppManager()->getApp($appId);
             $appFlow = $this->getAppFlow($app);
-            $appFlow->action($request->getMethod(), $request->request);
+            $appFlow->process($request->getMethod(), $request->request);
 
             return new Response($appFlow->getResponse());
         } catch (\Exception $e) {

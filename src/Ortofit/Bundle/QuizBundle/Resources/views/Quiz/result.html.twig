@@ -1,5 +1,6 @@
-{% extends 'OrtofitQuizBundle:Quiz:index.html.twig' %}
+{% extends '::layout.html.twig' %}
 {% block body %}
+    <div style="text-align: center" class="container">
     <h2>Результат теста</h2>
     <p style="text-align: left">
         <strong>Предварительный диагноз:</strong>
@@ -27,5 +28,6 @@
             <input type="hidden" name="{{ stateId }}" value="{{ stateId }}">
             <input type="submit" class="btn btn-lg btn-success" value="Пройти еще раз">
         </form>
+    </div>
     </div>
 {% endblock %}
