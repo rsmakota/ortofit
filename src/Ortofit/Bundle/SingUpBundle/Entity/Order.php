@@ -8,7 +8,7 @@ namespace Ortofit\Bundle\SingUpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 /**
- * Class Order
+ * Class Order - order to Appointment
  *
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *

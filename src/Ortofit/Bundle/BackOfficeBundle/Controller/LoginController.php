@@ -10,6 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 
+/**
+ * Class LoginController
+ *
+ * @package Ortofit\Bundle\BackOfficeBundle\Controller
+ */
 class LoginController extends  Controller
 {
     /**
@@ -19,23 +24,33 @@ class LoginController extends  Controller
      */
     public function loginAction(Request $request)
     {
-        if ($request->attributes->has(Security::AUTHENTICATION_ERROR)) {
-            $error = $request->attributes->get(Security::AUTHENTICATION_ERROR);
-        } else {
-            $error = $request->getSession()->get(Security::AUTHENTICATION_ERROR);
-        }
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
         $result = [
-            'last_username' => $request->getSession()->get(Security::LAST_USERNAME),
+            'last_username' => $lastUsername,
             'error'         => $error
         ];
+
         return $this->render('@OrtofitBackOffice/Login/login.html.twig', $result);
     }
 
+    /**
+     *
+     */
     public function logoutAction()
     {
 
     }
 
+    /**
+     *
+     */
     public function securityCheckAction()
     {
         // The security layer will intercept this request

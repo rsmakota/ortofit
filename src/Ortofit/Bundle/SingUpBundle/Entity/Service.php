@@ -1,0 +1,36 @@
+<?php
+/**
+ * @author    Rodion Smakota <rsmakota@nebupay.com>
+ * @copyright 2015 Nebupay LLC
+ */
+
+namespace Ortofit\Bundle\SingUpBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Service
+ *
+ * @package Ortofit\Bundle\SingUpBundle\Entity
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="services")
+ */
+class Service
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    private $name;
+
+    /**
+     * @return string
+     */
+    static public function clazz()
+    {
+        return get_class();
+    }
+}

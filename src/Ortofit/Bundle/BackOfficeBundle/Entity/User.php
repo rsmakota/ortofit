@@ -10,8 +10,12 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class User
+ *
  * @ORM\Entity
  * @ORM\Table(name="users")
+ *
+ * @package Ortofit\Bundle\BackOfficeBundle\Entity
  */
 class User extends BaseUser
 {
