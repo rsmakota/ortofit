@@ -1,21 +1,21 @@
 <?php
 /**
- * @author    Rodion Smakota <rsmakota@gmail.com>
- * @copyright 2015 Ortofit LLC
+ * @copyright 2015 ortofit_quiz
+ * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
 namespace Ortofit\Bundle\SingUpBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Person
- *
+ * Class FamilyStatus
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="persons")
+ * @ORM\Table(name="familyStatus")
  */
-class Person
+class FamilyStatus
 {
     /**
      * @ORM\Id
@@ -23,26 +23,44 @@ class Person
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @ORM\Column(type="string")
      */
     private $name;
+
+
     /**
-     * @ORM\Column(type="integer")
+     * @return integer
      */
-    private $age;
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /**
-     * @ORM\Column(type="integer")
+     * @param integer $id
      */
-    private $familyStatus; // father, mother, daughter, son, husband, wife
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     /**
-     * @ORM\Column(type="datetime")
+     * @return string
      */
-    private $created;
+    public function getName()
+    {
+        return $this->name;
+    }
+
     /**
-     * @ORM\Column(type="")
+     * @param string $name
      */
-    private $diagnoses; //
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
 
     /**
@@ -52,5 +70,4 @@ class Person
     {
         return get_class();
     }
-
 }

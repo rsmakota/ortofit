@@ -1,7 +1,7 @@
 <?php
 /**
- * @author    Rodion Smakota <rsmakota@nebupay.com>
- * @copyright 2015 Nebupay LLC
+ * @author    Rodion Smakota <rsmakota@gmail.com>
+ * @copyright 2015 Ortofit LLC
  */
 
 namespace Ortofit\Bundle\SingUpBundle\Entity;
@@ -27,21 +27,33 @@ class ClientSource
      */
     private $name;
 
+    /**
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param integer $id
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->name = $name;
