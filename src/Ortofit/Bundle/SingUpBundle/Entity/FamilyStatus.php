@@ -29,6 +29,10 @@ class FamilyStatus
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $general;
 
     /**
      * @return integer
@@ -60,6 +64,22 @@ class FamilyStatus
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getGeneral()
+    {
+        return $this->general;
+    }
+
+    /**
+     * @param boolean $general
+     */
+    public function setGeneral($general)
+    {
+        $this->general = $general;
     }
 
 

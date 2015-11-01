@@ -122,14 +122,6 @@ class Application
     }
 
     /**
-     * @param \Datetime $created
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-    }
-
-    /**
      * @return array
      */
     public function getConfig()

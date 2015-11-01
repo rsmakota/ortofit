@@ -16,9 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Appointment
 {
-    const STATE_NEW = 1;
+    const STATE_NEW      = 1;
     const STATE_NOT_CAME = 2;
-    const STATE_SUCCESS = 3;
+    const STATE_SUCCESS  = 3;
 
     /**
      * @ORM\Id
@@ -49,6 +49,15 @@ class Appointment
     private $state;
 
     /**
+     * constructor.
+     */
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->state = self::STATE_NEW;
+    }
+
+    /**
      * @return integer
      */
     public function getId()
@@ -70,14 +79,6 @@ class Appointment
     public function getCreated()
     {
         return $this->created;
-    }
-
-    /**
-     * @param \DateTime $created
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
     }
 
     /**

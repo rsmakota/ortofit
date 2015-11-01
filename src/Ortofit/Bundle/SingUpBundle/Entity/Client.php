@@ -103,14 +103,6 @@ class Client
     }
 
     /**
-     * @param \DateTime $created
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-    }
-
-    /**
      * @return string
      */
     static public function clazz()
