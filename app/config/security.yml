@@ -18,10 +18,12 @@ security:
                 #csrf_provider: security.csrf.token_manager
                 check_path: /admin/login_check
                 login_path: /login
+                default_target_path: admin_panel
                 #csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
 
             logout:
-                path:   /logout
+                path:   logout
+                target: login_route
 
     access_control:
         - { path: ^/admin/, role: ROLE_ADMIN }

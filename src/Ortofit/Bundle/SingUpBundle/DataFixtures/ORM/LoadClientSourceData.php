@@ -6,7 +6,6 @@
 
 namespace Ortofit\Bundle\SingUpBundle\DataFixtures\ORM;
 
-
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -18,7 +17,7 @@ use Ortofit\Bundle\SingUpBundle\Entity\ClientSource;
  */
 class LoadClientSourceData extends AbstractFixture implements OrderedFixtureInterface
 {
-    private $sourses = ['Internet', 'Bord', 'Friends', 'Word Of Mouth'];
+    private $sources = ['Internet', 'Bord', 'Friends', 'Word Of Mouth'];
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -26,7 +25,7 @@ class LoadClientSourceData extends AbstractFixture implements OrderedFixtureInte
      */
     public function load(ObjectManager $manager)
     {
-        foreach($this->sourses as $name) {
+        foreach($this->sources as $name) {
             $source = new ClientSource();
             $source->setName($name);
             $manager->persist($source);

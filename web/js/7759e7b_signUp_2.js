@@ -94,9 +94,9 @@ $(document).ready(function() {
         pushDataFormat: function() {
             var me = this;
             return {
-                msisdn            : me.getMsisdn(),
-                application_token : me.token,
-                application_id    : me.appId
+                msisdn             : me.getMsisdn(),
+                sing_up_token_name : me.token,
+                application_id     : me.appId
             }
         },
 

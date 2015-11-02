@@ -22,24 +22,24 @@ class LoadPersonData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $son = new Person();
-        $son->setName('Максим');
+        $son->setName('Max');
         $son->setAge(6);
         $son->setFamilyStatus($this->getReference('status:son'));
         $manager->persist($son);
         $this->setReference('person:son', $son);
 
         $daughter = new Person();
-        $daughter->setName('Катя');
+        $daughter->setName('Kate');
         $daughter->setAge(10);
         $daughter->setFamilyStatus($this->getReference('status:daughter'));
         $manager->persist($daughter);
         $this->setReference('person:daughter', $daughter);
 
         $husband = new Person();
-        $husband->setName('Катя');
-        $husband->setAge(10);
+        $husband->setName('John');
+        $husband->setAge(38);
         $husband->setFamilyStatus($this->getReference('status:husband'));
-        $manager->persist($daughter);
+        $manager->persist($husband);
         $this->setReference('person:husband', $husband);
 
         $manager->flush();

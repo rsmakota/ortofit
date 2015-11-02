@@ -30,7 +30,9 @@ class LoadAppointmentData extends AbstractFixture implements OrderedFixtureInter
         $appointment = new Appointment();
         $appointment->setClient($this->getReference('client:00'));
         $appointment->setTime(new \DateTime('+3 day'));
-        $appointment->setState();
+
+        $manager->persist($appointment);
+        $manager->flush();
     }
 
     /**
@@ -40,6 +42,6 @@ class LoadAppointmentData extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        // TODO: Implement getOrder() method.
+        return 140;
     }
 }

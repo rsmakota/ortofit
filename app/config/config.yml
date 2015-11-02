@@ -41,7 +41,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [OrtofitQuizBundle, OrtofitSingUpBundle]
+    bundles:        [OrtofitQuizBundle, OrtofitSingUpBundle, OrtofitBackOfficeBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
