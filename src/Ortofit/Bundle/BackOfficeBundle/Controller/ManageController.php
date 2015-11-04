@@ -16,7 +16,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ManageController extends Controller
 {
 
-    public function getAction()
+    /**
+     * @param string $name
+     * @param null   $id
+     */
+    public function getAction($manager, $id=null)
     {
 
     }
