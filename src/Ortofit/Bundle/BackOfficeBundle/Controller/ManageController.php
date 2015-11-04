@@ -20,7 +20,7 @@ class ManageController extends Controller
      * @param string $name
      * @param null   $id
      */
-    public function getAction($manager, $id=null)
+    public function getAction($managerId, $id=null)
     {
 
     }
