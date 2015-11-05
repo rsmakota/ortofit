@@ -60,9 +60,7 @@ class ClientManager extends AbstractManager
         $entity = new Client();
         $entity->setCountry($country);
         $entity->setMsisdn($params->get('msisdn'));
-
-        $this->enManager->persist($entity);
-        $this->enManager->flush();
+        $this->persist($entity);
 
         return $entity;
     }
@@ -79,8 +77,6 @@ class ClientManager extends AbstractManager
         $entity = $this->requiredFind($params->get('id'));
         $entity->setCountry($country);
         $entity->setMsisdn($params->get('msisdn'));
-
-        $this->enManager->merge($entity);
-        $this->enManager->flush();
+        $this->merge($entity);
     }
 }

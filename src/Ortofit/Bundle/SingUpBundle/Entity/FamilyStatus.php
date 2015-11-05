@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="familyStatus")
  */
-class FamilyStatus
+class FamilyStatus implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -89,5 +89,16 @@ class FamilyStatus
     static public function clazz()
     {
         return get_class();
+    }
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return [
+            'id'      => $this->id,
+            'name'    => $this->name,
+            'general' => $this->general,
+        ];
     }
 }

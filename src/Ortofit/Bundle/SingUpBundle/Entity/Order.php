@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="orders")
  */
-class Order
+class Order implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -74,14 +74,6 @@ class Order
     }
 
     /**
-     * @param \DateTime $created
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-    }
-
-    /**
      * @return Client
      */
     public function getClient()
@@ -119,6 +111,19 @@ class Order
     static public function clazz()
     {
         return get_class();
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return [
+            'id'            => $this->id,
+            'created'       => $this->created->format('Y-m-d H:i:s'),
+            'clientId'      => $this->getClient()->getId(),
+            'applicationId' => $this->getApplication()->getId()
+        ];
     }
 
 }

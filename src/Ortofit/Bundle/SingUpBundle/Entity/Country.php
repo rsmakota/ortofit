@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="countries")
  */
-class Country
+class Country implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -140,6 +140,20 @@ class Country
     static public function clazz()
     {
         return get_class();
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return [
+            'id'      => $this->id,
+            'name'    => $this->name,
+            'prefix'  => $this->prefix,
+            'pattern' => $this->pattern,
+            'iso2'    => $this->iso2
+        ];
     }
 
 }

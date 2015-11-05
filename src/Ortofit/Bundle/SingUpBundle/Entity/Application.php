@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="applications")
  */
-class Application
+class Application implements EntityInterface
 {
     const TYPE_VISIT = 'visit';
 
@@ -43,6 +43,7 @@ class Application
     /**
      * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @var Country
      */
     private $country;
 
@@ -199,5 +200,21 @@ class Application
     static public function clazz()
     {
         return get_class();
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return [
+            'id'              => $this->id,
+            'name'            => $this->name,
+            'created'         => $this->created->format('Y-m-d H:i:s'),
+            'type'            => $this->type,
+            'countryId'       => $this->getCountry()->getId(),
+            'flowServiceName' => $this->flowServiceName,
+            'config'          => $this->config
+        ];
     }
 }

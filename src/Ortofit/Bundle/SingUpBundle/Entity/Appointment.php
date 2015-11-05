@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="appointments")
  */
-class Appointment
+class Appointment implements EntityInterface
 {
     const STATE_NEW      = 1;
     const STATE_NOT_CAME = 2;
@@ -137,4 +137,17 @@ class Appointment
         return get_class();
     }
 
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return [
+            'id'       => $this->id,
+            'created'  => $this->created->format('Y-m-d H:i:s'),
+            'time'     => $this->time->format('Y-m-d H:i:s'),
+            'clientId' => $this->getClient()->getId(),
+            'state'    => $this->state
+        ];
+    }
 }

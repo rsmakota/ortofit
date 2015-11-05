@@ -40,6 +40,24 @@ abstract class AbstractManager implements ObjectManagerInterface
     abstract public function getName();
 
     /**
+     * @param object $entity
+     */
+    protected function persist($entity)
+    {
+        $this->enManager->persist($entity);
+        $this->enManager->flush();
+    }
+
+    /**
+     * @param object $entity
+     */
+    protected function merge($entity)
+    {
+        $this->enManager->merge($entity);
+        $this->enManager->flush();
+    }
+
+    /**
      * @param integer $id
      *
      * @return object
@@ -87,6 +105,7 @@ abstract class AbstractManager implements ObjectManagerInterface
         }
         $this->enManager->remove($entity);
         $this->enManager->flush();
+
         return true;
     }
 }

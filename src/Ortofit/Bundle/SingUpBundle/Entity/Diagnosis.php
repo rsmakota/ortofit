@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="diagnoses")
  */
-class Diagnosis
+class Diagnosis implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -40,6 +40,9 @@ class Diagnosis
      */
     private $person;
 
+    /**
+     * Diagnosis constructor.
+     */
     public function __construct()
     {
         $this->created = new \DateTime();
@@ -106,5 +109,18 @@ class Diagnosis
     static public function clazz()
     {
         return get_class();
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return [
+            'id'       => $this->id,
+            'created'  => $this->created->format('Y-m-d H:i:s'),
+            'content'  => $this->content,
+            'personId' => $this->getPerson()->getId()
+        ];
     }
 }

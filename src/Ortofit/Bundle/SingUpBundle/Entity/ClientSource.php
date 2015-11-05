@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="client_sources")
  */
-class ClientSource
+class ClientSource implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -67,4 +67,15 @@ class ClientSource
         return get_class();
     }
 
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return [
+            'id'   => $this->id,
+            'name' => $this->name,
+
+        ];
+    }
 }
