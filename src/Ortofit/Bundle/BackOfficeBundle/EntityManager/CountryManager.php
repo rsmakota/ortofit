@@ -4,18 +4,17 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
-
-use Ortofit\Bundle\SingUpBundle\Entity\ClientSource;
+use Ortofit\Bundle\SingUpBundle\Entity\Country;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
- * Class ClientSourceManager
+ * Class CountryManager
  *
  * @package Ortofit\Bundle\BackOfficeBundle\ObjectManager
  */
-class ClientSourceManager extends AbstractManager
+class CountryManager extends AbstractManager
 {
 
     /**
@@ -23,7 +22,7 @@ class ClientSourceManager extends AbstractManager
      */
     protected function getEntityClassName()
     {
-        ClientSource::clazz();
+        return Country::clazz();
     }
 
     /**
@@ -31,7 +30,7 @@ class ClientSourceManager extends AbstractManager
      */
     public function getName()
     {
-        return 'client_source_manager';
+        return 'country_manager';
     }
 
     /**
@@ -41,8 +40,11 @@ class ClientSourceManager extends AbstractManager
      */
     public function create($params)
     {
-        $entity = new ClientSource();
+        $entity = new Country();
         $entity->setName($params->get('name'));
+        $entity->setIso2($params->get('iso2'));
+        $entity->setPattern($params->get('pattern'));
+        $entity->setPrefix($params->get('prefix'));
         $this->persist($entity);
     }
 
@@ -53,9 +55,11 @@ class ClientSourceManager extends AbstractManager
      */
     public function update($params)
     {
-        /** @var ClientSource $entity */
-        $entity = $this->requiredFind($params->get('id'));
+        $entity = $this->rGet($params->get('id'));
         $entity->setName($params->get('name'));
+        $entity->setIso2($params->get('iso2'));
+        $entity->setPattern($params->get('pattern'));
+        $entity->setPrefix($params->get('prefix'));
         $this->merge($entity);
     }
 }

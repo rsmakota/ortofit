@@ -4,17 +4,17 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
-use Ortofit\Bundle\SingUpBundle\Entity\Country;
+use Ortofit\Bundle\SingUpBundle\Entity\Person;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
- * Class CountryManager
+ * Class PersonManager
  *
  * @package Ortofit\Bundle\BackOfficeBundle\ObjectManager
  */
-class CountryManager extends AbstractManager
+class PersonManager extends AbstractManager
 {
 
     /**
@@ -22,7 +22,7 @@ class CountryManager extends AbstractManager
      */
     protected function getEntityClassName()
     {
-        return Country::clazz();
+        return Person::clazz();
     }
 
     /**
@@ -30,7 +30,7 @@ class CountryManager extends AbstractManager
      */
     public function getName()
     {
-        return 'country_manager';
+        return 'person_manager';
     }
 
     /**
@@ -40,11 +40,11 @@ class CountryManager extends AbstractManager
      */
     public function create($params)
     {
-        $entity = new Country();
+        $status = $this->rGet($params->get('familyStatusId'));
+        $entity = new Person();
         $entity->setName($params->get('name'));
-        $entity->setIso2($params->get('iso2'));
-        $entity->setPattern($params->get('pattern'));
-        $entity->setPrefix($params->get('prefix'));
+        $entity->setAge($params->get('age'));
+        $entity->setFamilyStatus($status);
         $this->persist($entity);
     }
 
@@ -55,11 +55,11 @@ class CountryManager extends AbstractManager
      */
     public function update($params)
     {
-        $entity = $this->requiredFind($params->get('id'));
+        $status = $this->rGet($params->get('familyStatusId'));
+        $entity = $this->rGet($params->get('id'));
         $entity->setName($params->get('name'));
-        $entity->setIso2($params->get('iso2'));
-        $entity->setPattern($params->get('pattern'));
-        $entity->setPrefix($params->get('prefix'));
+        $entity->setAge($params->get('age'));
+        $entity->setFamilyStatus($status);
         $this->merge($entity);
     }
 }

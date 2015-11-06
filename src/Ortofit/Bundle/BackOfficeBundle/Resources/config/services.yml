@@ -1,4 +1,48 @@
 services:
-#    ortofit_back_office.example:
-#        class: Ortofit\Bundle\BackOfficeBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    ortofit_back_office.entity_manager_olm:
+        class: Ortofit\Bundle\BackOfficeBundle\OLM\EntityManagerOLM
+    ortofit_back_office.appointment_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\AppointmentManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }
+    ortofit_back_office.client_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\ClientManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }
+    ortofit_back_office.client_source_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\ClientSourceManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }
+    ortofit_back_office.client_country_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\CountryManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }
+    ortofit_back_office.client_diagnosis_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\DiagnosisManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }
+    ortofit_back_office.client_family_status_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\FamilyStatusManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }
+    ortofit_back_office.order_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\OrderManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }
+    ortofit_back_office.person_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\PersonManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }
+    ortofit_back_office.service_manage:
+        class: Ortofit\Bundle\BackOfficeBundle\EntityManager\ServiceManager
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: ortofit_back_office.entity_manager_olm }

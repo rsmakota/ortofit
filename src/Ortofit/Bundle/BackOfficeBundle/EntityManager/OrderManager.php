@@ -4,7 +4,7 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
 use Ortofit\Bundle\SingUpBundle\Entity\Order;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -40,8 +40,8 @@ class OrderManager extends AbstractManager
      */
     public function create($params)
     {
-        $application = $this->requiredFind($params->get('applicationId'));
-        $client = $this->requiredFind($params->get('clientId'));
+        $application = $this->rGet($params->get('applicationId'));
+        $client = $this->rGet($params->get('clientId'));
         $entity = new Order();
         $entity->setApplication($application);
         $entity->setClient($client);
@@ -55,9 +55,9 @@ class OrderManager extends AbstractManager
      */
     public function update($params)
     {
-        $application = $this->requiredFind($params->get('applicationId'));
-        $client = $this->requiredFind($params->get('clientId'));
-        $entity = $this->requiredFind($params->get('id'));
+        $application = $this->rGet($params->get('applicationId'));
+        $client = $this->rGet($params->get('clientId'));
+        $entity = $this->rGet($params->get('id'));
         $entity->setApplication($application);
         $entity->setClient($client);
         $this->merge($entity);

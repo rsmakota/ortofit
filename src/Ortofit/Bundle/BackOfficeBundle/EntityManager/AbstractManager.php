@@ -4,16 +4,17 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
+
 use Doctrine\ORM\EntityManager;
-use Ortofit\Bundle\SingUpBundle\Entity\Appointment;
+use Ortofit\Bundle\SingUpBundle\Entity\EntityInterface;
 
 /**
  * Class AbstractManager
  *
  * @package Ortofit\Bundle\BackOfficeBundle\ObjectManager
  */
-abstract class AbstractManager implements ObjectManagerInterface
+abstract class AbstractManager implements EntityManagerInterface
 {
     /**
      * @var EntityManager
@@ -62,7 +63,7 @@ abstract class AbstractManager implements ObjectManagerInterface
      *
      * @return object
      */
-    public function find($id)
+    public function get($id)
     {
         return $this->enManager->getRepository($this->getEntityClassName())->find($id);
     }
@@ -70,12 +71,12 @@ abstract class AbstractManager implements ObjectManagerInterface
     /**
      * @param integer $id
      *
-     * @return object
+     * @return EntityInterface
      * @throws \Exception
      */
-    public function requiredFind($id)
+    public function rGet($id)
     {
-        $entity = $this->find($id);
+        $entity = $this->get($id);
         if (null != $entity) {
             return $entity;
         }
@@ -84,13 +85,12 @@ abstract class AbstractManager implements ObjectManagerInterface
     /**
      * @param array $params
      *
-     * @return array
+     * @return EntityInterface[]
      */
-    public function findByCriteria($params)
+    public function findBy($params)
     {
         return $this->enManager->getRepository($this->getEntityClassName())->findBy($params);
     }
-
 
     /**
      * @param integer $id
@@ -99,7 +99,7 @@ abstract class AbstractManager implements ObjectManagerInterface
      */
     public function remove($id)
     {
-        $entity = $this->find($id);
+        $entity = $this->get($id);
         if (!$entity) {
             return false;
         }

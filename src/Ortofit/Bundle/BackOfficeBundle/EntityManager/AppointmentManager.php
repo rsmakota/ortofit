@@ -4,7 +4,7 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
 
 use Ortofit\Bundle\SingUpBundle\Entity\Appointment;
@@ -71,7 +71,7 @@ class AppointmentManager extends AbstractManager
     {
         $client = $this->getClient($params->get('clientId'));
         /** @var Appointment $entity */
-        $entity = $this->requiredFind($params->get('id'));
+        $entity = $this->rGet($params->get('id'));
         $entity->setTime(new \DateTime($params->get('time')));
         $entity->setClient($client);
         $entity->setState($params->get('state'));

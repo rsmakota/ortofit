@@ -4,17 +4,17 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
-use Ortofit\Bundle\SingUpBundle\Entity\Service;
+use Ortofit\Bundle\SingUpBundle\Entity\FamilyStatus;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
- * Class ServiceManager
+ * Class FamilyStatusManager
  *
  * @package Ortofit\Bundle\BackOfficeBundle\ObjectManager
  */
-class ServiceManager extends AbstractManager
+class FamilyStatusManager extends AbstractManager
 {
 
     /**
@@ -22,7 +22,7 @@ class ServiceManager extends AbstractManager
      */
     protected function getEntityClassName()
     {
-        return Service::clazz();
+        return FamilyStatus::clazz();
     }
 
     /**
@@ -30,7 +30,7 @@ class ServiceManager extends AbstractManager
      */
     public function getName()
     {
-        return 'service_manager';
+        return 'family_status_manager';
     }
 
     /**
@@ -40,8 +40,9 @@ class ServiceManager extends AbstractManager
      */
     public function create($params)
     {
-        $entity = new Service();
+        $entity = new FamilyStatus();
         $entity->setName($params->get('name'));
+        $entity->setGeneral($params->get('general'));
         $this->persist($entity);
     }
 
@@ -52,8 +53,9 @@ class ServiceManager extends AbstractManager
      */
     public function update($params)
     {
-        $entity = $this->requiredFind($params->get('id'));
+        $entity = $this->rGet($params->get('id'));
         $entity->setName($params->get('name'));
+        $entity->setGeneral($params->get('general'));
         $this->merge($entity);
     }
 }

@@ -4,7 +4,7 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
 use Ortofit\Bundle\SingUpBundle\Entity\Diagnosis;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -40,7 +40,7 @@ class DiagnosisManager extends AbstractManager
      */
     public function create($params)
     {
-        $person = $this->requiredFind($params->get('personId'));
+        $person = $this->rGet($params->get('personId'));
         $entity = new Diagnosis();
         $entity->setContent($params->get('content'));
         $entity->setPerson($person);
@@ -54,8 +54,8 @@ class DiagnosisManager extends AbstractManager
      */
     public function update($params)
     {
-        $person = $this->requiredFind($params->get('personId'));
-        $entity = $this->requiredFind($params->get('id'));
+        $person = $this->rGet($params->get('personId'));
+        $entity = $this->rGet($params->get('id'));
         $entity->setContent($params->get('content'));
         $entity->setPerson($person);
         $this->merge($entity);

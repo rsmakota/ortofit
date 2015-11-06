@@ -4,7 +4,7 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
 use Ortofit\Bundle\SingUpBundle\Entity\Client;
 use Ortofit\Bundle\SingUpBundle\Entity\Country;
@@ -74,7 +74,7 @@ class ClientManager extends AbstractManager
     {
         $country = $this->getCountry($params->get('countryId'));
         /** @var Client $entity */
-        $entity = $this->requiredFind($params->get('id'));
+        $entity = $this->rGet($params->get('id'));
         $entity->setCountry($country);
         $entity->setMsisdn($params->get('msisdn'));
         $this->merge($entity);

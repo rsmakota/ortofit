@@ -11,14 +11,17 @@ login_check:
     path:     /admin/login_check
     defaults: { _controller: OrtofitBackOfficeBundle:Login:securityCheck }
 backend_manage_get:
-    path:     /admin/get/{object}
+    path:     /get/{entityName}
     defaults: { _controller: OrtofitBackOfficeBundle:Manage:get }
 backend_manage_create:
-    path:     /admin/get/{object}
+    path:     /admin/create/{entityName}
     defaults: { _controller: OrtofitBackOfficeBundle:Manage:create }
 backend_manage_update:
-    path:     /admin/get/{object}
+    path:     /admin/update/{entityName}
     defaults: { _controller: OrtofitBackOfficeBundle:Manage:update }
 backend_manage_remove:
-    path:     /admin/get/{object}
+    path:     /admin/remove/{entityName}
     defaults: { _controller: OrtofitBackOfficeBundle:Manage:remove }
+backend_manage_find:
+    path:     /admin/find/{entityName}
+    defaults: { _controller: OrtofitBackOfficeBundle:Manage:find }

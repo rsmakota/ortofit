@@ -4,8 +4,9 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
+use Ortofit\Bundle\SingUpBundle\Entity\EntityInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -13,26 +14,39 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  *
  * @package Ortofit\Bundle\BackOfficeBundle\ManageService
  */
-interface ObjectManagerInterface
+interface EntityManagerInterface
 {
+    /**
+     * @return mixed
+     */
+    public function getName();
     /**
      * @param integer $id
      *
-     * @return object
+     * @return EntityInterface|null
      */
-    public function find($id);
+    public function get($id);
 
+    /**
+     * @param integer $id
+     *
+     * @return EntityInterface
+     * @throws \Exception
+     */
+    public function rGet($id);
     /**
      * @param array $params
      *
-     * @return array
+     * @return EntityInterface[]
      */
-    public function findByCriteria($params);
+    public function findBy($params);
+
 
     /**
      * @param ParameterBag $params
      *
-     * @return object
+     * @return EntityInterface
+     * @throws \Exception
      */
     public function create($params);
 
@@ -40,6 +54,7 @@ interface ObjectManagerInterface
      * @param integer $id
      *
      * @return boolean
+     * @throws \Exception
      */
     public function remove($id);
 
@@ -47,6 +62,7 @@ interface ObjectManagerInterface
      * @param ParameterBag $params
      *
      * @return boolean
+     * @throws \Exception
      */
     public function update($params);
 }

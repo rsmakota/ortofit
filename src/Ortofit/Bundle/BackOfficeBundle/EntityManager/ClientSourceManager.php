@@ -4,17 +4,18 @@
  * @author Rodion Smakota <rsmakota@gmail.com>
  */
 
-namespace Ortofit\Bundle\BackOfficeBundle\ObjectManager;
+namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
-use Ortofit\Bundle\SingUpBundle\Entity\Person;
+
+use Ortofit\Bundle\SingUpBundle\Entity\ClientSource;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
- * Class PersonManager
+ * Class ClientSourceManager
  *
  * @package Ortofit\Bundle\BackOfficeBundle\ObjectManager
  */
-class PersonManager extends AbstractManager
+class ClientSourceManager extends AbstractManager
 {
 
     /**
@@ -22,7 +23,7 @@ class PersonManager extends AbstractManager
      */
     protected function getEntityClassName()
     {
-        return Person::clazz();
+        ClientSource::clazz();
     }
 
     /**
@@ -30,7 +31,7 @@ class PersonManager extends AbstractManager
      */
     public function getName()
     {
-        return 'person_manager';
+        return 'client_source_manager';
     }
 
     /**
@@ -40,11 +41,8 @@ class PersonManager extends AbstractManager
      */
     public function create($params)
     {
-        $status = $this->requiredFind($params->get('familyStatusId'));
-        $entity = new Person();
+        $entity = new ClientSource();
         $entity->setName($params->get('name'));
-        $entity->setAge($params->get('age'));
-        $entity->setFamilyStatus($status);
         $this->persist($entity);
     }
 
@@ -55,11 +53,9 @@ class PersonManager extends AbstractManager
      */
     public function update($params)
     {
-        $status = $this->requiredFind($params->get('familyStatusId'));
-        $entity = $this->requiredFind($params->get('id'));
+        /** @var ClientSource $entity */
+        $entity = $this->rGet($params->get('id'));
         $entity->setName($params->get('name'));
-        $entity->setAge($params->get('age'));
-        $entity->setFamilyStatus($status);
         $this->merge($entity);
     }
 }

@@ -6,7 +6,9 @@
 
 namespace Ortofit\Bundle\BackOfficeBundle\Controller;
 
+use Ortofit\Bundle\BackOfficeBundle\EntityManager\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,46 +20,132 @@ use Symfony\Component\HttpFoundation\Response;
 class ManageController extends Controller
 {
     /**
-     * @param string  $object
-     * @param Request $request
+     * @param string $objectName
      *
-     * @return Response
+     * @return EntityManagerInterface
+     * @throws \Exception
      */
-    public function getAction($object, $request)
+    private function getObjectManager($objectName)
     {
 
-    }
-    /**
-     * @param string  $object
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function createAction($object, $request)
-    {
+        $manager = $this->get('ortofit_back_office.entity_manager_olm')->find($objectName.'_manager');
+        if (null == $manager) {
+            throw new \Exception('The object '.$objectName.' is not exist');
+        }
 
+        return $manager;
     }
 
     /**
-     * @param string  $object
-     * @param Request $request
+     * @param $errMess
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function updateAction($object, $request)
+    private function getFailResponse($errMess)
     {
-
+        return new JsonResponse(['success' => 'nok', 'errMess' => $errMess]);
     }
 
     /**
-     * @param string  $object
+     * @param array $data
+     *
+     * @return JsonResponse
+     */
+    private function getSuccessResponse($data)
+    {
+        return new JsonResponse(['success' => 'ok', 'data' => $data]);
+    }
+
+    /**
+     * @param string  $entityName
      * @param Request $request
      *
      * @return Response
      */
-    public function removeAction($object, $request)
+    public function getAction($entityName, Request $request)
     {
+        try {
+            $entity = $this->getObjectManager($entityName)->rGet($request->request->get('id'));
 
+            return $this->getSuccessResponse($entity->getData());
+
+        } catch (\Exception $e) {
+            return $this->getFailResponse($e->getMessage());
+        }
+    }
+
+    /**
+     * @param string  $entityName
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function findAction($entityName, $request)
+    {
+        try {
+            $entities = $this->getObjectManager($entityName)->findBy($request->request->all());
+            $data = [];
+            foreach ($entities as $entity) {
+                $data[] = $entity->getData();
+            }
+
+            return $this->getSuccessResponse($data);
+
+        } catch (\Exception $e) {
+            return $this->getFailResponse($e->getMessage());
+        }
+    }
+
+    /**
+     * @param string  $entityName
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function createAction($entityName, $request)
+    {
+        try {
+            $entity = $this->getObjectManager($entityName)->create($request->request);
+
+            return $this->getSuccessResponse($entity->getData());
+
+        } catch (\Exception $e) {
+            return $this->getFailResponse($e->getMessage());
+        }
+    }
+
+    /**
+     * @param string  $entityName
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function updateAction($entityName, $request)
+    {
+        try {
+            $this->getObjectManager($entityName)->update($request->request);
+
+            return $this->getSuccessResponse([]);
+        } catch (\Exception $e) {
+            return $this->getFailResponse($e->getMessage());
+        }
+    }
+
+    /**
+     * @param string  $entityName
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function removeAction($entityName, $request)
+    {
+        try {
+            $this->getObjectManager($entityName)->remove($request->request->get('id'));
+
+            return $this->getSuccessResponse([]);
+        } catch (\Exception $e) {
+            return $this->getFailResponse($e->getMessage());
+        }
     }
 
 }
