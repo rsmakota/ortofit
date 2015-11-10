@@ -1,0 +1,10 @@
+{% extends '@OrtofitBackOffice/Layout/layout.html.twig' %}
+{% block menu %}
+    {% for mName in entityList %}
+    <li><a href="#">{{ mName|capitalize }}</a></li>
+    {% endfor %}
+{% endblock %}
+{% block body %}
+
+
+{% endblock %}

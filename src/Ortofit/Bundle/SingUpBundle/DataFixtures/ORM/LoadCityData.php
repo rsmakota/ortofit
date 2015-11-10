@@ -6,18 +6,17 @@
 
 namespace Ortofit\Bundle\SingUpBundle\DataFixtures\ORM;
 
-
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Ortofit\Bundle\SingUpBundle\Entity\Appointment;
-
+use Ortofit\Bundle\SingUpBundle\Entity\City;
 
 /**
- * Class LoadAppointmentData
+ * Class LoadCountyData
+ *
  * @package Ortofit\Bundle\SingUpBundle\DataFixtures\ORM
  */
-class LoadAppointmentData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
 {
 
     /**
@@ -27,13 +26,15 @@ class LoadAppointmentData extends AbstractFixture implements OrderedFixtureInter
      */
     public function load(ObjectManager $manager)
     {
-        $office = $this->getReference('office:kirova');
-        $appointment = new Appointment();
-        $appointment->setClient($this->getReference('client:00'));
-        $appointment->setTime(new \DateTime('+3 day'));
-        $appointment->setOffice($office);
-        $manager->persist($appointment);
+        $county = $this->getReference('country:ua');
+        $city = new City();
+        $city->setCountry($county);
+        $city->setName('Dnepropetrovsk');
+
+        $manager->persist($city);
         $manager->flush();
+
+        $this->addReference('city:dp', $city);
     }
 
     /**
@@ -43,6 +44,6 @@ class LoadAppointmentData extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 140;
+        return 110;
     }
 }

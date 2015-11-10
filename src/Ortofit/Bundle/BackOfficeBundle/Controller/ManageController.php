@@ -20,6 +20,14 @@ use Symfony\Component\HttpFoundation\Response;
 class ManageController extends Controller
 {
     /**
+     * @return \Ortofit\Bundle\BackOfficeBundle\OLM\EntityManagerOLM
+     */
+    private function getOlmManager()
+    {
+        return $this->get('ortofit_back_office.entity_manager_olm');
+    }
+
+    /**
      * @param string $objectName
      *
      * @return EntityManagerInterface
@@ -28,7 +36,7 @@ class ManageController extends Controller
     private function getObjectManager($objectName)
     {
 
-        $manager = $this->get('ortofit_back_office.entity_manager_olm')->find($objectName.'_manager');
+        $manager = $this->getOlmManager()->find($objectName.'_manager');
         if (null == $manager) {
             throw new \Exception('The object '.$objectName.' is not exist');
         }
@@ -148,4 +156,17 @@ class ManageController extends Controller
         }
     }
 
+    /**
+     * @return JsonResponse
+     */
+    public function getListEntitiesAction()
+    {
+        $managers = $this->getOlmManager()->all();
+        $data = [];
+        foreach($managers as $manager) {
+            $name = explode('_', $manager->getName());
+            $data = $name[0];
+        }
+        return $this->getSuccessResponse($data);
+    }
 }

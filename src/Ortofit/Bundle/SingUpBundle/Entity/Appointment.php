@@ -47,6 +47,11 @@ class Appointment implements EntityInterface
      * @ORM\Column(type="integer")
      */
     private $state;
+    /**
+     * @ORM\ManyToOne(targetEntity="Office")
+     * @ORM\JoinColumn(name="office_id", referencedColumnName="id")
+     */
+    private $office;
 
     /**
      * constructor.
@@ -55,6 +60,22 @@ class Appointment implements EntityInterface
     {
         $this->created = new \DateTime();
         $this->state = self::STATE_NEW;
+    }
+
+    /**
+     * @return Office
+     */
+    public function getOffice()
+    {
+        return $this->office;
+    }
+
+    /**
+     * @param Office $office
+     */
+    public function setOffice($office)
+    {
+        $this->office = $office;
     }
 
     /**
@@ -143,11 +164,12 @@ class Appointment implements EntityInterface
     public function getData()
     {
         return [
-            'id'       => $this->id,
-            'created'  => $this->created->format('Y-m-d H:i:s'),
-            'time'     => $this->time->format('Y-m-d H:i:s'),
-            'clientId' => $this->getClient()->getId(),
-            'state'    => $this->state
+            'id'        => $this->id,
+            'created'   => $this->created->format('Y-m-d H:i:s'),
+            'time'      => $this->time->format('Y-m-d H:i:s'),
+            'clientId'  => $this->getClient()->getId(),
+            'state'     => $this->state,
+            'office_id' => $this->getOffice()->getId()
         ];
     }
 }

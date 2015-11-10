@@ -30,7 +30,7 @@ class FamilyStatusManager extends AbstractManager
      */
     public function getName()
     {
-        return 'family_status_manager';
+        return 'familyStatus_manager';
     }
 
     /**

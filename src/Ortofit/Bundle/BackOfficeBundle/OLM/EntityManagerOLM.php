@@ -39,4 +39,12 @@ class EntityManagerOLM implements OLMInterface
             return $this->managers[$id];
         }
     }
+
+    /**
+     * @return EntityManagerInterface[]
+     */
+    public function all()
+    {
+        return $this->managers;
+    }
 }

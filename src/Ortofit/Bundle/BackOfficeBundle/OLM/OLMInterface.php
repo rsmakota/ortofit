@@ -15,4 +15,9 @@ interface OLMInterface
      * @return OLMInterface|null
      */
     public function find($id);
+
+    /**
+     * @return array
+     */
+    public function all();
 }

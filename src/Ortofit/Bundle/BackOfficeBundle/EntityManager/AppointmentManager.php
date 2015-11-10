@@ -6,7 +6,6 @@
 
 namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
-
 use Ortofit\Bundle\SingUpBundle\Entity\Appointment;
 use Ortofit\Bundle\SingUpBundle\Entity\Client;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -53,10 +52,11 @@ class AppointmentManager extends AbstractManager
     public function create($params)
     {
         $client = $this->getClient($params->get('clientId'));
-
+        $office = $this->rGet('officeId');
         $entity = new Appointment();
         $entity->setClient($client);
         $entity->setTime(new \DateTime($params->get('time')));
+        $entity->setOffice($office);
         $this->persist($entity);
     }
 

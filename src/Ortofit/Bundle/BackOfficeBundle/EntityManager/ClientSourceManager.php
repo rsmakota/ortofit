@@ -31,7 +31,7 @@ class ClientSourceManager extends AbstractManager
      */
     public function getName()
     {
-        return 'client_source_manager';
+        return 'clientSource_manager';
     }
 
     /**
