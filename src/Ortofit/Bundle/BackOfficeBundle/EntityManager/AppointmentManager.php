@@ -57,6 +57,7 @@ class AppointmentManager extends AbstractManager
         $entity->setClient($client);
         $entity->setTime(new \DateTime($params->get('time')));
         $entity->setOffice($office);
+        $entity->setDescription($params->get('description'));
         $this->persist($entity);
     }
 
@@ -75,6 +76,7 @@ class AppointmentManager extends AbstractManager
         $entity->setTime(new \DateTime($params->get('time')));
         $entity->setClient($client);
         $entity->setState($params->get('state'));
+        $entity->setDescription($params->get('description'));
         $this->merge($entity);
 
         return true;

@@ -54,12 +54,55 @@ class Appointment implements EntityInterface
     private $office;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $description = '';
+
+    /**
+     * This is time duration in minutes
+     * @ORM\Column(type="integer")
+     */
+    private $duration;
+
+    /**
      * constructor.
      */
     public function __construct()
     {
         $this->created = new \DateTime();
         $this->state = self::STATE_NEW;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * @param integer $duration
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
@@ -164,12 +207,13 @@ class Appointment implements EntityInterface
     public function getData()
     {
         return [
-            'id'        => $this->id,
-            'created'   => $this->created->format('Y-m-d H:i:s'),
-            'time'      => $this->time->format('Y-m-d H:i:s'),
-            'clientId'  => $this->getClient()->getId(),
-            'state'     => $this->state,
-            'office_id' => $this->getOffice()->getId()
+            'id'          => $this->id,
+            'created'     => $this->created->format('Y-m-d H:i:s'),
+            'time'        => $this->time->format('Y-m-d H:i:s'),
+            'clientId'    => $this->getClient()->getId(),
+            'state'       => $this->state,
+            'office_id'   => $this->getOffice()->getId(),
+            'description' => $this->description
         ];
     }
 }
