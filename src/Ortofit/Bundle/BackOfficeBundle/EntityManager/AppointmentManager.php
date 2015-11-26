@@ -51,14 +51,15 @@ class AppointmentManager extends AbstractManager
      */
     public function create($params)
     {
-        $client = $this->getClient($params->get('clientId'));
-        $office = $this->rGet('officeId');
         $entity = new Appointment();
-        $entity->setClient($client);
-        $entity->setTime(new \DateTime($params->get('time')));
-        $entity->setOffice($office);
+        $entity->setClient($params->get('client'));
+        $entity->setDateTime($params->get('dateTime'));
+        $entity->setDuration($params->get('duration'));
+        $entity->setOffice($params->get('office'));
         $entity->setDescription($params->get('description'));
         $this->persist($entity);
+
+        return $entity;
     }
 
 
@@ -70,12 +71,12 @@ class AppointmentManager extends AbstractManager
      */
     public function update($params)
     {
-        $client = $this->getClient($params->get('clientId'));
         /** @var Appointment $entity */
         $entity = $this->rGet($params->get('id'));
-        $entity->setTime(new \DateTime($params->get('time')));
-        $entity->setClient($client);
+        $entity->setDateTime($params->get('dateTime'));
+        $entity->setClient($params->get('client'));
         $entity->setState($params->get('state'));
+        $entity->setDuration($params->get('duration'));
         $entity->setDescription($params->get('description'));
         $this->merge($entity);
 

@@ -9,15 +9,20 @@ namespace Ortofit\Bundle\SingUpBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Ortofit\Bundle\SingUpBundle\Entity\ClientSource;
+use Ortofit\Bundle\SingUpBundle\Entity\ClientDirection;
 
 /**
  * Class LoadClientSourceData
  * @package Ortofit\Bundle\SingUpBundle\DataFixtures\ORM
  */
-class LoadClientSourceData extends AbstractFixture implements OrderedFixtureInterface
+class LoadClientDirectionData extends AbstractFixture implements OrderedFixtureInterface
 {
-    private $sources = ['Internet', 'Bord', 'Friends', 'Word Of Mouth'];
+    private $sources = [
+        'internet' => 'Интернет',
+        'bord'     => 'Наружная реклама',
+        'friends'  => 'Посоветовали знакомы',
+        'return'   => 'Повторно'
+    ];
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -25,13 +30,14 @@ class LoadClientSourceData extends AbstractFixture implements OrderedFixtureInte
      */
     public function load(ObjectManager $manager)
     {
-        foreach($this->sources as $name) {
-            $source = new ClientSource();
+        foreach($this->sources as $key => $name) {
+            $source = new ClientDirection();
             $source->setName($name);
             $manager->persist($source);
+            $this->addReference('clientDirection:'.$key, $source);
         }
         $manager->flush();
-        ;
+
     }
 
     /**

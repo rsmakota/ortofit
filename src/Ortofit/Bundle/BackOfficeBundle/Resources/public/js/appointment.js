@@ -21,13 +21,13 @@ $(document).ready(function() {
     jQuery.appointment = {
         getData: function() {
             return {
-                msisdn:      $('#msisdn').val().replace(/[^0-9]/gim,''),
-                name:        $('#clientName').val(),
-                directionId: $('#directionId').val(),
-                officeId:    $('#officeId').val(),
-                date:        $('#date').val().replace(/\//gim, '-')+' '+$('#time').val(),
-                duration:    $('#duration').val(),
-                description: $('#description').val()
+                msisdn:            $('#msisdn').val().replace(/[^0-9]/gim,''),
+                clientName:        $('#clientName').val(),
+                clientDirectionId: $('#directionId').val(),
+                officeId:          $('#officeId').val(),
+                dateTime:          $('#date').val().replace(/\//gim, '-')+' '+$('#time').val(),
+                duration:          $('#duration').val(),
+                description:       $('#description').val()
 
             };
         },

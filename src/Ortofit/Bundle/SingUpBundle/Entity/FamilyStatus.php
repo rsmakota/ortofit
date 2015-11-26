@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="familyStatus")
+ * @ORM\Table(name="family_statuses")
  */
 class FamilyStatus implements EntityInterface
 {

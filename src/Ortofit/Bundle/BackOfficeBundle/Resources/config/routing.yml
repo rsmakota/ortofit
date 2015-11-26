@@ -10,21 +10,25 @@ logout:
 login_check:
     path:     /admin/login_check
     defaults: { _controller: OrtofitBackOfficeBundle:Login:securityCheck }
-backend_manage_get:
-    path:     /admin/get/{entityName}
-    defaults: { _controller: OrtofitBackOfficeBundle:Manage:get }
-backend_manage_create:
-    path:     /admin/create/{entityName}
-    defaults: { _controller: OrtofitBackOfficeBundle:Manage:create }
-backend_manage_update:
-    path:     /admin/update/{entityName}
-    defaults: { _controller: OrtofitBackOfficeBundle:Manage:update }
-backend_manage_remove:
-    path:     /admin/remove/{entityName}
-    defaults: { _controller: OrtofitBackOfficeBundle:Manage:remove }
-backend_manage_find:
-    path:     /admin/find/{entityName}
-    defaults: { _controller: OrtofitBackOfficeBundle:Manage:find }
-backend_manage_entity_index:
-    path:     /admin/entity
-    defaults: { _controller: OrtofitBackOfficeBundle:Entity:index }
+#backend_manage_get:
+#    path:     /admin/get/{entityName}
+#    defaults: { _controller: OrtofitBackOfficeBundle:Manage:get }
+#backend_manage_create:
+#    path:     /admin/create/{entityName}
+#    defaults: { _controller: OrtofitBackOfficeBundle:Manage:create }
+#backend_manage_update:
+#    path:     /admin/update/{entityName}
+#    defaults: { _controller: OrtofitBackOfficeBundle:Manage:update }
+#backend_manage_remove:
+#    path:     /admin/remove/{entityName}
+#    defaults: { _controller: OrtofitBackOfficeBundle:Manage:remove }
+#backend_manage_find:
+#    path:     /admin/find/{entityName}
+#    defaults: { _controller: OrtofitBackOfficeBundle:Manage:find }
+#backend_manage_entity_index:
+#    path:     /admin/entity
+#    defaults: { _controller: OrtofitBackOfficeBundle:Entity:index }
+
+backendoffice_appointment_create:
+    path:     /admin/appointment/create
+    defaults: { _controller: OrtofitBackOfficeBundle:Appointment:create }

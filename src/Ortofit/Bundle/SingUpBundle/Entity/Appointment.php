@@ -35,7 +35,7 @@ class Appointment implements EntityInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private $time;
+    private $dateTime;
 
     /**
      * @ORM\ManyToOne(targetEntity="Client")
@@ -148,17 +148,17 @@ class Appointment implements EntityInterface
     /**
      * @return \DateTime
      */
-    public function getTime()
+    public function getDateTime()
     {
-        return $this->time;
+        return $this->dateTime;
     }
 
     /**
-     * @param \DateTime $time
+     * @param \DateTime $dateTime
      */
-    public function setTime($time)
+    public function setDateTime($dateTime)
     {
-        $this->time = $time;
+        $this->dateTime = $dateTime;
     }
 
     /**
@@ -209,11 +209,12 @@ class Appointment implements EntityInterface
         return [
             'id'          => $this->id,
             'created'     => $this->created->format('Y-m-d H:i:s'),
-            'time'        => $this->time->format('Y-m-d H:i:s'),
+            'dateTime'    => $this->dateTime->format('Y-m-d H:i:s'),
             'clientId'    => $this->getClient()->getId(),
             'state'       => $this->state,
             'office_id'   => $this->getOffice()->getId(),
-            'description' => $this->description
+            'description' => $this->description,
+            'duration'    => $this->duration,
         ];
     }
 }

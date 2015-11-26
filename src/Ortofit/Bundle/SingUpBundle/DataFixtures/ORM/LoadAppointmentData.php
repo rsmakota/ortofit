@@ -30,8 +30,10 @@ class LoadAppointmentData extends AbstractFixture implements OrderedFixtureInter
         $office = $this->getReference('office:kirova');
         $appointment = new Appointment();
         $appointment->setClient($this->getReference('client:00'));
-        $appointment->setTime(new \DateTime('+3 day'));
+        $appointment->setDateTime(new \DateTime('+3 day'));
         $appointment->setOffice($office);
+        $appointment->setDuration(60);
+        $appointment->setDescription('Консультация ортопеда');
         $manager->persist($appointment);
         $manager->flush();
     }

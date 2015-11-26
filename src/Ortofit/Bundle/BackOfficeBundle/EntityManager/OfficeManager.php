@@ -8,6 +8,7 @@ namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
 use Ortofit\Bundle\SingUpBundle\Entity\Client;
 use Ortofit\Bundle\SingUpBundle\Entity\Country;
+use Ortofit\Bundle\SingUpBundle\Entity\Office;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  *
  * @package Ortofit\Bundle\BackOfficeBundle\ObjectManager
  */
-class ClientManager extends AbstractManager
+class OfficeManager extends AbstractManager
 {
 
     /**
@@ -23,7 +24,7 @@ class ClientManager extends AbstractManager
      */
     protected function getEntityClassName()
     {
-        return Client::clazz();
+        return Office::clazz();
     }
 
     /**
@@ -31,22 +32,7 @@ class ClientManager extends AbstractManager
      */
     public function getName()
     {
-        return 'client_manager';
-    }
-
-    /**
-     * @param integer $id
-     *
-     * @return Country
-     * @throws \Exception
-     */
-    private function getCountry($id)
-    {
-        $country = $this->enManager->getRepository($this->getEntityClassName())->find($id);
-        if ($country) {
-            return $country;
-        }
-        throw new \Exception('Can\'t find Country by id');
+        return 'office_manager';
     }
 
     /**
@@ -56,10 +42,9 @@ class ClientManager extends AbstractManager
      */
     public function create($params)
     {
-        $entity = new Client();
-        $entity->setCountry($params->get('country'));
-        $entity->setClientDirection($params->get('clientDirection'));
-        $entity->setMsisdn($params->get('msisdn'));
+
+        $entity = new Office();
+        $entity->setCity($params->get('city'));
         $entity->setName($params->get('name'));
         $this->persist($entity);
 
@@ -73,11 +58,10 @@ class ClientManager extends AbstractManager
      */
     public function update($params)
     {
-        /** @var Client $entity */
+        /** @var Office $entity */
         $entity = $this->rGet($params->get('id'));
-        $entity->setCountry($params->get('country'));
-        $entity->setClientDirection($params->get('clientDirection'));
-        $entity->setMsisdn($params->get('msisdn'));
+        $entity->setCity($params->get('city'));
+        $entity->setName($params->get('name'));
         $this->merge($entity);
     }
 }

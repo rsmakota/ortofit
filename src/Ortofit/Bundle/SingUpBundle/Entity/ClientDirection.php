@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="client_sources")
+ * @ORM\Table(name="client_directions")
  */
-class ClientSource implements EntityInterface
+class ClientDirection implements EntityInterface
 {
     /**
      * @ORM\Id

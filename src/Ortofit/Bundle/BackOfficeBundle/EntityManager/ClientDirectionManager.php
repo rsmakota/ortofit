@@ -7,7 +7,7 @@
 namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
 
-use Ortofit\Bundle\SingUpBundle\Entity\ClientSource;
+use Ortofit\Bundle\SingUpBundle\Entity\ClientDirection;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  *
  * @package Ortofit\Bundle\BackOfficeBundle\ObjectManager
  */
-class ClientSourceManager extends AbstractManager
+class ClientDirectionManager extends AbstractManager
 {
 
     /**
@@ -23,7 +23,7 @@ class ClientSourceManager extends AbstractManager
      */
     protected function getEntityClassName()
     {
-        ClientSource::clazz();
+        ClientDirection::clazz();
     }
 
     /**
@@ -31,7 +31,7 @@ class ClientSourceManager extends AbstractManager
      */
     public function getName()
     {
-        return 'clientSource_manager';
+        return 'clientDirection_manager';
     }
 
     /**
@@ -41,7 +41,7 @@ class ClientSourceManager extends AbstractManager
      */
     public function create($params)
     {
-        $entity = new ClientSource();
+        $entity = new ClientDirection();
         $entity->setName($params->get('name'));
         $this->persist($entity);
     }
@@ -53,7 +53,7 @@ class ClientSourceManager extends AbstractManager
      */
     public function update($params)
     {
-        /** @var ClientSource $entity */
+        /** @var ClientDirection $entity */
         $entity = $this->rGet($params->get('id'));
         $entity->setName($params->get('name'));
         $this->merge($entity);

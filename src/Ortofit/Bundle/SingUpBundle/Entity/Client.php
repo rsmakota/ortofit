@@ -22,12 +22,15 @@ class Client implements EntityInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @ORM\Column(type="string")
      */
     private $msisdn;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $name;
     /**
      * @ORM\Column(type="datetime")
      */
@@ -37,6 +40,11 @@ class Client implements EntityInterface
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
+    /**
+     * @ORM\ManyToOne(targetEntity="ClientDirection")
+     * @ORM\JoinColumn(name="client_direction_id", referencedColumnName="id")
+     */
+    private $clientDirection;
 
     /**
      * Client constructor.
@@ -44,6 +52,38 @@ class Client implements EntityInterface
     public function __construct()
     {
         $this->created = new \DateTime();
+    }
+
+    /**
+     * @return ClientDirection
+     */
+    public function getClientDirection()
+    {
+        return $this->clientDirection;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param ClientDirection $clientDirection
+     */
+    public function setClientDirection($clientDirection)
+    {
+        $this->clientDirection = $clientDirection;
     }
 
     /**
@@ -116,10 +156,11 @@ class Client implements EntityInterface
     public function getData()
     {
         return [
-            'id' => $this->id,
-            'msisdn' => $this->msisdn,
-            'created' => $this->created->format('Y-m-d H:i:s'),
-            'countryId' => $this->getCountry()->getId()
+            'id'                => $this->id,
+            'msisdn'            => $this->msisdn,
+            'created'           => $this->created->format('Y-m-d H:i:s'),
+            'clientDirectionId' => $this->getClientDirection()->getId(),
+            'countryId'         => $this->getCountry()->getId()
         ];
     }
 }

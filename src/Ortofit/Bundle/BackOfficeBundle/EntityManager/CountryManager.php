@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  */
 class CountryManager extends AbstractManager
 {
-
+    const DEFAULT_COUNTRY_NAME = 'Ukraine';
     /**
      * @return string
      */
@@ -32,7 +32,10 @@ class CountryManager extends AbstractManager
     {
         return 'country_manager';
     }
-
+    public function getDefault()
+    {
+        $this->enManager->getRepository($this->getEntityClassName())->findOneBy(['name'=>self::DEFAULT_COUNTRY_NAME]);
+    }
     /**
      * @param ParameterBag $params
      *
