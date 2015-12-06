@@ -23,7 +23,7 @@ class ClientDirectionManager extends AbstractManager
      */
     protected function getEntityClassName()
     {
-        ClientDirection::clazz();
+        return ClientDirection::clazz();
     }
 
     /**

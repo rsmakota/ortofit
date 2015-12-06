@@ -83,5 +83,14 @@ class AppointmentManager extends AbstractManager
         return true;
     }
 
-
+    /**
+     * @param \DateTime $dayFrom
+     * @param \DateTime $dayTo
+     *
+     * @return Appointment[]
+     */
+    public function findByRange($dayFrom, $dayTo)
+    {
+        return $this->enManager->getRepository($this->getEntityClassName())->findByRange($dayFrom, $dayTo);
+    }
 }

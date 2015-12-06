@@ -67,7 +67,7 @@ class AppointmentController extends Controller
      */
     private function getClient($bag)
     {
-        $client = $this->getClientManager()->findBy($bag->get('msisdn'));
+        $client = $this->getClientManager()->findBy(['msisdn' => $bag->get('msisdn')]);
         if ($client) {
             return $client;
         }
@@ -93,7 +93,7 @@ class AppointmentController extends Controller
             'dateTime'    => new \DateTime($bag->get('dateTime')),
             'duration'    => $bag->get('duration'),
             'description' => $bag->get('description'),
-            'office'      => $this->getOfficeManager()->get('officeId')
+            'office'      => $this->getOfficeManager()->get($bag->get('officeId'))
         ];
         $this->getAppointmentManager()->create(new ParameterBag($data));
     }
@@ -106,11 +106,11 @@ class AppointmentController extends Controller
     public function createAction(Request $request)
     {
         try {
-            $this->createAppointment($request->query);
+            $this->createAppointment($request->request);
 
             return new JsonResponse(['success' => 'ok']);
         } catch (\Exception $e) {
-            return new JsonResponse(['success' => 'nok']);
+            return new JsonResponse(['success' => 'nok', 'error' => $e->getMessage(), 'trace'=>$e->getTrace(), 'data' => $request->request->all()]);
         }
     }
 
@@ -119,6 +119,28 @@ class AppointmentController extends Controller
      */
     public function formAction()
     {
-        return $this->render('@OrtofitBackOffice/Appointment/createForm.html.twig', []);
+        $data = [
+            'directions' => $this->getClientDirectionManager()->all(),
+            'offices'    => $this->getOfficeManager()->all()
+        ];
+        return $this->render('@OrtofitBackOffice/Appointment/createForm.html.twig', $data);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function getAppAction(Request $request)
+    {
+        $firstDay = new \DateTime('first day of this month');
+        $lastDay  = new \DateTime('last day of this month');
+
+        $app = $this->getAppointmentManager()->findByRange($firstDay, $lastDay);
+        $data = [];
+        foreach ($app as $appointment) {
+            $data[] = $appointment->getData();
+        }
+        return new JsonResponse($data);
     }
 }

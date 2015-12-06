@@ -3,6 +3,9 @@
  */
 $(document).ready(function() {
     jQuery.base = {
+        appFormUrl:   null,
+        appCreateUrl: null,
+
         send: function(url, data, callback) {
             $.ajax({
                 type: "POST",
@@ -34,13 +37,27 @@ $(document).ready(function() {
         processResponse: function(response) {
 
         },
-        create: function(url) {
-            console.log(this.getData());
-            //jQuery.base.send(url, this.getData, this.processResponse);
+        create: function() {
+            jQuery.base.send(jQuery.base.appCreateUrl, this.getData(), function(){
+                $('#appointmentModal').modal('hide');
+            });
         }
     };
 
-    $('#saveButton').click(function(){
-        jQuery.appointment.create('url');
+
+
+    $(document).ready(function() {
+        $('#appointmentModal').on('show.bs.modal', function (e) {
+            jQuery.base.send(jQuery.base.appFormUrl, {}, function(response){
+                $('#appointmentModal').empty();
+                $('#appointmentModal').append(response);
+                $("#date").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+                $("#time").inputmask("hh:mm", {"placeholder": "hh:mm"});
+                $("[data-mask]").inputmask();
+                $('#saveButton').click(function(){
+                    jQuery.appointment.create();
+                });
+            })
+        })
     });
 });

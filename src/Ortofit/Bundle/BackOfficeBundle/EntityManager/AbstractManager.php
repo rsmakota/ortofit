@@ -41,7 +41,7 @@ abstract class AbstractManager implements EntityManagerInterface
     abstract public function getName();
 
     /**
-     * @param object $entity
+     * @param EntityInterface $entity
      */
     protected function persist($entity)
     {
@@ -50,7 +50,7 @@ abstract class AbstractManager implements EntityManagerInterface
     }
 
     /**
-     * @param object $entity
+     * @param EntityInterface $entity
      */
     protected function merge($entity)
     {
@@ -61,11 +61,18 @@ abstract class AbstractManager implements EntityManagerInterface
     /**
      * @param integer $id
      *
-     * @return object
+     * @return EntityInterface
      */
     public function get($id)
     {
         return $this->enManager->getRepository($this->getEntityClassName())->find($id);
+    }
+    /**
+     * @return EntityInterface[]
+     */
+    public function all()
+    {
+        return $this->enManager->getRepository($this->getEntityClassName())->findAll();
     }
 
     /**

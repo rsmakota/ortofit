@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ortofit\Bundle\SingUpBundle\ORM\AppointmentRepository")
  * @ORM\Table(name="appointments")
  */
 class Appointment implements EntityInterface

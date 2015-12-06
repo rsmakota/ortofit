@@ -12,7 +12,7 @@ security:
 
     firewalls:
         back_office:
-            pattern: ^/admin.*
+            pattern: ^/admin
             form_login:
                 provider: fos_userbundle
                 #csrf_provider: security.csrf.token_manager
@@ -26,5 +26,5 @@ security:
                 target: login_route
 
     access_control:
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/admin/.*/.*/.*, role: ROLE_ADMIN }
 

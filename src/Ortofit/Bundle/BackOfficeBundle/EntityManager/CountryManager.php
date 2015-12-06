@@ -34,7 +34,7 @@ class CountryManager extends AbstractManager
     }
     public function getDefault()
     {
-        $this->enManager->getRepository($this->getEntityClassName())->findOneBy(['name'=>self::DEFAULT_COUNTRY_NAME]);
+        return $this->enManager->getRepository($this->getEntityClassName())->findOneBy(['name'=>self::DEFAULT_COUNTRY_NAME]);
     }
     /**
      * @param ParameterBag $params
