@@ -47,6 +47,7 @@ class Appointment implements EntityInterface
      * @ORM\Column(type="integer")
      */
     private $state;
+
     /**
      * @ORM\ManyToOne(targetEntity="Office")
      * @ORM\JoinColumn(name="office_id", referencedColumnName="id")
@@ -63,6 +64,12 @@ class Appointment implements EntityInterface
      * @ORM\Column(type="integer")
      */
     private $duration;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     */
+    private $service;
 
     /**
      * constructor.
@@ -194,6 +201,32 @@ class Appointment implements EntityInterface
     }
 
     /**
+     * @return Service
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * @param Service $service
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        $end = clone $this->dateTime;
+        $end->modify('+'.$this->duration.' min');
+
+        return $end;
+    }
+    /**
      * @return string
      */
     static public function clazz()
@@ -215,6 +248,22 @@ class Appointment implements EntityInterface
             'office_id'   => $this->getOffice()->getId(),
             'description' => $this->description,
             'duration'    => $this->duration,
+            'service_id'  => $this->getService()->getId()
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getCalendarData()
+    {
+        return [
+            'id'              => $this->id,
+            'title'           => $this->description,
+            'start'           => $this->dateTime->format('c'),
+            'end'             => $this->getEndDate()->format('c'),
+            'backgroundColor' => $this->getService()->getColor(),
+            'borderColor'     => $this->getService()->getColor(),
         ];
     }
 }

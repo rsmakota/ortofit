@@ -1,13 +1,14 @@
 <?php
 /**
  * @copyright 2015 ortofit_quiz
- * @author Rodion Smakota <rsmakota@gmail.com>
+ * @author    Rodion Smakota <rsmakota@gmail.com>
  */
 
 namespace Ortofit\Bundle\BackOfficeBundle\EntityManager;
 
 use Ortofit\Bundle\SingUpBundle\Entity\Appointment;
 use Ortofit\Bundle\SingUpBundle\Entity\Client;
+use Ortofit\Bundle\SingUpBundle\Entity\Office;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -84,13 +85,18 @@ class AppointmentManager extends AbstractManager
     }
 
     /**
-     * @param \DateTime $dayFrom
-     * @param \DateTime $dayTo
+     * @param ParameterBag $bag
      *
      * @return Appointment[]
      */
-    public function findByRange($dayFrom, $dayTo)
+    public function findByRange(ParameterBag $bag)
     {
-        return $this->enManager->getRepository($this->getEntityClassName())->findByRange($dayFrom, $dayTo);
+        $office = $this->enManager->getRepository(Office::clazz())->find($bag->get('office_id'));
+
+        return $this->enManager->getRepository($this->getEntityClassName())->findByRange(
+            $bag->get('from'),
+            $bag->get('to'),
+            $office
+        );
     }
 }

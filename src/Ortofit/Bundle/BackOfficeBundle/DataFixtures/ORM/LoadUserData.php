@@ -12,6 +12,11 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ortofit\Bundle\BackOfficeBundle\Entity\User;
 
+/**
+ * Class LoadUserData
+ *
+ * @package Ortofit\Bundle\BackOfficeBundle\DataFixtures\ORM
+ */
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
 

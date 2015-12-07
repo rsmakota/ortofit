@@ -20,7 +20,7 @@ $(document).ready(function() {
             });
         }
     };
-
+    //http://stackoverflow.com/questions/25266604/create-dynamic-events-to-javascript-calendar
     jQuery.appointment = {
         getData: function() {
             return {
@@ -41,6 +41,25 @@ $(document).ready(function() {
             jQuery.base.send(jQuery.base.appCreateUrl, this.getData(), function(){
                 $('#appointmentModal').modal('hide');
             });
+        },
+        loadAppEvents: function(calendarId, officeId, url) {
+            jQuery.base.send(url,{office_id:officeId}, jQuery.appointment.fullCalendar)
+        },
+        fullCalendar: function(id, data) {
+            $(id).fullCalendar('removeEvents');
+
+            for (var i = 0; i < data.length; i++) {
+                var event = {
+                    title:           data[i].title,
+                    start:           new Date(data[i].start),
+                    end:             new Date(data[i].end),
+                    allDay:          false,
+                    backgroundColor: data[i].backgroundColor,
+                    borderColor:     data[i].borderColor,
+                };
+                $(id).fullCalendar('renderEvent', event, true);
+            }
+            $(id).fullCalendar('refetchEvents');
         }
     };
 

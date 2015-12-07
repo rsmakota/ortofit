@@ -77,6 +77,7 @@ class AppointmentController extends Controller
             'country'         => $this->getCountryManager()->getDefault(),
             'clientDirection' => $this->getClientDirectionManager()->get($bag->get('clientDirectionId'))
         ];
+
         return $this->getClientManager()->create(new ParameterBag($data));
     }
 
@@ -123,8 +124,11 @@ class AppointmentController extends Controller
             'directions' => $this->getClientDirectionManager()->all(),
             'offices'    => $this->getOfficeManager()->all()
         ];
+
         return $this->render('@OrtofitBackOffice/Appointment/createForm.html.twig', $data);
     }
+
+
 
     /**
      * @param Request $request
@@ -133,14 +137,26 @@ class AppointmentController extends Controller
      */
     public function getAppAction(Request $request)
     {
-        $firstDay = new \DateTime('first day of this month');
-        $lastDay  = new \DateTime('last day of this month');
+        $fromDay = new \DateTime('first day of this month');
+        $toDay   = new \DateTime('last day of this month');
 
-        $app = $this->getAppointmentManager()->findByRange($firstDay, $lastDay);
-        $data = [];
-        foreach ($app as $appointment) {
-            $data[] = $appointment->getData();
+        if (null != $request->get('from')) {
+            $fromDay = new \DateTime($request->get('from'));
         }
-        return new JsonResponse($data);
+        if (null != $request->get('to')) {
+            $toDay = new \DateTime($request->get('to'));
+        }
+        $data = [
+            'from'      => $fromDay,
+            'to'        => $toDay,
+            'office_id' => $request->get('office_id')
+        ];
+        $app = $this->getAppointmentManager()->findByRange(new ParameterBag($data));
+        $responseData = [];
+        foreach ($app as $appointment) {
+            $responseData[] = $appointment->getCalendarData();
+        }
+
+        return new JsonResponse($responseData);
     }
 }
