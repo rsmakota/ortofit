@@ -100,6 +100,18 @@ class AppointmentController extends Controller
     }
 
     /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction()
+    {
+        $offices = $this->getOfficeManager()->all();
+        $activeOfficeId = $offices[0]->getId();
+
+        return $this->render('@OrtofitBackOffice/Appointment/index.html.twig', ['offices' => $offices, 'activeOfficeId'=>$activeOfficeId]);
+    }
+
+
+    /**
      * @param Request $request
      *
      * @return JsonResponse
@@ -140,16 +152,16 @@ class AppointmentController extends Controller
         $fromDay = new \DateTime('first day of this month');
         $toDay   = new \DateTime('last day of this month');
 
-        if (null != $request->get('from')) {
-            $fromDay = new \DateTime($request->get('from'));
+        if (null != $request->get('start')) {
+            $fromDay = new \DateTime($request->get('start'));
         }
-        if (null != $request->get('to')) {
-            $toDay = new \DateTime($request->get('to'));
+        if (null != $request->get('end')) {
+            $toDay = new \DateTime($request->get('end'));
         }
         $data = [
             'from'      => $fromDay,
             'to'        => $toDay,
-            'office_id' => $request->get('office_id')
+            'office_id' => 1//$request->get('office_id')
         ];
         $app = $this->getAppointmentManager()->findByRange(new ParameterBag($data));
         $responseData = [];

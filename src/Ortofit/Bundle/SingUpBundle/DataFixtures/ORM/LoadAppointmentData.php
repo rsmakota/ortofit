@@ -58,7 +58,7 @@ class LoadAppointmentData extends AbstractFixture implements OrderedFixtureInter
         $date         = new \DateTime($date->format('Y-m-d').' '.$hour.":00:00");
         $appointment  = new Appointment();
         $appointment->setClient($client);
-        $appointment->setDateTime(new \DateTime($day.' day'));
+        $appointment->setDateTime($date);
         $appointment->setOffice($office);
         $appointment->setDuration(60);
         $appointment->setDescription($description);

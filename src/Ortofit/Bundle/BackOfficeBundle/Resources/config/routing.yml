@@ -1,6 +1,6 @@
 admin_panel:
     path:     /admin
-    defaults: { _controller: OrtofitBackOfficeBundle:Default:index }
+    defaults: { _controller: OrtofitBackOfficeBundle:Appointment:index }
 login_route:
     path:     /login
     defaults: { _controller: OrtofitBackOfficeBundle:Login:login }

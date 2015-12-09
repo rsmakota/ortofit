@@ -44,25 +44,25 @@ $(document).ready(function() {
         },
         loadAppEvents: function(calendarId, officeId, url) {
             jQuery.base.send(url,{office_id:officeId}, jQuery.appointment.calendarFull)
-        },
+        }
         //http://fullcalendar.io/
         //http://fullcalendar.io/docs/event_data/events_json_feed/
-        calendarFull: function(data) {
-            $('#calendar').fullCalendar('removeEvents');
-            console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                var event = {
-                    title:           data[i].title,
-                    start:           new Date(data[i].start),
-                    end:             new Date(data[i].end),
-                    allDay:          false,
-                    backgroundColor: data[i].backgroundColor,
-                    borderColor:     data[i].borderColor,
-                };
-                $('#calendar').fullCalendar('renderEvent', event, true);
-            }
-            $('#calendar').fullCalendar('refetchEvents');
-        }
+        //calendarFull: function(data) {
+        //    $('#calendar').fullCalendar('removeEvents');
+        //    console.log(data);
+        //    for (var i = 0; i < data.length; i++) {
+        //        var event = {
+        //            title:           data[i].title,
+        //            start:           new Date(data[i].start),
+        //            end:             new Date(data[i].end),
+        //            allDay:          false,
+        //            backgroundColor: data[i].backgroundColor,
+        //            borderColor:     data[i].borderColor,
+        //        };
+        //        $('#calendar').fullCalendar('renderEvent', event, true);
+        //    }
+        //    $('#calendar').fullCalendar('refetchEvents');
+        //}
     };
 
 
