@@ -38,3 +38,6 @@ backendoffice_appointment_create:
 backendoffice_appointment_get_app:
     path:     /admin/app/get
     defaults: { _controller: OrtofitBackOfficeBundle:Appointment:getApp }
+backendoffice_appointment_pre_app:
+    path:     /admin/app/pre
+    defaults: { _controller: OrtofitBackOfficeBundle:Appointment:preOrder }

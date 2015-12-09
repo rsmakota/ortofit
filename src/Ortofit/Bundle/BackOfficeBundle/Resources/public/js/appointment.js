@@ -42,9 +42,7 @@ $(document).ready(function() {
                 $('#appointmentModal').modal('hide');
             });
         },
-        loadAppEvents: function(calendarId, officeId, url) {
-            jQuery.base.send(url,{office_id:officeId}, jQuery.appointment.calendarFull)
-        }
+
         //http://fullcalendar.io/
         //http://fullcalendar.io/docs/event_data/events_json_feed/
         //calendarFull: function(data) {
@@ -79,6 +77,8 @@ $(document).ready(function() {
                     jQuery.appointment.create();
                 });
             })
-        })
+        });
+
+
     });
 });

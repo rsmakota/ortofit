@@ -42,6 +42,13 @@ class Order implements EntityInterface
     private $application;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     */
+    private $service;
+
+
+    /**
      * Order constructor.
      */
     public function __construct()
@@ -114,6 +121,22 @@ class Order implements EntityInterface
     }
 
     /**
+     * @return Service
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * @param Service $service
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+    }
+
+    /**
      * @return array
      */
     public function getData()
@@ -122,7 +145,8 @@ class Order implements EntityInterface
             'id'            => $this->id,
             'created'       => $this->created->format('Y-m-d H:i:s'),
             'clientId'      => $this->getClient()->getId(),
-            'applicationId' => $this->getApplication()->getId()
+            'applicationId' => $this->getApplication()->getId(),
+            'service_id'    => $this->getService()->getId()
         ];
     }
 

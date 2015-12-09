@@ -26,5 +26,5 @@ security:
                 target: login_route
 
     access_control:
-        - { path: ^/admin/.*/.*/.*, role: ROLE_ADMIN }
+        - { path: ^/admin/.*/.*/.*/.*, role: ROLE_ADMIN }
 

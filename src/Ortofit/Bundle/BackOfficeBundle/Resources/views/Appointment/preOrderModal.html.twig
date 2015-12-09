@@ -1,0 +1,68 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Оформить</h4>
+        </div>
+
+        <div class="modal-body">
+            <table class="table table-striped">
+                <tr>
+                    <td><i class="fa fa-phone"></i></td>
+                    <td>Телефон:</td>
+                    <td>{{ msisdn }}</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-user"></i></td>
+                    <td>Имя:</td>
+                    <td>{{ name }}</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-arrow-right"></i></td>
+                    <td>Источник:</td>
+                    <td>{{ direction }}</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-building"></i></td>
+                    <td>Офис:</td>
+                    <td>{{ office }}</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-calendar"></i></td>
+                    <td>Дата:</td>
+                    <td>{{ date }}</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-clock-o"></i></td>
+                    <td>Время:</td>
+                    <td>{{ time }}</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-hourglass-o"></i></td>
+                    <td>Прием:</td>
+                    <td>{{ duration }}</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-plus-circle-o"></i></td>
+                    <td>Услуга:</td>
+                    <td>{{ service }}</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-sticky-note-o"></i></td>
+                    <td>Заметка:</td>
+                    <td>{{ description }}</td>
+                </tr>
+
+            </table>
+
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="editButton">Редактировать</button>
+            <button type="button" class="btn btn-success" id="orderButton">Оформить</button>
+        </div>
+    </div>
+</div>

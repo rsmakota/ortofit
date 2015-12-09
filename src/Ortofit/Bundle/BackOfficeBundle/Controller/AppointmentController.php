@@ -7,6 +7,7 @@
 namespace Ortofit\Bundle\BackOfficeBundle\Controller;
 
 use Ortofit\Bundle\BackOfficeBundle\EntityManager\OfficeManager;
+use Ortofit\Bundle\SingUpBundle\Entity\Appointment;
 use Ortofit\Bundle\SingUpBundle\Entity\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -161,7 +162,7 @@ class AppointmentController extends Controller
         $data = [
             'from'      => $fromDay,
             'to'        => $toDay,
-            'office_id' => 1//$request->get('office_id')
+            'office_id' => $request->get('office_id')
         ];
         $app = $this->getAppointmentManager()->findByRange(new ParameterBag($data));
         $responseData = [];
@@ -170,5 +171,30 @@ class AppointmentController extends Controller
         }
 
         return new JsonResponse($responseData);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function preOrderAction(Request $request)
+    {
+        /** @var Appointment $app */
+        $app = $this->getAppointmentManager()->get($request->get('appId'));
+        $data =[
+            'appId'       => $app->getId(),
+            'msisdn'      => $app->getClient()->getMsisdn(),
+            'name'        => $app->getClient()->getName(),
+            'direction'   => $app->getClient()->getClientDirection()->getName(),
+            'office'      => $app->getOffice()->getName(),
+            'date'        => $app->getDateTime()->format('Y-m-d'),
+            'time'        => $app->getDateTime()->format('H:i'),
+            'duration'    => $app->getDuration(),
+            'service'     => $app->getService()->getName(),
+            'description' => $app->getDescription()
+        ];
+
+        return $this->render('@OrtofitBackOffice/Appointment/preOrderModal.html.twig', $data);
     }
 }

@@ -67,11 +67,14 @@
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 eventClick: function(calEvent, jsEvent, view) {
+                    jQuery.base.send({{ url('backendoffice_appointment_pre_app') }}+'/'+calEvent.id, {}, function(response){
+                        $('#appointmentModal').empty();
+                        $('#appointmentModal').append(response);
 
-                    alert('Event: ' + calEvent.id);
-                    // change the border color just for fun
-                    // $(this).css('border-color', 'red');
-
+                        $('#saveButton').click(function(){
+                            jQuery.appointment.create();
+                        });
+                    })
                 }
 
             });
@@ -88,7 +91,7 @@
                     if (officeIds[i] == officeId) {
                         $(calendarId).show();
                         $(calendarId).removeClass('hidden');
-                        $(calendarId).fullCalendar('rerenderEvents');
+                        $(calendarId).fullCalendar('render');
                     } else {
                         $(calendarId).hide();
                     }

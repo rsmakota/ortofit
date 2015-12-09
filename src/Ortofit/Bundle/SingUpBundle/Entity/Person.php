@@ -52,12 +52,18 @@ class Person
      */
     private $diagnoses;
     /**
+     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
+
+    /**
      * Construct
      */
     public function __construct()
     {
         $this->diagnoses = new ArrayCollection();
-        $this->created = new \DateTime();
+        $this->created   = new \DateTime();
     }
     /**
      * @return mixed
@@ -137,6 +143,22 @@ class Person
     public function getDiagnoses()
     {
         return $this->diagnoses;
+    }
+
+    /**
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param Client $client
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
     }
 
     /**
