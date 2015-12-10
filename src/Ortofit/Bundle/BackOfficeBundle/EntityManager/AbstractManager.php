@@ -98,6 +98,15 @@ abstract class AbstractManager implements EntityManagerInterface
     {
         return $this->enManager->getRepository($this->getEntityClassName())->findBy($params);
     }
+    /**
+     * @param array $params
+     *
+     * @return EntityInterface
+     */
+    public function findOneBy($params)
+    {
+        return $this->enManager->getRepository($this->getEntityClassName())->findOneBy($params);
+    }
 
     /**
      * @param integer $id

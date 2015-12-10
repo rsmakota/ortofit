@@ -32,7 +32,7 @@ $(document).ready(function() {
                 clientDirectionId: $('#directionId').val(),
                 officeId:          $('#officeId').val(),
                 dateTime:          $('#date').val().replace(/\//gim, '-')+' '+$('#time').val(),
-                duration:          $('#duration').val(),
+                duration:          $('#duration:checked').val(),
                 description:       $('#description').val(),
                 appId:             $('#appId').val(),
                 serviceId:         $('#serviceId').val()
@@ -45,11 +45,15 @@ $(document).ready(function() {
         create: function() {
             jQuery.base.send(jQuery.base.appCreateUrl, this.getData(), function(){
                 jQuery.base.getModal().modal('hide');
+                var calendar = $('#calendar'+$('#officeId').val());
+                calendar.fullCalendar('refetchEvents');
             });
         },
         update: function() {
             jQuery.base.send(jQuery.base.appUpdateUrl, this.getData(), function(){
                 jQuery.base.getModal().modal('hide');
+                var calendar = $('#calendar'+$('#officeId').val());
+                calendar.fullCalendar('refetchEvents');
             });
         },
 

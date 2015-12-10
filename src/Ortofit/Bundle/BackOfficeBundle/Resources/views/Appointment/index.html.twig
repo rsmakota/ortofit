@@ -72,17 +72,14 @@
                // lang: 'ru',
                 events: '{{ url('backendoffice_appointment_get_app') }}?office_id={{ office.id }}',
                 //Random default events
-                editable: true,
-                droppable: true, // this allows things to be dropped onto the calendar !!!
+                editable: false,
+                droppable: false, // this allows things to be dropped onto the calendar !!!
                 eventClick: function(calEvent, jsEvent, view) {
                     jQuery.base.send('{{ url('backendoffice_appointment_pre_app') }}?appId='+calEvent.id, {}, function(response){
                         var modal = jQuery.base.getModal();
                         modal.empty();
                         modal.append(response);
                         modal.modal();
-//                        $('#saveButton').click(function(){
-//                            jQuery.appointment.create();
-//                        });
                     });
                 }
 

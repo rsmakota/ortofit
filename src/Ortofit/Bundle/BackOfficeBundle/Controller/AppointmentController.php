@@ -78,7 +78,7 @@ class AppointmentController extends Controller
      */
     private function getClient($bag)
     {
-        $client = $this->getClientManager()->findBy(['msisdn' => $bag->get('msisdn')]);
+        $client = $this->getClientManager()->findOneBy(['msisdn' => $bag->get('msisdn')]);
         if ($client) {
             return $client;
         }
@@ -95,6 +95,7 @@ class AppointmentController extends Controller
     /**
      * @param ParameterBag $bag
      *
+
      * @return array
      */
     private function prepareAppData($bag)
@@ -212,7 +213,7 @@ class AppointmentController extends Controller
             $data['clientName']  = $app->getClient()->getName();
             $data['directionId'] = $app->getClient()->getClientDirection()->getId();
             $data['officeId']    = $app->getOffice()->getId();
-            $data['date']        = $app->getDateTime()->format('Y-m-d');
+            $data['date']        = $app->getDateTime()->format('d/m/Y');
             $data['time']        = $app->getDateTime()->format('H:i');
             $data['duration']    = $app->getDuration();
             $data['description'] = $app->getDescription();
