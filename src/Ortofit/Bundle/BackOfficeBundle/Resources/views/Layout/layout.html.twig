@@ -61,7 +61,8 @@
         $(function () {
 
             jQuery.base.appFormUrl   = "{{ url('backendoffice_appointment_get_form') }}";
-            jQuery.base.appCreateUrl = "{{ url('backendoffice_appointment_create') }}";
+            jQuery.base.appCreateUrl = "{{ url('backendoffice_appointment_create')   }}";
+            jQuery.base.appUpdateUrl = "{{ url('backendoffice_appointment_update')   }}";
 
         });
 
@@ -330,7 +331,7 @@
         <section class="sidebar">
             <!-- Sidebar user panel -->
             <div class="user-panel">
-                <button class="btn btn-block btn-success" data-toggle="modal" data-target="#appointmentModal"><i class="fa fa-fw fa-calendar-plus-o"></i> Запись</button>
+                <button class="btn btn-block btn-success" id="appButton"><i class="fa fa-fw fa-calendar-plus-o"></i> Запись</button>
             </div>
 
 

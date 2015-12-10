@@ -35,6 +35,13 @@ backendoffice_appointment_get_form:
 backendoffice_appointment_create:
     path:     /admin/app/create
     defaults: { _controller: OrtofitBackOfficeBundle:Appointment:create }
+backendoffice_appointment_update:
+    path:     /admin/app/update
+    defaults: { _controller: OrtofitBackOfficeBundle:Appointment:update }
+backendoffice_appointment_delete:
+    path:     /admin/app/delete
+    defaults: { _controller: OrtofitBackOfficeBundle:Appointment:delete }
+
 backendoffice_appointment_get_app:
     path:     /admin/app/get
     defaults: { _controller: OrtofitBackOfficeBundle:Appointment:getApp }

@@ -17,6 +17,7 @@ use Ortofit\Bundle\BackOfficeBundle\EntityManager\AppointmentManager;
 use Ortofit\Bundle\BackOfficeBundle\EntityManager\ClientManager;
 use Ortofit\Bundle\BackOfficeBundle\EntityManager\CountryManager;
 use Ortofit\Bundle\BackOfficeBundle\EntityManager\ClientDirectionManager;
+use Ortofit\Bundle\BackOfficeBundle\EntityManager\ServiceManager;
 /**
  * Class AppointmentController
  *
@@ -62,6 +63,15 @@ class AppointmentController extends Controller
     }
 
     /**
+     * @return ServiceManager
+     */
+    private function getServiceManager()
+    {
+        return $this->get('ortofit_back_office.service_manage');
+    }
+
+
+    /**
      * @param ParameterBag $bag
      *
      * @return Client
@@ -85,19 +95,42 @@ class AppointmentController extends Controller
     /**
      * @param ParameterBag $bag
      *
-     * @return ParameterBag
+     * @return array
      */
-    private function createAppointment($bag)
+    private function prepareAppData($bag)
     {
-
-        $data = [
+        return [
+            'id'          => $bag->get('appId'),
             'client'      => $this->getClient($bag),
             'dateTime'    => new \DateTime($bag->get('dateTime')),
             'duration'    => $bag->get('duration'),
             'description' => $bag->get('description'),
-            'office'      => $this->getOfficeManager()->get($bag->get('officeId'))
+            'office'      => $this->getOfficeManager()->get($bag->get('officeId')),
+            'service'     => $this->getServiceManager()->get($bag->get('serviceId')),
         ];
+    }
+
+    /**
+     * @param ParameterBag $bag
+     *
+     * @return ParameterBag
+     */
+    private function createAppointment($bag)
+    {
+        $data = $this->prepareAppData($bag);
         $this->getAppointmentManager()->create(new ParameterBag($data));
+    }
+
+    /**
+     * @param ParameterBag $bag
+     *
+     * @return ParameterBag
+     */
+    private function updateAppointment($bag)
+    {
+
+        $data = $this->prepareAppData($bag);
+        $this->getAppointmentManager()->update(new ParameterBag($data));
     }
 
     /**
@@ -127,16 +160,64 @@ class AppointmentController extends Controller
             return new JsonResponse(['success' => 'nok', 'error' => $e->getMessage(), 'trace'=>$e->getTrace(), 'data' => $request->request->all()]);
         }
     }
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function updateAction(Request $request)
+    {
+        try {
+            $this->updateAppointment($request->request);
+
+            return new JsonResponse(['success' => 'ok']);
+        } catch (\Exception $e) {
+            return new JsonResponse(['success' => 'nok', 'error' => $e->getMessage(), 'trace'=>$e->getTrace(), 'data' => $request->request->all()]);
+        }
+    }
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function deleteAction(Request $request)
+    {
+        try {
+            $this->getAppointmentManager()->remove($request->get('appId'));
+
+            return new JsonResponse(['success' => 'ok']);
+        } catch (\Exception $e) {
+            return new JsonResponse(['success' => 'nok', 'error' => $e->getMessage(), 'trace'=>$e->getTrace(), 'data' => $request->request->all()]);
+        }
+    }
 
     /**
+     * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function formAction()
+    public function formAction(Request $request)
     {
         $data = [
             'directions' => $this->getClientDirectionManager()->all(),
-            'offices'    => $this->getOfficeManager()->all()
+            'offices'    => $this->getOfficeManager()->all(),
+            'services'   => $this->getServiceManager()->all()
         ];
+
+        if ($request->get('appId')) {
+            /** @var Appointment $app */
+            $app = $this->getAppointmentManager()->get($request->get('appId'));
+            $data['serviceId']   = $app->getService()->getId();
+            $data['msisdn']      = $app->getClient()->getMsisdn();
+            $data['clientName']  = $app->getClient()->getName();
+            $data['directionId'] = $app->getClient()->getClientDirection()->getId();
+            $data['officeId']    = $app->getOffice()->getId();
+            $data['date']        = $app->getDateTime()->format('Y-m-d');
+            $data['time']        = $app->getDateTime()->format('H:i');
+            $data['duration']    = $app->getDuration();
+            $data['description'] = $app->getDescription();
+            $data['appId']       = $app->getId();
+        }
 
         return $this->render('@OrtofitBackOffice/Appointment/createForm.html.twig', $data);
     }

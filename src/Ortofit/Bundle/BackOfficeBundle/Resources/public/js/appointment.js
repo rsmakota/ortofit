@@ -5,7 +5,7 @@ $(document).ready(function() {
     jQuery.base = {
         appFormUrl:   null,
         appCreateUrl: null,
-
+        appUpdateUrl: null,
         send: function(url, data, callback) {
             $.ajax({
                 type: "POST",
@@ -18,9 +18,12 @@ $(document).ready(function() {
                     callback();
                 }
             });
+        },
+        getModal: function() {
+            return $('#appointmentModal');
         }
     };
-    //http://stackoverflow.com/questions/25266604/create-dynamic-events-to-javascript-calendar
+
     jQuery.appointment = {
         getData: function() {
             return {
@@ -30,7 +33,9 @@ $(document).ready(function() {
                 officeId:          $('#officeId').val(),
                 dateTime:          $('#date').val().replace(/\//gim, '-')+' '+$('#time').val(),
                 duration:          $('#duration').val(),
-                description:       $('#description').val()
+                description:       $('#description').val(),
+                appId:             $('#appId').val(),
+                serviceId:         $('#serviceId').val()
 
             };
         },
@@ -39,43 +44,39 @@ $(document).ready(function() {
         },
         create: function() {
             jQuery.base.send(jQuery.base.appCreateUrl, this.getData(), function(){
-                $('#appointmentModal').modal('hide');
+                jQuery.base.getModal().modal('hide');
+            });
+        },
+        update: function() {
+            jQuery.base.send(jQuery.base.appUpdateUrl, this.getData(), function(){
+                jQuery.base.getModal().modal('hide');
             });
         },
 
-        //http://fullcalendar.io/
-        //http://fullcalendar.io/docs/event_data/events_json_feed/
-        //calendarFull: function(data) {
-        //    $('#calendar').fullCalendar('removeEvents');
-        //    console.log(data);
-        //    for (var i = 0; i < data.length; i++) {
-        //        var event = {
-        //            title:           data[i].title,
-        //            start:           new Date(data[i].start),
-        //            end:             new Date(data[i].end),
-        //            allDay:          false,
-        //            backgroundColor: data[i].backgroundColor,
-        //            borderColor:     data[i].borderColor,
-        //        };
-        //        $('#calendar').fullCalendar('renderEvent', event, true);
-        //    }
-        //    $('#calendar').fullCalendar('refetchEvents');
-        //}
+        init: function(appId) {
+            $("#date").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+            $("#time").inputmask("hh:mm", {"placeholder": "hh:mm"});
+            $("[data-mask]").inputmask();
+
+            $('#saveButton').click(function(){
+                if (appId) {
+                    jQuery.appointment.update();
+                } else {
+                    jQuery.appointment.create();
+                }
+            });
+        }
     };
 
 
 
     $(document).ready(function() {
-        $('#appointmentModal').on('show.bs.modal', function (e) {
+        $('#appButton').click(function (e) {
             jQuery.base.send(jQuery.base.appFormUrl, {}, function(response){
-                $('#appointmentModal').empty();
-                $('#appointmentModal').append(response);
-                $("#date").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-                $("#time").inputmask("hh:mm", {"placeholder": "hh:mm"});
-                $("[data-mask]").inputmask();
-                $('#saveButton').click(function(){
-                    jQuery.appointment.create();
-                });
+                var modal = jQuery.base.getModal();
+                modal.empty();
+                modal.append(response);
+                modal.modal();
             })
         });
 
