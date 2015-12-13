@@ -30,6 +30,7 @@ class LoadPersonData extends AbstractFixture implements OrderedFixtureInterface
         $son->setName('Max');
         $son->setAge(6);
         $son->setFamilyStatus($this->getReference('status:son'));
+        $son->setClient($this->getReference('client:00'));
         $manager->persist($son);
         $this->setReference('person:son', $son);
 
@@ -37,6 +38,7 @@ class LoadPersonData extends AbstractFixture implements OrderedFixtureInterface
         $daughter->setName('Kate');
         $daughter->setAge(10);
         $daughter->setFamilyStatus($this->getReference('status:daughter'));
+        $daughter->setClient($this->getReference('client:00'));
         $manager->persist($daughter);
         $this->setReference('person:daughter', $daughter);
 
@@ -44,6 +46,7 @@ class LoadPersonData extends AbstractFixture implements OrderedFixtureInterface
         $husband->setName('John');
         $husband->setAge(38);
         $husband->setFamilyStatus($this->getReference('status:husband'));
+        $husband->setClient($this->getReference('client:00'));
         $manager->persist($husband);
         $this->setReference('person:husband', $husband);
 

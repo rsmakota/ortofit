@@ -1,0 +1,78 @@
+{% extends 'OrtofitBackOfficeBundle:Layout:layout.html.twig' %}
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Клиенты
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-users"></i>Клиенты</a></li>
+        </ol>
+    </section>
+    <!-- content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Список клиентов</h3>
+                        <div class="box-tools">
+                            <div class="input-group" style="width: 150px;">
+                                <input class="form-control input-sm pull-right" type="text" placeholder="Поиск" name="table_search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body no-padding">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Имя</th>
+                                <th>Источник</th>
+                                <th>Стал клиентом</th>
+                                <th>Человек</th>
+                                <th> - </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for client in clients %}
+                                <tr>
+                                    <td>{{ client.id  }}</td>
+                                    <td>{{ client.name  }}</td>
+                                    <td>{{ client.getClientDirection().getName()  }}</td>
+                                    <td>{{ client.getCreated()|date('d/m/Y')  }}</td>
+                                    <td>{{ client.getPersons().count()  }}</td>
+                                </tr>
+                            {% endfor  %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="box-footer">
+                        <ul class="pagination">
+                            <li id="previous" class="paginate_button previous {% if paginator.previous == null %}disabled{% endif %}">
+                                <a href="{{ url('backendoffice_appointment_clients',{'page':paginator.previous}) }}" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a>
+                            </li>
+
+                        {% for i in 1..paginator.count %}
+                            <li class="paginate_button {% if i == paginator.current %} active {% endif %}">
+                                <a href="{{ url('backendoffice_appointment_clients',{'page':i}) }}" >{{ i }}</a>
+                            </li>
+                        {% endfor %}
+
+                            <li id="next" class="paginate_button next {% if paginator.next == null %}disabled{% endif %}">
+                                <a href="{{ url('backendoffice_appointment_clients',{'page':paginator.previous}) }}" >Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

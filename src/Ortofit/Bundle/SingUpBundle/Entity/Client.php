@@ -5,6 +5,7 @@
  */
 
 namespace Ortofit\Bundle\SingUpBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Client - This is a registered person (contact)
@@ -22,6 +23,7 @@ class Client implements EntityInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @ORM\Column(type="string")
      */
@@ -31,15 +33,18 @@ class Client implements EntityInterface
      * @ORM\Column(type="string", nullable=true)
      */
     private $name;
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $created;
+
     /**
      * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
+
     /**
      * @ORM\ManyToOne(targetEntity="ClientDirection")
      * @ORM\JoinColumn(name="client_direction_id", referencedColumnName="id")
@@ -47,11 +52,18 @@ class Client implements EntityInterface
     private $clientDirection;
 
     /**
+     * @ORM\OneToMany(targetEntity="Person", mappedBy="client")
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
+    private $persons;
+
+    /**
      * Client constructor.
      */
     public function __construct()
     {
         $this->created = new \DateTime();
+        $this->persons = new ArrayCollection();
     }
 
     /**
@@ -140,6 +152,22 @@ class Client implements EntityInterface
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPersons()
+    {
+        return $this->persons;
+    }
+
+    /**
+     * @param mixed $persons
+     */
+    public function setPersons($persons)
+    {
+        $this->persons = $persons;
     }
 
     /**

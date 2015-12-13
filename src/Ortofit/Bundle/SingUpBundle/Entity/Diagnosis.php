@@ -35,7 +35,7 @@ class Diagnosis implements EntityInterface
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Person")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="diagnoses")
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
     private $person;

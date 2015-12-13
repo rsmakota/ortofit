@@ -52,7 +52,7 @@ class Person
      */
     private $diagnoses;
     /**
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="persons")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;

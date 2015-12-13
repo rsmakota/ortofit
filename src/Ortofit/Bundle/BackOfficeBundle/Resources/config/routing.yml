@@ -29,6 +29,9 @@ login_check:
 #    path:     /admin/entity
 #    defaults: { _controller: OrtofitBackOfficeBundle:Entity:index }
 
+backendoffice_appointment_clients:
+    path:     /admin/clients
+    defaults: { _controller: OrtofitBackOfficeBundle:Client:index }
 backendoffice_appointment_get_form:
     path:     /admin/app/form
     defaults: { _controller: OrtofitBackOfficeBundle:Appointment:form }

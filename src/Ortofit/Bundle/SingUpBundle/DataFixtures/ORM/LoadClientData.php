@@ -26,10 +26,30 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface
     {
         $client = new Client();
         $client->setMsisdn('380670000000');
+        $client->setName('Гордей');
         $client->setCountry($this->getReference('country:ua'));
         $client->setClientDirection($this->getReference('clientDirection:internet'));
         $manager->persist($client);
         $this->addReference('client:00', $client);
+
+        $client = new Client();
+        $client->setMsisdn('380671111111');
+        $client->setName('Андрей');
+        $client->setCountry($this->getReference('country:ua'));
+        $client->setClientDirection($this->getReference('clientDirection:friends'));
+        $manager->persist($client);
+        $this->addReference('client:01', $client);
+
+        $client = new Client();
+        $client->setMsisdn('3806722222222');
+        $client->setName('Инна');
+        $client->setCountry($this->getReference('country:ua'));
+        $client->setClientDirection($this->getReference('clientDirection:return'));
+        $manager->persist($client);
+        $this->addReference('client:02', $client);
+
+
+
 
         $manager->flush();
 
