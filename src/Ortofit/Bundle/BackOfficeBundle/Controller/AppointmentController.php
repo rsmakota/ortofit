@@ -6,70 +6,19 @@
 
 namespace Ortofit\Bundle\BackOfficeBundle\Controller;
 
-use Ortofit\Bundle\BackOfficeBundle\EntityManager\OfficeManager;
 use Ortofit\Bundle\SingUpBundle\Entity\Appointment;
 use Ortofit\Bundle\SingUpBundle\Entity\Client;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
-use Ortofit\Bundle\BackOfficeBundle\EntityManager\AppointmentManager;
-use Ortofit\Bundle\BackOfficeBundle\EntityManager\ClientManager;
-use Ortofit\Bundle\BackOfficeBundle\EntityManager\CountryManager;
-use Ortofit\Bundle\BackOfficeBundle\EntityManager\ClientDirectionManager;
-use Ortofit\Bundle\BackOfficeBundle\EntityManager\ServiceManager;
+
 /**
  * Class AppointmentController
  *
  * @package Ortofit\Bundle\BackOfficeBundle\Controller
  */
-class AppointmentController extends Controller
+class AppointmentController extends BaseController
 {
-    /**
-     * @return AppointmentManager
-     */
-    private function getAppointmentManager()
-    {
-        return $this->get('ortofit_back_office.appointment_manage');
-    }
-
-    /**
-     * @return ClientDirectionManager
-     */
-    private function getClientDirectionManager()
-    {
-        return $this->get('ortofit_back_office.client_direction_manage');
-    }
-    /**
-     * @return CountryManager
-     */
-    private function getCountryManager()
-    {
-        return $this->get('ortofit_back_office.client_country_manage');
-    }
-    /**
-     * @return ClientManager
-     */
-    private function getClientManager()
-    {
-        return $this->get('ortofit_back_office.client_manage');
-    }
-    /**
-     * @return OfficeManager
-     */
-    private function getOfficeManager()
-    {
-        return $this->get('ortofit_back_office.office_manage');
-    }
-
-    /**
-     * @return ServiceManager
-     */
-    private function getServiceManager()
-    {
-        return $this->get('ortofit_back_office.service_manage');
-    }
-
 
     /**
      * @param ParameterBag $bag
@@ -95,7 +44,6 @@ class AppointmentController extends Controller
     /**
      * @param ParameterBag $bag
      *
-
      * @return array
      */
     private function prepareAppData($bag)
@@ -156,9 +104,9 @@ class AppointmentController extends Controller
         try {
             $this->createAppointment($request->request);
 
-            return new JsonResponse(['success' => 'ok']);
+            return $this->createSuccessJsonResponse();
         } catch (\Exception $e) {
-            return new JsonResponse(['success' => 'nok', 'error' => $e->getMessage(), 'trace'=>$e->getTrace(), 'data' => $request->request->all()]);
+            return $this->createFailJsonResponse($e, $request->request->all());
         }
     }
     /**
@@ -171,9 +119,9 @@ class AppointmentController extends Controller
         try {
             $this->updateAppointment($request->request);
 
-            return new JsonResponse(['success' => 'ok']);
+            return $this->createSuccessJsonResponse();
         } catch (\Exception $e) {
-            return new JsonResponse(['success' => 'nok', 'error' => $e->getMessage(), 'trace'=>$e->getTrace(), 'data' => $request->request->all()]);
+            return $this->createFailJsonResponse($e, $request->request->all());
         }
     }
     /**
@@ -186,9 +134,9 @@ class AppointmentController extends Controller
         try {
             $this->getAppointmentManager()->remove($request->get('appId'));
 
-            return new JsonResponse(['success' => 'ok']);
+            return $this->createSuccessJsonResponse();
         } catch (\Exception $e) {
-            return new JsonResponse(['success' => 'nok', 'error' => $e->getMessage(), 'trace'=>$e->getTrace(), 'data' => $request->request->all()]);
+            return $this->createFailJsonResponse($e, $request->request->all());
         }
     }
 

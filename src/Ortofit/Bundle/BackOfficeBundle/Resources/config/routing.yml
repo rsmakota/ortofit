@@ -32,6 +32,16 @@ login_check:
 backendoffice_appointment_clients:
     path:     /admin/clients
     defaults: { _controller: OrtofitBackOfficeBundle:Client:index }
+backendoffice_clients_form:
+    path:     /admin/clients/form
+    defaults: { _controller: OrtofitBackOfficeBundle:Client:form }
+backendoffice_clients_update:
+    path:     /admin/clients/update
+    defaults: { _controller: OrtofitBackOfficeBundle:Client:update }
+backendoffice_clients_create:
+    path:     /admin/clients/create
+    defaults: { _controller: OrtofitBackOfficeBundle:Client:create }
+
 backendoffice_appointment_get_form:
     path:     /admin/app/form
     defaults: { _controller: OrtofitBackOfficeBundle:Appointment:form }

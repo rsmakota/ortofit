@@ -72,7 +72,40 @@ $(document).ready(function() {
         }
     };
 
+    jQuery.client = {
+        createUrl: null,
+        updateUrl: null,
+        init: function(id) {
+            $("[data-mask]").inputmask();
+            $('#saveButton').click(function(){
+                if (id) {
+                    jQuery.client.update();
+                } else {
+                    jQuery.client.create();
+                }
+            });
+        },
+        getData: function() {
+            return {
+                msisdn:            $('#msisdn').val().replace(/[^0-9]/gim,''),
+                name:              $('#name').val(),
+                clientDirectionId: $('#clientDirectionId').val(),
+                id:                $('#id').val()
 
+            };
+        },
+        update: function() {
+            jQuery.base.send(jQuery.client.updateUrl, this.getData(), function() {
+                jQuery.base.getModal().modal('hide');
+            });
+        },
+        create: function() {
+            jQuery.base.send(jQuery.client.createUrl, this.getData(), function() {
+                jQuery.base.getModal().modal('hide');
+                location.reload();
+            });
+        }
+    };
 
     $(document).ready(function() {
         $('#appButton').click(function (e) {

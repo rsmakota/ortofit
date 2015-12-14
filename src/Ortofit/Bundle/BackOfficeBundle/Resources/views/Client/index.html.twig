@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="box-body no-padding">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-hover">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -48,6 +48,7 @@
                                     <td>{{ client.getClientDirection().getName()  }}</td>
                                     <td>{{ client.getCreated()|date('d/m/Y')  }}</td>
                                     <td>{{ client.getPersons().count()  }}</td>
+                                    <td><i class="fa fa-pencil edit" style="cursor: pointer;" client-id="{{ client.id }}"></i></td>
                                 </tr>
                             {% endfor  %}
 
@@ -55,24 +56,52 @@
                         </table>
                     </div>
                     <div class="box-footer">
-                        <ul class="pagination">
-                            <li id="previous" class="paginate_button previous {% if paginator.previous == null %}disabled{% endif %}">
-                                <a href="{{ url('backendoffice_appointment_clients',{'page':paginator.previous}) }}" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a>
-                            </li>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <button type="button" class="btn btn-primary" id="newClient">Новый клиент</button>
+                            </div>
+                            <div class="col-sm-7">
+                                <ul class="pagination" style="margin: auto">
+                                    <li id="previous" class="paginate_button previous {% if paginator.previous == null %}disabled{% endif %}">
+                                        <a href="{{ url('backendoffice_appointment_clients',{'page':paginator.previous}) }}" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a>
+                                    </li>
 
-                        {% for i in 1..paginator.count %}
-                            <li class="paginate_button {% if i == paginator.current %} active {% endif %}">
-                                <a href="{{ url('backendoffice_appointment_clients',{'page':i}) }}" >{{ i }}</a>
-                            </li>
-                        {% endfor %}
+                                    {% for i in 1..paginator.count %}
+                                        <li class="paginate_button {% if i == paginator.current %} active {% endif %}">
+                                            <a href="{{ url('backendoffice_appointment_clients',{'page':i}) }}" >{{ i }}</a>
+                                        </li>
+                                    {% endfor %}
 
-                            <li id="next" class="paginate_button next {% if paginator.next == null %}disabled{% endif %}">
-                                <a href="{{ url('backendoffice_appointment_clients',{'page':paginator.previous}) }}" >Next</a>
-                            </li>
-                        </ul>
+                                    <li id="next" class="paginate_button next {% if paginator.next == null %}disabled{% endif %}">
+                                        <a href="{{ url('backendoffice_appointment_clients',{'page':paginator.previous}) }}" >Next</a>
+                                    </li>
+                                </ul>
+                            </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function() {
+            $('#newClient').click(function (e) {
+                jQuery.base.send('{{ url('backendoffice_clients_form') }}', {}, function(response){
+                    var modal = jQuery.base.getModal();
+                    modal.empty();
+                    modal.append(response);
+                    modal.modal();
+                })
+            });
+            $('.edit').click(function (){
+                var clientId = $(this).attr('client-id');
+                jQuery.base.send('{{ url('backendoffice_clients_form') }}', {id:clientId}, function(response){
+                    var modal = jQuery.base.getModal();
+                    modal.empty();
+                    modal.append(response);
+                    modal.modal();
+                })
+            });
+        });
+    </script>
 {% endblock %}
