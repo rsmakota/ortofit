@@ -6,7 +6,7 @@
             Клиенты
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-users"></i>Клиенты</a></li>
+            <li><a href="{{ url('backendoffice_appointment_clients') }}"><i class="fa fa-users"></i>Список клиентов</a></li>
         </ol>
     </section>
     <!-- content -->
@@ -33,6 +33,7 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Пол</th>
                                 <th>Имя</th>
                                 <th>Источник</th>
                                 <th>Стал клиентом</th>
@@ -44,6 +45,13 @@
                             {% for client in clients %}
                                 <tr>
                                     <td>{{ client.id  }}</td>
+                                    <td>
+                                        {% if client.gender == 'male' %}
+                                            <i class="fa fa-mars"></i>
+                                        {% else %}
+                                            <i class="fa fa-venus"></i>
+                                        {% endif %}
+                                    </td>
                                     <td>{{ client.name  }}</td>
                                     <td>{{ client.getClientDirection().getName()  }}</td>
                                     <td>{{ client.getCreated()|date('d/m/Y')  }}</td>

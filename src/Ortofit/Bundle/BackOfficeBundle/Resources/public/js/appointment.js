@@ -30,6 +30,7 @@ $(document).ready(function() {
                 msisdn:            $('#msisdn').val().replace(/[^0-9]/gim,''),
                 clientName:        $('#clientName').val(),
                 clientDirectionId: $('#directionId').val(),
+                gender:            $('#gender').val(),
                 officeId:          $('#officeId').val(),
                 dateTime:          $('#date').val().replace(/\//gim, '-')+' '+$('#time').val(),
                 duration:          $('#duration:checked').val(),
@@ -89,6 +90,7 @@ $(document).ready(function() {
             return {
                 msisdn:            $('#msisdn').val().replace(/[^0-9]/gim,''),
                 name:              $('#name').val(),
+                gender:            $('#gender').val(),
                 clientDirectionId: $('#clientDirectionId').val(),
                 id:                $('#id').val()
 

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class FamilyStatus
+ *
  * @package Ortofit\Bundle\SingUpBundle\Entity
  *
  * @ORM\Entity
@@ -82,7 +83,6 @@ class FamilyStatus implements EntityInterface
         $this->general = $general;
     }
 
-
     /**
      * @return string
      */
@@ -90,6 +90,7 @@ class FamilyStatus implements EntityInterface
     {
         return get_class();
     }
+
     /**
      * @return array
      */

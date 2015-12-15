@@ -61,6 +61,7 @@ class ClientManager extends AbstractManager
         $entity->setClientDirection($params->get('clientDirection'));
         $entity->setMsisdn($params->get('msisdn'));
         $entity->setName($params->get('name'));
+        $entity->setGender($params->get('gender'));
         $this->persist($entity);
 
         return $entity;
@@ -78,6 +79,7 @@ class ClientManager extends AbstractManager
         $entity->setCountry($params->get('country'));
         $entity->setClientDirection($params->get('clientDirection'));
         $entity->setMsisdn($params->get('msisdn'));
+        $entity->setGender($params->get('gender'));
         $this->merge($entity);
     }
 }

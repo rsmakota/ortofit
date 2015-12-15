@@ -40,11 +40,10 @@ class PersonManager extends AbstractManager
      */
     public function create($params)
     {
-        $status = $this->rGet($params->get('familyStatusId'));
         $entity = new Person();
         $entity->setName($params->get('name'));
-        $entity->setAge($params->get('age'));
-        $entity->setFamilyStatus($status);
+        $entity->setBorn($params->get('born'));
+        $entity->setFamilyStatus($params->get('familyStatus'));
         $this->persist($entity);
     }
 
@@ -55,11 +54,11 @@ class PersonManager extends AbstractManager
      */
     public function update($params)
     {
-        $status = $this->rGet($params->get('familyStatusId'));
+        /** @var Person $entity */
         $entity = $this->rGet($params->get('id'));
         $entity->setName($params->get('name'));
-        $entity->setAge($params->get('age'));
-        $entity->setFamilyStatus($status);
+        $entity->setBorn($params->get('born'));
+        $entity->setFamilyStatus($params->get('familyStatus'));
         $this->merge($entity);
     }
 }

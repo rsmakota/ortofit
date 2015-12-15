@@ -13,6 +13,7 @@ use Ortofit\Bundle\SingUpBundle\Entity\Client;
 
 /**
  * Class LoadClientData
+ *
  * @package Ortofit\Bundle\SingUpBundle\DataFixtures\ORM
  */
 class LoadClientData extends AbstractFixture implements OrderedFixtureInterface
@@ -29,6 +30,7 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface
         $client->setName('Гордей');
         $client->setCountry($this->getReference('country:ua'));
         $client->setClientDirection($this->getReference('clientDirection:internet'));
+        $client->setGender(Client::GENDER_MALE);
         $manager->persist($client);
         $this->addReference('client:00', $client);
 
@@ -37,6 +39,7 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface
         $client->setName('Андрей');
         $client->setCountry($this->getReference('country:ua'));
         $client->setClientDirection($this->getReference('clientDirection:friends'));
+        $client->setGender(Client::GENDER_MALE);
         $manager->persist($client);
         $this->addReference('client:01', $client);
 
@@ -45,6 +48,7 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface
         $client->setName('Инна');
         $client->setCountry($this->getReference('country:ua'));
         $client->setClientDirection($this->getReference('clientDirection:return'));
+        $client->setGender(Client::GENDER_FEMALE);
         $manager->persist($client);
         $this->addReference('client:02', $client);
 

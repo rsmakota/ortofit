@@ -17,6 +17,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Client implements EntityInterface
 {
+    const GENDER_MALE   = "male";
+    const GENDER_FEMALE = "female";
+
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
@@ -56,6 +59,11 @@ class Client implements EntityInterface
      * @ORM\OrderBy({"id" = "ASC"})
      */
     private $persons;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $gender;
 
     /**
      * Client constructor.
@@ -173,6 +181,22 @@ class Client implements EntityInterface
     /**
      * @return string
      */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return string
+     */
     static public function clazz()
     {
         return get_class();
@@ -188,7 +212,8 @@ class Client implements EntityInterface
             'msisdn'            => $this->msisdn,
             'created'           => $this->created->format('Y-m-d H:i:s'),
             'clientDirectionId' => $this->getClientDirection()->getId(),
-            'countryId'         => $this->getCountry()->getId()
+            'countryId'         => $this->getCountry()->getId(),
+            'gender'            => $this->gender
         ];
     }
 }

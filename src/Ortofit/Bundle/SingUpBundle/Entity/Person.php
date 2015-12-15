@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="persons")
  */
-class Person
+class Person implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -31,9 +31,9 @@ class Person
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="datetime")
      */
-    private $age;
+    private $born;
 
     /**
      * @ORM\ManyToOne(targetEntity="FamilyStatus")
@@ -98,19 +98,19 @@ class Person
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
-    public function getAge()
+    public function getBorn()
     {
-        return $this->age;
+        return $this->born;
     }
 
     /**
-     * @param mixed $age
+     * @param \DateTime $born
      */
-    public function setAge($age)
+    public function setBorn($born)
     {
-        $this->age = $age;
+        $this->born = $born;
     }
 
     /**
@@ -169,4 +169,11 @@ class Person
         return get_class();
     }
 
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        // TODO: Implement getData() method.
+    }
 }

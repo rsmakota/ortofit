@@ -42,6 +42,20 @@ backendoffice_clients_create:
     path:     /admin/clients/create
     defaults: { _controller: OrtofitBackOfficeBundle:Client:create }
 
+backendoffice_persons:
+    path:     /admin/persons
+    defaults: { _controller: OrtofitBackOfficeBundle:Person:index }
+
+backendoffice_persons_form:
+    path:     /admin/persons/form
+    defaults: { _controller: OrtofitBackOfficeBundle:Person:form }
+backendoffice_persons_create:
+    path:     /admin/persons/create
+    defaults: { _controller: OrtofitBackOfficeBundle:Person:create }
+backendoffice_persons_update:
+    path:     /admin/persons/update
+    defaults: { _controller: OrtofitBackOfficeBundle:Person:update }
+
 backendoffice_appointment_get_form:
     path:     /admin/app/form
     defaults: { _controller: OrtofitBackOfficeBundle:Appointment:form }

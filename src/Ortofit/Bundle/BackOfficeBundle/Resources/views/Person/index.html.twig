@@ -1,0 +1,53 @@
+{% extends 'OrtofitBackOfficeBundle:Layout:layout.html.twig' %}
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Клиенты
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url('backendoffice_appointment_clients') }}"><i class="fa fa-users"></i>Список клиентов</a>
+            </li>
+            <li class="active">Клиент</li>
+        </ol>
+    </section>
+    <!-- content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" alt="User profile picture"
+                        {% if client.gender == 'male' %}
+                             src="{{ '../bundles/ortofitbackoffice/dist/img/avatar5.png' }}"
+                        {% else %}
+                            src="{{ '../bundles/ortofitbackoffice/dist/img/avatar3.png' }}"
+                        {% endif %}
+                        >
+                    </div>
+                </div>
+            </div>
+    </section>
+    {#<script>#}
+        {#$(document).ready(function () {#}
+            {#$('#newClient').click(function (e) {#}
+                {#jQuery.base.send('{{ url('backendoffice_clients_form') }}', {}, function (response) {#}
+                    {#var modal = jQuery.base.getModal();#}
+                    {#modal.empty();#}
+                    {#modal.append(response);#}
+                    {#modal.modal();#}
+                {#})#}
+            {#});#}
+            {#$('.edit').click(function () {#}
+                {#var clientId = $(this).attr('client-id');#}
+                {#jQuery.base.send('{{ url('backendoffice_clients_form') }}', {id: clientId}, function (response) {#}
+                    {#var modal = jQuery.base.getModal();#}
+                    {#modal.empty();#}
+                    {#modal.append(response);#}
+                    {#modal.modal();#}
+                {#})#}
+            {#});#}
+        {#});#}
+    {#</script>#}
+{% endblock %}

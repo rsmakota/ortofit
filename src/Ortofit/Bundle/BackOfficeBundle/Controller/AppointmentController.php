@@ -34,6 +34,7 @@ class AppointmentController extends BaseController
         $data = [
             'msisdn'          => $bag->get('msisdn'),
             'name'            => $bag->get('clientName'),
+            'gender'          => $bag->get('gender'),
             'country'         => $this->getCountryManager()->getDefault(),
             'clientDirection' => $this->getClientDirectionManager()->get($bag->get('clientDirectionId'))
         ];
@@ -166,6 +167,7 @@ class AppointmentController extends BaseController
             $data['duration']    = $app->getDuration();
             $data['description'] = $app->getDescription();
             $data['appId']       = $app->getId();
+            $data['gender']      = $app->getClient()->getGender();
         }
 
         return $this->render('@OrtofitBackOffice/Appointment/createForm.html.twig', $data);
@@ -222,7 +224,8 @@ class AppointmentController extends BaseController
             'time'        => $app->getDateTime()->format('H:i'),
             'duration'    => $app->getDuration(),
             'service'     => $app->getService()->getName(),
-            'description' => $app->getDescription()
+            'description' => $app->getDescription(),
+            'gender'      => $app->getClient()->getGender()
         ];
 
         return $this->render('@OrtofitBackOffice/Appointment/preOrderModal.html.twig', $data);
