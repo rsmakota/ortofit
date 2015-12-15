@@ -32,10 +32,12 @@ class PersonController extends BaseController
      */
     public function indexAction(Request $request)
     {
-        $manager   = $this->getClientManager();
-        $clients   = $manager->get($request->get('clientId'));
+        $manager = $this->getClientManager();
+        $client  = $manager->get($request->get('clientId'));
+        $lastApp = $this->getAppointmentManager()->findOneBy(['client'=>$client], ['id'=>'DESC']);
         $data = [
-            'client' => $clients,
+            'client' => $client,
+            'lastApp'=> $lastApp
         ];
 
         return $this->render('@OrtofitBackOffice/Person/index.html.twig', $data);
