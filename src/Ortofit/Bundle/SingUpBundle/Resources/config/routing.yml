@@ -1,7 +1,0 @@
-ortofit_sing_up_index:
-    path:     /sing_up/index/{appId}
-    defaults: { _controller: OrtofitSingUpBundle:SingUp:index }
-
-ortofit_sing_up_process:
-    path:     /sing_up/process
-    defaults: { _controller: OrtofitSingUpBundle:SingUp:process }

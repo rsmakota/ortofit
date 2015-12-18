@@ -1,13 +1,4 @@
-ortofit_back_office:
-    resource: "@OrtofitBackOfficeBundle/Resources/config/routing.yml"
-    prefix:   /
-
-ortofit_sing_up:
-    resource: "@OrtofitSingUpBundle/Resources/config/routing.yml"
-    prefix:   /
-
 ortofit_quiz:
     resource: "@OrtofitQuizBundle/Resources/config/routing.yml"
     prefix:   /
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+

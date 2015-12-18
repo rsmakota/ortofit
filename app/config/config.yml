@@ -41,7 +41,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [OrtofitQuizBundle, OrtofitSingUpBundle, OrtofitBackOfficeBundle]
+    bundles:        [OrtofitQuizBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -82,19 +82,11 @@ swiftmailer:
     #spool:      { type: memory }
 
 monolog:
-    channels: ["quiz", "sing_up"]
+    channels: ["quiz"]
     handlers:
         ot_quiz:
             type:  rotating_file
             path:  "%kernel.logs_dir%/ortofit_quiz_%%s.log"
             level: debug
             channels: quiz
-        ot_sing_up:
-            type:  rotating_file
-            path:  "%kernel.logs_dir%/ortofit_sing_up_%%s.log"
-            level: debug
-            channels: sing_up
-fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: back_office
-    user_class: Ortofit\Bundle\BackOfficeBundle\Entity\User
+
